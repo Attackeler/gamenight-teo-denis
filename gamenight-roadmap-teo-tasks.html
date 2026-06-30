@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gamenight — Teo's Tasks</title>
+<style>
+  :root{
+    --bg:#0e1016; --card:#161b25; --card2:#1c2330; --line:#283042;
+    --text:#e7ecf5; --muted:#93a0b6; --soft:#b6c0d4;
+    --accent:#7c5cff; --accent2:#ff5c93; --green:#39d98a; --amber:#ffc24b;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%, #1a2030 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:#a99bff;text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:900px;margin:0 auto;padding:28px 20px 80px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .die{width:42px;height:42px;flex:0 0 auto;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;box-shadow:0 8px 24px rgba(124,92,255,.35)}
+  h1{font-size:24px;margin:0;letter-spacing:.2px}
+  .sub{color:var(--muted);font-size:13.5px;margin-top:2px}
+
+  .progresswrap{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;position:sticky;top:10px;z-index:5;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .progress-label{font-weight:600;font-size:14.5px}
+  .progress-num{font-variant-numeric:tabular-nums;color:var(--soft);font-size:13.5px}
+  .progress-num b{color:var(--text)}
+  .bar{height:10px;border-radius:99px;background:#0c0f16;border:1px solid var(--line);margin-top:10px;overflow:hidden}
+  .bar-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s cubic-bezier(.2,.7,.2,1)}
+  .ship{margin-top:10px;color:var(--green);font-weight:600;font-size:13.5px;display:none}
+  .ship.show{display:block}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .btn{appearance:none;border:1px solid var(--line);background:var(--card2);color:var(--soft);font-size:12.5px;padding:7px 12px;border-radius:9px;cursor:pointer;font-weight:600}
+  .btn:hover{border-color:#3a455d;color:var(--text)} .btn.danger:hover{border-color:#5a2740;color:#ff9bbb}
+
+  .intro{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;font-size:13.5px;color:var(--soft)}
+  .intro b{color:var(--text)}
+  .legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .lg{font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:99px;border:1px solid var(--line)}
+  .m-solo{color:#9fb4d6;background:rgba(120,150,200,.12)}
+  .m-pair{color:#ffd98a;background:rgba(255,194,75,.12);border-color:rgba(255,194,75,.3)}
+  .m-review{color:#c5a3ff;background:rgba(124,92,255,.16);border-color:rgba(124,92,255,.32)}
+  .m-own{color:#8de0b4;background:rgba(57,217,138,.12);border-color:rgba(57,217,138,.3)}
+  .m-learn{color:#9fe8ef;background:rgba(70,213,224,.12);border-color:rgba(70,213,224,.3)}
+  .m-support{color:#9aa6ba;background:rgba(150,160,180,.12)}
+
+  .phase{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-top:16px;overflow:hidden}
+  .phase.complete{border-color:rgba(57,217,138,.45)}
+  .phase-head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;user-select:none}
+  .phase-head:hover{background:rgba(255,255,255,.015)}
+  .chev{flex:0 0 auto;color:var(--muted);transition:transform .2s;font-size:13px;width:14px;text-align:center}
+  .phase.collapsed .chev{transform:rotate(-90deg)}
+  .titlewrap{flex:1 1 auto;min-width:0}
+  .phase-num{font-size:11.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .phase.complete .phase-num{color:var(--green)}
+  .phase-title{font-size:16.5px;margin:1px 0 0;font-weight:650;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .milestone{font-size:10.5px;font-weight:700;letter-spacing:.5px;color:#ffd98a;background:rgba(255,194,75,.12);border:1px solid rgba(255,194,75,.3);padding:2px 7px;border-radius:99px}
+  .phase-progress{flex:0 0 auto;display:flex;align-items:center;gap:10px}
+  .phase-count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
+  .phase-bar{width:64px;height:6px;border-radius:99px;background:#0c0f16;border:1px solid var(--line);overflow:hidden}
+  .phase-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+  .phase.complete .phase-bar-fill{background:var(--green)}
+  .phase-body{padding:2px 18px 18px;border-top:1px solid var(--line)}
+  .phase.collapsed .phase-body{display:none}
+  .goal{color:var(--soft);font-size:13.5px;margin:13px 2px 13px}
+  .goal b{color:var(--text)}
+
+  ul.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .step{display:flex;gap:12px;align-items:flex-start;padding:11px 12px;border-radius:11px;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s}
+  .step:hover{background:rgba(124,92,255,.06);border-color:rgba(124,92,255,.25)}
+  .step-check{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+  .box{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:2px solid #3c465c;background:#0d1017;display:grid;place-items:center;margin-top:1px;transition:.15s}
+  .step:hover .box{border-color:var(--accent)}
+  .box svg{opacity:0;transform:scale(.5);transition:.15s}
+  .step.done .box{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
+  .step.done .box svg{opacity:1;transform:scale(1)}
+  .step-main{flex:1 1 auto;min-width:0}
+  .step-text{font-size:14px;color:var(--text);transition:.15s}
+  .step.done .step-text{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(147,160,182,.5)}
+  .mode{display:inline-block;margin-left:8px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:99px;border:1px solid var(--line);vertical-align:1px;white-space:nowrap}
+  .step.done .mode{opacity:.5}
+
+  details.learn{margin-top:13px;border-top:1px dashed var(--line);padding-top:11px}
+  details.learn>summary{cursor:pointer;font-size:12.5px;color:var(--soft);font-weight:600;list-style:none}
+  details.learn>summary::-webkit-details-marker{display:none}
+  details.learn>summary::before{content:"📚 ";font-weight:700}
+  details.learn ul{margin:9px 0 2px;padding-left:18px}
+  details.learn li{font-size:13px;margin:5px 0;color:var(--soft)}
+
+  footer{margin-top:26px;text-align:center;color:var(--muted);font-size:12px}
+  footer code{background:var(--card2);border:1px solid var(--line);padding:1px 6px;border-radius:5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="die" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
+    <div>
+      <h1>Gamenight — Teo's Tasks</h1>
+      <div class="sub">Your personal checklist. Tick tasks as you go — progress saves automatically.</div>
+    </div>
+  </div>
+
+  <div class="progresswrap">
+    <div class="progress-top">
+      <span class="progress-label">My progress</span>
+      <span class="progress-num"><b id="doneCount">0</b> / <span id="totalCount">0</span> tasks · <b id="pct">0%</b></span>
+    </div>
+    <div class="bar"><div class="bar-fill" id="overallFill"></div></div>
+    <div class="ship" id="shipMsg">🎉 Every task done — you built Gamenight!</div>
+    <div class="controls">
+      <button class="btn" id="expandAll">Expand all</button>
+      <button class="btn" id="collapseAll">Collapse all</button>
+      <button class="btn danger" id="resetBtn">Reset progress</button>
+    </div>
+  </div>
+
+  <div class="intro">
+    Your explicit, step-by-step tasks for building Gamenight. Each phase has a <b>“Where to learn this”</b> section with links for that phase's work. The shared plan is in <b>gamenight-roadmap.html</b>; how you and Denis work together is in <b>gamenight-team.html</b>. Every change you make gets reviewed by Denis, and vice-versa.
+    <div class="legend">
+      <span class="lg m-solo">Solo</span>
+      <span class="lg m-pair">Pair w/ Denis</span>
+      <span class="lg m-review">Review Denis's PR</span>
+      <span class="lg m-own">You own it</span>
+      <span class="lg m-support">Support / coach</span>
+    </div>
+  </div>
+
+  <main id="phases"></main>
+
+  <footer>Companion to <code>gamenight-roadmap.html</code> · <code>gamenight-team.html</code> · <code>README.md</code></footer>
+</div>
+
+<script>
+const PHASES = [
+ {num:"Phase 0", title:"Foundations & setup", milestone:"",
+  goal:"Get the project scaffolded, in GitHub, running on phone + web.",
+  steps:[
+   ["Install Node LTS, VS Code, and Git; sign in to GitHub.","Solo"],
+   ["Scaffold the Expo app (TypeScript + Expo Router) and run it on your phone via Expo Go.","Solo"],
+   ["Confirm it also runs in the browser (Expo web).","Solo"],
+   ["Write .gitignore, init git, first commit; create the GitHub repo and push.","Solo"],
+   ["Add ESLint + Prettier + format-on-save; lock in the folder structure (app/, src/).","Solo"],
+   ["Screen-share the scaffold so Denis sets up his machine alongside.","Pair"]
+  ],
+  learn:[["Expo: create your first app","https://docs.expo.dev/tutorial/introduction/"],["Expo Router intro","https://docs.expo.dev/router/introduction/"],["ESLint + Prettier in Expo","https://docs.expo.dev/guides/using-eslint/"],["Running Expo on web","https://docs.expo.dev/workflow/web/"]]},
+ {num:"Phase 0.5", title:"Design system & theming", milestone:"",
+  goal:"Support Denis while he leads the design system.",
+  steps:[
+   ["Review Denis's Figma wireframes and agree on the token names.","Review"],
+   ["Pair: build the theme provider (light / dark / system) with useColorScheme.","Pair"],
+   ["Persist the theme choice so it survives restarts.","Solo"],
+   ["Review Denis's themed components (Button / Card / Input) via PR.","Review"],
+   ["Verify both themes on web and device.","Pair"]
+  ],
+  learn:[["Expo color themes / dark mode","https://docs.expo.dev/develop/user-interface/color-themes/"],["React Native useColorScheme","https://reactnative.dev/docs/usecolorscheme"],["React Navigation theming","https://reactnavigation.org/docs/themes/"]]},
+ {num:"Phase 0.7", title:"DevOps foundations", milestone:"",
+  goal:"Stand up local backend, migrations, hooks, and CI.",
+  steps:[
+   ["Install Docker Desktop; run Supabase locally (supabase init / start).","Solo"],
+   ["Turn the schema plan into migration files; add db:reset / db:migrate scripts.","Solo"],
+   ["Create .env + .env.example; document EXPO_PUBLIC_ vs server-only secrets.","Solo"],
+   ["Set up Husky + lint-staged + commitlint.","Solo"],
+   ["Write the GitHub Actions CI (lint + typecheck + test on PR); enable branch protection.","Solo"],
+   ["Help Denis create the Project board + issue templates, then hand it to him.","Pair"],
+   ["Add the Makefile / npm task scripts.","Solo"]
+  ],
+  learn:[["Supabase local development (CLI + Docker)","https://supabase.com/docs/guides/local-development"],["Docker — Get started","https://docs.docker.com/get-started/"],["Husky git hooks","https://typicode.github.io/husky/"],["GitHub Actions","https://docs.github.com/en/actions"]]},
+ {num:"Phase 1", title:"Backend foundation (Supabase)", milestone:"",
+  goal:"Real schema, RLS on, app talking to Supabase securely.",
+  steps:[
+   ["Create the Supabase project; put the URL + publishable key in .env.","Solo"],
+   ["Pair with Denis on the dbdiagram.io data model.","Pair"],
+   ["Write migrations for the core tables (profiles, parties, roster, game_nights, games, game_results).","Solo"],
+   ["Enable RLS on every table and write the access policies.","Solo"],
+   ["Wire the Supabase client; set up DB type generation + a CI drift check.","Solo"]
+  ],
+  learn:[["Use Supabase with Expo","https://docs.expo.dev/guides/using-supabase/"],["Supabase tables & relationships","https://supabase.com/docs/guides/database/tables"],["Row Level Security","https://supabase.com/docs/guides/database/postgres/row-level-security"]]},
+ {num:"Phase 2", title:"Authentication", milestone:"v0.1.0",
+  goal:"Sign up / log in / log out, with protected routes.",
+  steps:[
+   ["Build sign-up, login, and logout with Supabase Auth.","Solo"],
+   ["Add the profile-creation trigger on signup.","Solo"],
+   ["Build the auth-state provider + protected routes.","Solo"],
+   ["Review Denis's login / sign-up form UI (PR) and connect it to the auth logic.","Review"],
+   ["Verify the whole flow on web + device, then tag v0.1.0.","Pair"]
+  ],
+  learn:[["Supabase Auth with React Native","https://supabase.com/docs/guides/auth/quickstarts/react-native"],["Expo Router protected routes","https://docs.expo.dev/router/advanced/authentication/"],["Expo + Supabase user-management tutorial","https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native"]]},
+ {num:"Phase 3", title:"Parties & roster lock", milestone:"",
+  goal:"The hard one — lock the roster in the database.",
+  steps:[
+   ["Design and write the lock trigger + RLS so the roster can't change once locked.","Solo"],
+   ["Prove it: fire a direct API insert and confirm the database rejects it.","Solo"],
+   ["Decide + document the lock rule (lock on first game night).","Solo"],
+   ["Review Denis's create-party form + my-parties list (PR).","Review"]
+  ],
+  learn:[["Postgres triggers","https://supabase.com/docs/guides/database/postgres/triggers"],["Row Level Security","https://supabase.com/docs/guides/database/postgres/row-level-security"],["Postgres constraints","https://www.postgresql.org/docs/current/ddl-constraints.html"]]},
+ {num:"Phase 4", title:"Game nights & scoring", milestone:"v0.2.0",
+  goal:"Run a night, record scores, compute the winner.",
+  steps:[
+   ["Build the new-game-night flow (date/time, location, planned games).","Solo"],
+   ["Build the schema-driven score-entry engine + winner computation.","Solo"],
+   ["Review Denis's generic score-entry UI + leaderboard, then layer the dynamic renderer.","Review"],
+   ["Enforce host-only scoring in RLS; tag v0.2.0.","Solo"]
+  ],
+  learn:[["TanStack Query basics","https://tanstack.com/query/latest/docs/framework/react/overview"],["Supabase joins & nesting","https://supabase.com/docs/guides/database/joins-and-nesting"]]},
+ {num:"Phase 5", title:"Stats & win rates", milestone:"",
+  goal:"All the win-rate math, done in the database.",
+  steps:[
+   ["Write the aggregation as a DB view/RPC (global, per-game, per-party, head-to-head).","Solo"],
+   ["Pair with Denis to wire the stats screens to the RPC.","Pair"],
+   ["Review Denis's seed-data tests for the win-rate math.","Review"]
+  ],
+  learn:[["Postgres aggregate functions","https://www.postgresql.org/docs/current/functions-aggregate.html"],["Supabase database functions (RPC)","https://supabase.com/docs/guides/database/functions"]]},
+ {num:"Phase 6", title:"Catalog (BoardGameGeek)", milestone:"v0.3.0",
+  goal:"BGG integration + scoring archetypes.",
+  steps:[
+   ["Integrate BGG XML search + details; cache results into a Supabase table.","Solo"],
+   ["Implement the player-count filter logic server-side.","Solo"],
+   ["Define ~10 scoring archetypes + the mechanic-based classifier.","Solo"],
+   ["Write the offline schema-generation batch script (cache the JSON).","Solo"],
+   ["Review Denis's search/filter UI + curated catalog content; tag v0.3.0.","Review"]
+  ],
+  learn:[["BoardGameGeek XML API2","https://boardgamegeek.com/wiki/page/BGG_XML_API2"],["Supabase tables (for caching)","https://supabase.com/docs/guides/database/tables"]]},
+ {num:"Phase 7", title:"Friends system", milestone:"",
+  goal:"Coach Denis as he leads his first whole feature.",
+  steps:[
+   ["Break the feature into 'good first issue' tickets for Denis.","Support"],
+   ["Review Denis's friend-request / list / profile PRs; coach on RLS.","Review"],
+   ["Pair only where he gets stuck.","Pair"]
+  ],
+  learn:[["Modeling many-to-many (joins)","https://supabase.com/docs/guides/database/joins-and-nesting"],["Row Level Security","https://supabase.com/docs/guides/database/postgres/row-level-security"]]},
+ {num:"Phase 8", title:"Realtime chat", milestone:"v0.4.0",
+  goal:"Realtime is new for both — build it together.",
+  steps:[
+   ["Pair: messages table + RLS, conversation screen, realtime subscription.","Pair"],
+   ["Make sure subscriptions clean up on unmount; tag v0.4.0.","Pair"]
+  ],
+  learn:[["Supabase Realtime","https://supabase.com/docs/guides/realtime"],["Postgres Changes","https://supabase.com/docs/guides/realtime/postgres-changes"]]},
+ {num:"Phase 9", title:"Push notifications", milestone:"",
+  goal:"Server-side push on party invite.",
+  steps:[
+   ["Create the dev build; store each user's push token.","Solo"],
+   ["Write the Supabase Edge Function that sends push on invite (token in secrets).","Solo"],
+   ["Review Denis's permission UI + deep-link handling.","Review"]
+  ],
+  learn:[["Expo push setup","https://docs.expo.dev/push-notifications/push-notifications-setup/"],["Sending push from a server","https://docs.expo.dev/push-notifications/sending-notifications/"],["Supabase Edge Functions","https://supabase.com/docs/guides/functions"]]},
+ {num:"Phase 10", title:"Testing & polish", milestone:"v1.0.0",
+  goal:"Fix bugs, add tests, ship v1.0.",
+  steps:[
+   ["Fix the bugs Denis files; write unit tests for scoring / win-rate / roster logic.","Solo"],
+   ["Add loading / empty / error states; check web layout + accessibility.","Pair"],
+   ["Build + deploy (EAS + web host); tag v1.0.0.","Solo"]
+  ],
+  learn:[["Unit testing in Expo (Jest)","https://docs.expo.dev/develop/unit-testing/"],["React Native Testing Library","https://callstack.github.io/react-native-testing-library/"],["Maestro (E2E)","https://docs.maestro.dev/"],["EAS Build","https://docs.expo.dev/build/introduction/"]]},
+ {num:"Phase 11", title:"CI/CD & automation", milestone:"v1.1.0",
+  goal:"Automate everything.",
+  steps:[
+   ["Add DB-migration testing in CI; deploy web on merge + PR previews.","Solo"],
+   ["EAS build on tags; auto-apply Supabase migrations to prod on release.","Solo"],
+   ["Enable Dependabot + secret scanning + CodeQL; add Sentry + sourcemaps.","Solo"],
+   ["Pair with Denis on the pipeline; review his README badges + changelog; tag v1.1.0.","Review"]
+  ],
+  learn:[["GitHub Actions","https://docs.github.com/en/actions"],["Building Expo on CI","https://docs.expo.dev/build-reference/build-on-ci/"],["Sentry for React Native","https://docs.sentry.io/platforms/react-native/"],["Dependabot","https://docs.github.com/en/code-security/dependabot"]]}
+];
+
+const KEY = "gamenight-teo-progress-v1";
+const CKEY = "gamenight-teo-collapsed-v1";
+const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function loadSet(k){ try{ return new Set(JSON.parse(localStorage.getItem(k)||"[]")); }catch(e){ return new Set(); } }
+function modeClass(t){ t=(t||"").toLowerCase(); if(t.indexOf("pair")>=0) return "m-pair"; if(t.indexOf("review")>=0) return "m-review"; if(t.indexOf("own")>=0||t.indexOf("lead")>=0) return "m-own"; if(t.indexOf("learn")>=0) return "m-learn"; if(t.indexOf("support")>=0||t.indexOf("coach")>=0) return "m-support"; return "m-solo"; }
+
+const doneSet = loadSet(KEY);
+const collapsedSet = loadSet(CKEY);
+
+function render(){
+  const root = document.getElementById("phases");
+  let html = "";
+  PHASES.forEach((ph, pi)=>{
+    const pid = "p"+pi;
+    const collapsed = collapsedSet.has(pid) ? " collapsed" : "";
+    html += '<section class="phase'+collapsed+'" data-id="'+pid+'">';
+    html += '<div class="phase-head"><span class="chev">▾</span>';
+    html += '<div class="titlewrap"><div class="phase-num">'+esc(ph.num)+'</div>';
+    html += '<div class="phase-title">'+esc(ph.title)+(ph.milestone?'<span class="milestone">'+esc(ph.milestone)+'</span>':'')+'</div></div>';
+    html += '<div class="phase-progress"><span class="phase-count">0/'+ph.steps.length+'</span><div class="phase-bar"><div class="phase-bar-fill"></div></div></div></div>';
+    html += '<div class="phase-body"><p class="goal"><b>This phase:</b> '+esc(ph.goal)+'</p><ul class="steps">';
+    ph.steps.forEach((st, si)=>{
+      const id = pid+"-s"+si;
+      const checked = doneSet.has(id);
+      html += '<li><label class="step'+(checked?' done':'')+'">';
+      html += '<input class="step-check" type="checkbox" data-id="'+id+'"'+(checked?' checked':'')+'>';
+      html += '<span class="box">'+CHECK_SVG+'</span>';
+      html += '<span class="step-main"><span class="step-text">'+esc(st[0])+'</span>';
+      if(st[1]) html += '<span class="mode '+modeClass(st[1])+'">'+esc(st[1])+'</span>';
+      html += '</span></label></li>';
+    });
+    html += '</ul>';
+    if(ph.learn && ph.learn.length){
+      html += '<details class="learn"><summary>Where to learn this</summary><ul>';
+      ph.learn.forEach(l=>{ html += '<li><a href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+'</a></li>'; });
+      html += '</ul></details>';
+    }
+    html += '</div></section>';
+  });
+  root.innerHTML = html;
+}
+function save(){
+  const ids = [].slice.call(document.querySelectorAll(".step-check")).filter(c=>c.checked).map(c=>c.dataset.id);
+  localStorage.setItem(KEY, JSON.stringify(ids));
+}
+function saveCollapsed(){
+  const ids = [].slice.call(document.querySelectorAll(".phase.collapsed")).map(p=>p.dataset.id);
+  localStorage.setItem(CKEY, JSON.stringify(ids));
+}
+function updateUI(){
+  const all = [].slice.call(document.querySelectorAll(".step-check"));
+  const total = all.length, done = all.filter(c=>c.checked).length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById("doneCount").textContent = done;
+  document.getElementById("totalCount").textContent = total;
+  document.getElementById("pct").textContent = pct+"%";
+  document.getElementById("overallFill").style.width = pct+"%";
+  document.getElementById("shipMsg").classList.toggle("show", total>0 && done===total);
+  all.forEach(c=> c.closest(".step").classList.toggle("done", c.checked));
+  [].slice.call(document.querySelectorAll(".phase")).forEach(ph=>{
+    const cs = [].slice.call(ph.querySelectorAll(".step-check"));
+    const d = cs.filter(c=>c.checked).length;
+    ph.querySelector(".phase-count").textContent = d+"/"+cs.length;
+    ph.querySelector(".phase-bar-fill").style.width = (cs.length? d/cs.length*100:0)+"%";
+    ph.classList.toggle("complete", cs.length>0 && d===cs.length);
+  });
+}
+render(); updateUI();
+const phasesEl = document.getElementById("phases");
+phasesEl.addEventListener("change", function(e){ if(e.target.classList.contains("step-check")){ save(); updateUI(); } });
+phasesEl.addEventListener("click", function(e){ const h=e.target.closest(".phase-head"); if(h){ h.closest(".phase").classList.toggle("collapsed"); saveCollapsed(); } });
+document.getElementById("expandAll").addEventListener("click", function(){ [].slice.call(document.querySelectorAll(".phase")).forEach(p=>p.classList.remove("collapsed")); saveCollapsed(); });
+document.getElementById("collapseAll").addEventListener("click", function(){ [].slice.call(document.querySelectorAll(".phase")).forEach(p=>p.classList.add("collapsed")); saveCollapsed(); });
+document.getElementById("resetBtn").addEventListener("click", function(){ if(confirm("Reset all your task progress?")){ localStorage.removeItem(KEY); [].slice.call(document.querySelectorAll(".step-check")).forEach(c=>c.checked=false); save(); updateUI(); } });
+</script>
+</body>
+</html>

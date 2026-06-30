@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gamenight — browser layout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Inter, system-ui, sans-serif; background:#1A1B1F; color:#E6E7EA; padding:30px 16px 64px; }
+  .page { max-width:1040px; margin:0 auto; }
+  .page h1 { font-weight:700; font-size:28px; letter-spacing:-.4px; }
+  .page .sub { color:#9DA0A8; font-size:14px; margin:6px 0 24px; max-width:760px; }
+  .frame { display:flex; flex-direction:column; gap:9px; margin-bottom:30px; }
+  .cap { font-size:12.5px; color:#9DA0A8; }
+  .theme-dark { --bg:#17181B;--surface:#212327;--surfaceAlt:#2A2C31;--elevated:#303237;--border:#34363C;--text:#F2F3F5;--text2:#B6BAC1;--muted:#82858C;--accent:#6E7DFF;--accentSoftBg:#23264A;--accentSoftText:#B9C0FF;--success:#3BA55D;--gold:#E5B567;--liveBg:#16331F;--liveFg:#4CC178;--upBg:#23264A;--upFg:#B9C0FF;--doneBg:#2A2C31;--doneFg:#82858C; }
+  .webframe { width:980px; max-width:100%; border-radius:14px; overflow:hidden; background:#0A0B0D; border:1px solid #2a2a2e; box-shadow:0 18px 42px rgba(0,0,0,.4); }
+  .webbar { display:flex; align-items:center; gap:10px; padding:10px 14px; }
+  .webdots { display:flex; gap:6px; } .webdots span { width:11px; height:11px; border-radius:999px; background:#3a3a3e; }
+  .weburl { flex:1; background:#1b1c20; border-radius:8px; padding:6px 12px; color:#7c7f86; font-size:12px; text-align:center; }
+  .webapp { display:flex; height:560px; background:var(--bg); color:var(--text); }
+  .wside { width:216px; background:var(--surface); border-right:1px solid var(--border); padding:16px 12px; display:flex; flex-direction:column; gap:3px; flex:none; }
+  .wlogo { display:flex; align-items:center; gap:9px; padding:4px 8px 16px; font-weight:700; font-size:17px; } .wlogo .lg { width:30px; height:30px; border-radius:9px; background:var(--accent); display:flex; align-items:center; justify-content:center; color:#fff; } .wlogo .lg svg { width:18px; height:18px; }
+  .wnav { display:flex; align-items:center; gap:11px; padding:9px 11px; border-radius:10px; color:var(--text2); font-size:14px; font-weight:500; } .wnav svg { width:19px; height:19px; } .wnav.on { background:var(--accentSoftBg); color:var(--accentSoftText); }
+  .wuser { display:flex; align-items:center; gap:9px; padding:8px; border-radius:10px; }
+  .wmain { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  .wtop { display:flex; align-items:center; justify-content:space-between; padding:15px 22px; border-bottom:1px solid var(--border); }
+  .wtitle { font-size:21px; font-weight:700; }
+  .wcontent { flex:1; overflow:hidden; padding:20px 22px; }
+  .wsearch { background:var(--surfaceAlt); border-radius:10px; padding:8px 12px; color:var(--muted); font-size:13px; display:flex; align-items:center; gap:7px; width:230px; } .wsearch svg { width:16px; height:16px; }
+  .wgrid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .wcard { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; }
+  .spacer { flex:1; }
+  .seg { display:flex; background:var(--surfaceAlt); border-radius:10px; padding:3px; gap:3px; } .segopt { padding:5px 10px; border-radius:8px; font-size:12px; font-weight:600; color:var(--text2); } .segopt.on { background:var(--elevated); color:var(--text); }
+  .avatar { width:32px; height:32px; border-radius:999px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:600; position:relative; flex:none; }
+  .dot { position:absolute; right:-1px; bottom:-1px; width:10px; height:10px; border-radius:999px; background:var(--success); border:2px solid var(--surface); }
+  .stack { display:flex; } .stack .avatar { margin-left:-8px; border:2px solid var(--surface); } .stack .avatar:first-child { margin-left:0; }
+  .chip { font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px; } .c-live{background:var(--liveBg);color:var(--liveFg);} .c-up{background:var(--upBg);color:var(--upFg);} .c-done{background:var(--doneBg);color:var(--doneFg);}
+  .h2 { font-size:16px; font-weight:600; letter-spacing:-.2px; } .hrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;}
+  .meta { display:flex; align-items:center; gap:7px; color:var(--text2); font-size:12.5px; margin-bottom:5px; } .meta svg { width:14px; height:14px; color:var(--muted); }
+  .pcbot { display:flex; align-items:center; justify-content:space-between; margin-top:11px; } .muted { color:var(--muted); font-size:12.5px; }
+  .btn { height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; gap:7px; font-size:14px; font-weight:600; padding:0 16px; } .btn svg{width:17px;height:17px;} .btn-primary { background:var(--accent); color:#fff; }
+  .thumb { border-radius:11px; background:var(--surfaceAlt); display:flex; align-items:center; justify-content:center; color:var(--muted); flex:none; } .thumb svg { width:22px; height:22px; }
+  .fchips { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; } .fchip { display:flex; align-items:center; gap:5px; background:var(--surfaceAlt); border-radius:999px; padding:6px 11px; font-size:12.5px; font-weight:500; color:var(--text); } .fchip.on { background:var(--accentSoftBg); color:var(--accentSoftText); } .fchip svg { width:14px; height:14px; }
+  .tt { font-size:14px; font-weight:500; } .sub { font-size:12px; color:var(--muted); margin-top:1px; } .nm { font-size:16px; font-weight:600; }
+  .msgs { display:flex; flex-direction:column; gap:7px; padding:8px 0; } .msg { max-width:74%; padding:9px 12px; border-radius:16px; font-size:14px; line-height:1.35; } .mine { align-self:flex-end; background:var(--accent); color:#fff; border-bottom-right-radius:5px; } .theirs { align-self:flex-start; background:var(--surfaceAlt); color:var(--text); border-bottom-left-radius:5px; } .stamp { align-self:center; color:var(--muted); font-size:11px; margin:6px 0; }
+  .inputbar { display:flex; gap:8px; align-items:center; padding:8px 0 4px; } .chatfield { flex:1; background:var(--surfaceAlt); border-radius:999px; padding:11px 15px; color:var(--muted); font-size:14px; } .send { width:42px; height:42px; border-radius:999px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; flex:none; } .send svg { width:19px; height:19px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Gamenight — browser layout</h1>
+  <div class="sub">The same app on the web: a left sidebar plus a wide content area. The catalogue shows full BoardGameGeek detail (description, awards, meta), like a reference page.</div>
+  <div id="root"></div>
+</div>
+<script>
+const C = { indigo:'#6E7DFF', green:'#3BA55D', amber:'#E5A458', pink:'#EB5E8B', teal:'#36C5C0' };
+const av = (i,c,d) => `<div class="avatar" style="background:${c}">${i}${d?'<span class="dot"></span>':''}</div>`;
+const wnav = (a) => `<div class="wnav ${a=='p'?'on':''}"><i data-lucide="dice-5"></i>Parties</div><div class="wnav ${a=='g'?'on':''}"><i data-lucide="layout-grid"></i>Games</div><div class="wnav ${a=='f'?'on':''}"><i data-lucide="users"></i>Friends</div><div class="wnav ${a=='c'?'on':''}"><i data-lucide="message-circle"></i>Chat</div><div class="wnav ${a=='y'?'on':''}"><i data-lucide="user"></i>You</div>`;
+const wpcard = (name,chip,chipcls,date,loc,avs,n) => `<div class="wcard"><div class="hrow"><div class="h2">${name}</div><div class="chip ${chipcls}">${chip}</div></div><div class="meta"><i data-lucide="calendar"></i>${date}</div><div class="meta"><i data-lucide="map-pin"></i>${loc}</div><div class="pcbot"><div class="stack">${avs}</div><span class="muted">${n} players</span></div></div>`;
+const wgrow = (name,ic,diff,dbg,dfg,desc,time,players,cat,year) => `<div class="wcard" style="display:flex;gap:16px;margin-bottom:14px"><div class="thumb" style="width:84px;height:84px"><i data-lucide="${ic}"></i></div><div style="flex:1"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px"><div class="h2" style="font-size:17px">${name} <span style="color:var(--muted);font-weight:400;font-size:13px">(${year})</span></div><span class="chip" style="background:${dbg};color:${dfg}">${diff}</span></div><div style="color:var(--text2);font-size:13px;line-height:1.5;margin:6px 0 10px">${desc}</div><div style="display:flex;gap:16px;align-items:center;color:var(--muted);font-size:12.5px"><span style="display:flex;align-items:center;gap:5px"><i data-lucide="clock" style="width:14px;height:14px"></i>${time}</span><span style="display:flex;align-items:center;gap:5px"><i data-lucide="users" style="width:14px;height:14px"></i>${players}</span><span class="chip c-done">${cat}</span></div></div></div>`;
+const Wv = {
+  webParties: () => `<div class="wtop"><div class="wtitle">Parties</div><div style="display:flex;gap:12px;align-items:center"><div class="wsearch"><i data-lucide="search"></i>Search parties</div><div class="btn btn-primary"><i data-lucide="plus"></i>New party</div></div></div>
+    <div class="wcontent"><div class="wgrid2">
+      ${wpcard('Friday boardgame night','Live','c-live','Fri, Jul 3 · 19:00',"Andre's house",av('MI',C.indigo,1)+av('AL',C.green)+av('RA',C.pink)+av('TE',C.amber),4)}
+      ${wpcard('Catan rematch','Upcoming','c-up','Sun, Jul 12 · 18:30','My place',av('RA',C.pink)+av('MI',C.indigo)+av('AL',C.green),3)}
+      ${wpcard('Strategy Sundays','Upcoming','c-up','Sun, Jul 19 · 17:00','Online',av('AL',C.green)+av('TE',C.amber)+av('AN',C.amber)+av('MI',C.indigo),4)}
+      ${wpcard('Wingspan league','Done','c-done','Jun 28 · finished','My place',av('TE',C.amber)+av('RA',C.pink),2)}
+    </div></div>`,
+  webCatalog: () => `<div class="wtop"><div class="wtitle">Games</div><div class="wsearch"><i data-lucide="search"></i>Search 5,000+ games</div></div>
+    <div class="wcontent" style="overflow-y:auto"><div class="fchips"><span class="fchip on"><i data-lucide="users"></i>3–5 players</span><span class="fchip">Difficulty<i data-lucide="chevron-down"></i></span><span class="fchip">Type<i data-lucide="chevron-down"></i></span><span class="fchip">Time<i data-lucide="chevron-down"></i></span></div>
+      ${wgrow('Catan','dice-5','Medium','#3A2E12','#E5B567','Players collect and trade resources to build settlements and cities on the island of Catan. First to 10 victory points wins, with bonuses for the longest road and largest army.','60–120 min','3–4 players','Strategy','1995')}
+      ${wgrow('Wingspan','feather','Medium','#3A2E12','#E5B567','A competitive bird-collection, engine-building game. Attract birds to your wildlife preserves; each one triggers chains of powers across four rounds.','40–70 min','1–5 players','Engine building','2019')}
+      ${wgrow('1830: Railways & Robber Barons','train','Hard','#3A1D1F','#ED6B6E','A classic 18xx economic game of building railroads and ruthless stock-market manoeuvring. The player with the greatest personal wealth at the end wins.','180–360 min','2–7 players','Economic','1986')}
+      <div style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:4px;font-size:13px"><span class="fchip">Previous</span><span class="fchip on">1</span><span class="fchip">2</span><span class="fchip">3</span><span class="fchip">…</span><span class="fchip">100</span><span class="fchip">Next</span></div>
+    </div>`,
+  webChat: () => `<div class="wtop"><div class="wtitle">Chat</div></div>
+    <div class="wcontent" style="padding:0;display:flex;height:100%">
+      <div style="width:250px;border-right:1px solid var(--border);padding:14px 10px;display:flex;flex-direction:column;gap:3px">
+        <div class="wnav on" style="gap:10px">${av('MI',C.indigo,1)}<div><div class="tt" style="font-size:14px">Mihai</div><div class="sub">See you then</div></div></div>
+        <div class="wnav" style="gap:10px;color:var(--text)">${av('AL',C.green)}<div><div class="tt" style="font-size:14px">Alex</div><div class="sub">Bringing Wingspan</div></div></div>
+        <div class="wnav" style="gap:10px;color:var(--text)"><span class="avatar" style="background:var(--surfaceAlt);color:var(--muted)"><i data-lucide="users" style="width:15px;height:15px"></i></span><div><div class="tt" style="font-size:14px">Friday night</div><div class="sub">Razvan: who's in?</div></div></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;padding:0 18px">
+        <div style="display:flex;align-items:center;gap:9px;padding:14px 0;border-bottom:1px solid var(--border)">${av('MI',C.indigo,1)}<span class="nm">Mihai</span></div>
+        <div class="msgs" style="flex:1;padding-top:12px"><div class="stamp">Today</div><div class="msg theirs">You free Friday?</div><div class="msg mine">Yeah, 7pm at Andre's</div><div class="msg theirs">Bringing Catan and Azul</div><div class="msg mine">Perfect. Loser brings snacks</div></div>
+        <div class="inputbar"><div class="chatfield">Message Mihai</div><div class="send"><i data-lucide="arrow-up"></i></div></div>
+      </div>
+    </div>`
+};
+const root = document.getElementById('root');
+[['webParties','p','Parties'],['webCatalog','g','Games — catalogue'],['webChat','c','Chat']].forEach(([key,active,label])=>{
+  const f=document.createElement('div'); f.className='frame';
+  f.innerHTML = `<div class="webframe theme-dark"><div class="webbar"><div class="webdots"><span></span><span></span><span></span></div><div class="weburl">gamenight.app</div></div>
+    <div class="webapp"><div class="wside"><div class="wlogo"><div class="lg"><i data-lucide="dice-5"></i></div>Gamenight</div>${wnav(active)}<div class="spacer"></div><div class="seg" style="margin:0 0 10px"><span class="segopt">Sys</span><span class="segopt">Light</span><span class="segopt on">Dark</span></div><div class="wuser">${av('TE',C.amber)}<div><div class="tt" style="font-size:13px">Teo</div><div class="muted" style="font-size:11px">@teo</div></div></div></div>
+    <div class="wmain">${Wv[key]()}</div></div></div><div class="cap">${label} — browser</div>`;
+  root.appendChild(f);
+});
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
