@@ -1,663 +1,2278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gamenight — Build Roadmap</title>
-<style>
-  :root{
-    --bg:#0e1016; --bg2:#0b0d12; --card:#161b25; --card2:#1c2330;
-    --line:#283042; --text:#e7ecf5; --muted:#93a0b6; --soft:#b6c0d4;
-    --accent:#7c5cff; --accent2:#ff5c93; --green:#39d98a; --amber:#ffc24b;
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:radial-gradient(1200px 600px at 50% -10%, #1a2030 0%, var(--bg) 55%) fixed, var(--bg);
-    color:var(--text); line-height:1.5; -webkit-font-smoothing:antialiased;
-  }
-  a{color:#a99bff;text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:900px;margin:0 auto;padding:28px 20px 80px}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Gamenight — Build Roadmap</title>
+        <style>
+            :root {
+                --bg: #0e1016;
+                --bg2: #0b0d12;
+                --card: #161b25;
+                --card2: #1c2330;
+                --line: #283042;
+                --text: #e7ecf5;
+                --muted: #93a0b6;
+                --soft: #b6c0d4;
+                --accent: #7c5cff;
+                --accent2: #ff5c93;
+                --green: #39d98a;
+                --amber: #ffc24b;
+                --radius: 14px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                    Helvetica, Arial, sans-serif;
+                background:
+                    radial-gradient(
+                            1200px 600px at 50% -10%,
+                            #1a2030 0%,
+                            var(--bg) 55%
+                        )
+                        fixed,
+                    var(--bg);
+                color: var(--text);
+                line-height: 1.5;
+                -webkit-font-smoothing: antialiased;
+            }
+            a {
+                color: #a99bff;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .wrap {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 28px 20px 80px;
+            }
 
-  /* ---- Header ---- */
-  header.top{margin-bottom:18px}
-  .brand{display:flex;align-items:center;gap:14px}
-  .die{width:42px;height:42px;flex:0 0 auto;border-radius:11px;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:grid;place-items:center;box-shadow:0 8px 24px rgba(124,92,255,.35)}
-  .die svg{display:block}
-  h1{font-size:25px;margin:0;letter-spacing:.2px}
-  .sub{color:var(--muted);font-size:13.5px;margin-top:2px}
+            /* ---- Header ---- */
+            header.top {
+                margin-bottom: 18px;
+            }
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+            .die {
+                width: 42px;
+                height: 42px;
+                flex: 0 0 auto;
+                border-radius: 11px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                display: grid;
+                place-items: center;
+                box-shadow: 0 8px 24px rgba(124, 92, 255, 0.35);
+            }
+            .die svg {
+                display: block;
+            }
+            h1 {
+                font-size: 25px;
+                margin: 0;
+                letter-spacing: 0.2px;
+            }
+            .sub {
+                color: var(--muted);
+                font-size: 13.5px;
+                margin-top: 2px;
+            }
 
-  .progresswrap{margin-top:18px;background:var(--card);border:1px solid var(--line);
-    border-radius:var(--radius);padding:16px 18px;position:sticky;top:10px;z-index:5;
-    backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-  .progress-label{font-weight:600;font-size:14.5px}
-  .progress-num{font-variant-numeric:tabular-nums;color:var(--soft);font-size:13.5px}
-  .progress-num b{color:var(--text)}
-  .bar{height:10px;border-radius:99px;background:#0c0f16;border:1px solid var(--line);
-    margin-top:10px;overflow:hidden}
-  .bar-fill{height:100%;width:0;border-radius:99px;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    transition:width .35s cubic-bezier(.2,.7,.2,1)}
-  .ship{margin-top:10px;color:var(--green);font-weight:600;font-size:13.5px;display:none}
-  .ship.show{display:block}
+            .progresswrap {
+                margin-top: 18px;
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                padding: 16px 18px;
+                position: sticky;
+                top: 10px;
+                z-index: 5;
+                backdrop-filter: blur(6px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            }
+            .progress-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .progress-label {
+                font-weight: 600;
+                font-size: 14.5px;
+            }
+            .progress-num {
+                font-variant-numeric: tabular-nums;
+                color: var(--soft);
+                font-size: 13.5px;
+            }
+            .progress-num b {
+                color: var(--text);
+            }
+            .bar {
+                height: 10px;
+                border-radius: 99px;
+                background: #0c0f16;
+                border: 1px solid var(--line);
+                margin-top: 10px;
+                overflow: hidden;
+            }
+            .bar-fill {
+                height: 100%;
+                width: 0;
+                border-radius: 99px;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+            }
+            .ship {
+                margin-top: 10px;
+                color: var(--green);
+                font-weight: 600;
+                font-size: 13.5px;
+                display: none;
+            }
+            .ship.show {
+                display: block;
+            }
 
-  .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-  .btn{appearance:none;border:1px solid var(--line);background:var(--card2);color:var(--soft);
-    font-size:12.5px;padding:7px 12px;border-radius:9px;cursor:pointer;font-weight:600}
-  .btn:hover{border-color:#3a455d;color:var(--text)}
-  .btn.danger:hover{border-color:#5a2740;color:#ff9bbb}
+            .controls {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-top: 14px;
+            }
+            .btn {
+                appearance: none;
+                border: 1px solid var(--line);
+                background: var(--card2);
+                color: var(--soft);
+                font-size: 12.5px;
+                padding: 7px 12px;
+                border-radius: 9px;
+                cursor: pointer;
+                font-weight: 600;
+            }
+            .btn:hover {
+                border-color: #3a455d;
+                color: var(--text);
+            }
+            .btn.danger:hover {
+                border-color: #5a2740;
+                color: #ff9bbb;
+            }
 
-  /* ---- Phase card ---- */
-  .phase{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    margin-top:16px;overflow:hidden}
-  .phase.complete{border-color:rgba(57,217,138,.45)}
-  .phase-head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;
-    user-select:none}
-  .phase-head:hover{background:rgba(255,255,255,.015)}
-  .chev{flex:0 0 auto;color:var(--muted);transition:transform .2s;font-size:13px;width:14px;text-align:center}
-  .phase.collapsed .chev{transform:rotate(-90deg)}
-  .titlewrap{flex:1 1 auto;min-width:0}
-  .phase-num{font-size:11.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--accent);
-    font-weight:700}
-  .phase.complete .phase-num{color:var(--green)}
-  .phase-title{font-size:16.5px;margin:1px 0 0;font-weight:650;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-  .milestone{font-size:10.5px;font-weight:700;letter-spacing:.5px;color:#ffd98a;
-    background:rgba(255,194,75,.12);border:1px solid rgba(255,194,75,.3);
-    padding:2px 7px;border-radius:99px}
-  .phase-progress{flex:0 0 auto;display:flex;align-items:center;gap:10px}
-  .phase-count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:30px;text-align:right}
-  .phase-bar{width:64px;height:6px;border-radius:99px;background:#0c0f16;border:1px solid var(--line);overflow:hidden}
-  .phase-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
-  .phase.complete .phase-bar-fill{background:var(--green)}
-  .check-badge{display:none;color:var(--green)}
-  .phase.complete .check-badge{display:inline}
+            /* ---- Phase card ---- */
+            .phase {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                margin-top: 16px;
+                overflow: hidden;
+            }
+            .phase.complete {
+                border-color: rgba(57, 217, 138, 0.45);
+            }
+            .phase-head {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 15px 18px;
+                cursor: pointer;
+                user-select: none;
+            }
+            .phase-head:hover {
+                background: rgba(255, 255, 255, 0.015);
+            }
+            .chev {
+                flex: 0 0 auto;
+                color: var(--muted);
+                transition: transform 0.2s;
+                font-size: 13px;
+                width: 14px;
+                text-align: center;
+            }
+            .phase.collapsed .chev {
+                transform: rotate(-90deg);
+            }
+            .titlewrap {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+            .phase-num {
+                font-size: 11.5px;
+                letter-spacing: 0.7px;
+                text-transform: uppercase;
+                color: var(--accent);
+                font-weight: 700;
+            }
+            .phase.complete .phase-num {
+                color: var(--green);
+            }
+            .phase-title {
+                font-size: 16.5px;
+                margin: 1px 0 0;
+                font-weight: 650;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                flex-wrap: wrap;
+            }
+            .milestone {
+                font-size: 10.5px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                color: #ffd98a;
+                background: rgba(255, 194, 75, 0.12);
+                border: 1px solid rgba(255, 194, 75, 0.3);
+                padding: 2px 7px;
+                border-radius: 99px;
+            }
+            .phase-progress {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .phase-count {
+                font-size: 12px;
+                color: var(--muted);
+                font-variant-numeric: tabular-nums;
+                min-width: 30px;
+                text-align: right;
+            }
+            .phase-bar {
+                width: 64px;
+                height: 6px;
+                border-radius: 99px;
+                background: #0c0f16;
+                border: 1px solid var(--line);
+                overflow: hidden;
+            }
+            .phase-bar-fill {
+                height: 100%;
+                width: 0;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                transition: width 0.3s;
+            }
+            .phase.complete .phase-bar-fill {
+                background: var(--green);
+            }
+            .check-badge {
+                display: none;
+                color: var(--green);
+            }
+            .phase.complete .check-badge {
+                display: inline;
+            }
 
-  .phase-body{padding:2px 18px 18px;border-top:1px solid var(--line)}
-  .phase.collapsed .phase-body{display:none}
-  .goal{color:var(--soft);font-size:14px;margin:14px 2px 14px}
-  .goal b{color:var(--text)}
+            .phase-body {
+                padding: 2px 18px 18px;
+                border-top: 1px solid var(--line);
+            }
+            .phase.collapsed .phase-body {
+                display: none;
+            }
+            .goal {
+                color: var(--soft);
+                font-size: 14px;
+                margin: 14px 2px 14px;
+            }
+            .goal b {
+                color: var(--text);
+            }
 
-  /* ---- Steps ---- */
-  ul.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-  .step{display:flex;gap:12px;align-items:flex-start;padding:11px 12px;border-radius:11px;
-    border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s}
-  .step:hover{background:rgba(124,92,255,.06);border-color:rgba(124,92,255,.25)}
-  .step-check{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
-  .box{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:2px solid #3c465c;
-    background:#0d1017;display:grid;place-items:center;margin-top:1px;transition:.15s}
-  .step:hover .box{border-color:var(--accent)}
-  .box svg{opacity:0;transform:scale(.5);transition:.15s}
-  .step.done .box{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
-  .step.done .box svg{opacity:1;transform:scale(1)}
-  .step-main{flex:1 1 auto;min-width:0}
-  .step-text{font-size:14px;color:var(--text);transition:.15s}
-  .step.done .step-text{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(147,160,182,.5)}
-  .commit{display:inline-block;margin-top:6px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    font-size:11.5px;color:#8de0b4;background:rgba(57,217,138,.08);border:1px solid rgba(57,217,138,.18);
-    padding:2px 8px;border-radius:6px}
-  .step.done .commit{opacity:.55}
+            /* ---- Steps ---- */
+            ul.steps {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .step {
+                display: flex;
+                gap: 12px;
+                align-items: flex-start;
+                padding: 11px 12px;
+                border-radius: 11px;
+                border: 1px solid transparent;
+                cursor: pointer;
+                transition:
+                    background 0.15s,
+                    border-color 0.15s;
+            }
+            .step:hover {
+                background: rgba(124, 92, 255, 0.06);
+                border-color: rgba(124, 92, 255, 0.25);
+            }
+            .step-check {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+                pointer-events: none;
+            }
+            .box {
+                flex: 0 0 auto;
+                width: 22px;
+                height: 22px;
+                border-radius: 7px;
+                border: 2px solid #3c465c;
+                background: #0d1017;
+                display: grid;
+                place-items: center;
+                margin-top: 1px;
+                transition: 0.15s;
+            }
+            .step:hover .box {
+                border-color: var(--accent);
+            }
+            .box svg {
+                opacity: 0;
+                transform: scale(0.5);
+                transition: 0.15s;
+            }
+            .step.done .box {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                border-color: transparent;
+            }
+            .step.done .box svg {
+                opacity: 1;
+                transform: scale(1);
+            }
+            .step-main {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+            .step-text {
+                font-size: 14px;
+                color: var(--text);
+                transition: 0.15s;
+            }
+            .step.done .step-text {
+                color: var(--muted);
+                text-decoration: line-through;
+                text-decoration-color: rgba(147, 160, 182, 0.5);
+            }
+            .commit {
+                display: inline-block;
+                margin-top: 6px;
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                font-size: 11.5px;
+                color: #8de0b4;
+                background: rgba(57, 217, 138, 0.08);
+                border: 1px solid rgba(57, 217, 138, 0.18);
+                padding: 2px 8px;
+                border-radius: 6px;
+            }
+            .step.done .commit {
+                opacity: 0.55;
+            }
 
-  .pushtag{margin:15px 2px 0;font-size:12.5px;color:var(--muted);display:flex;gap:8px;align-items:center}
-  .pushtag b{color:var(--soft);font-weight:600}
-  .pushtag .tag-ico{color:var(--accent)}
+            .pushtag {
+                margin: 15px 2px 0;
+                font-size: 12.5px;
+                color: var(--muted);
+                display: flex;
+                gap: 8px;
+                align-items: center;
+            }
+            .pushtag b {
+                color: var(--soft);
+                font-weight: 600;
+            }
+            .pushtag .tag-ico {
+                color: var(--accent);
+            }
 
-  .pro{margin:12px 2px 0;font-size:12.8px;color:var(--soft);background:rgba(124,92,255,.07);
-    border:1px solid rgba(124,92,255,.22);border-radius:9px;padding:9px 12px}
-  .pro-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
-    color:#b9a8ff;margin-right:7px;vertical-align:1px}
+            .pro {
+                margin: 12px 2px 0;
+                font-size: 12.8px;
+                color: var(--soft);
+                background: rgba(124, 92, 255, 0.07);
+                border: 1px solid rgba(124, 92, 255, 0.22);
+                border-radius: 9px;
+                padding: 9px 12px;
+            }
+            .pro-tag {
+                display: inline-block;
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 0.6px;
+                text-transform: uppercase;
+                color: #b9a8ff;
+                margin-right: 7px;
+                vertical-align: 1px;
+            }
 
-  details.learn,details.tips{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
-  details.learn>summary,details.tips>summary{cursor:pointer;font-size:12.5px;color:var(--soft);font-weight:600;list-style:none}
-  details.learn>summary::-webkit-details-marker,details.tips>summary::-webkit-details-marker{display:none}
-  details.learn>summary::before,details.tips>summary::before{content:"+ ";color:var(--accent);font-weight:700}
-  details.learn[open]>summary::before,details.tips[open]>summary::before{content:"– "}
-  details.learn ul{margin:9px 0 2px;padding-left:18px}
-  details.learn li{font-size:13px;margin:4px 0;color:var(--soft)}
-  .tips p{font-size:13px;color:var(--soft);margin:9px 2px 2px}
+            details.learn,
+            details.tips {
+                margin-top: 12px;
+                border-top: 1px dashed var(--line);
+                padding-top: 10px;
+            }
+            details.learn > summary,
+            details.tips > summary {
+                cursor: pointer;
+                font-size: 12.5px;
+                color: var(--soft);
+                font-weight: 600;
+                list-style: none;
+            }
+            details.learn > summary::-webkit-details-marker,
+            details.tips > summary::-webkit-details-marker {
+                display: none;
+            }
+            details.learn > summary::before,
+            details.tips > summary::before {
+                content: '+ ';
+                color: var(--accent);
+                font-weight: 700;
+            }
+            details.learn[open] > summary::before,
+            details.tips[open] > summary::before {
+                content: '– ';
+            }
+            details.learn ul {
+                margin: 9px 0 2px;
+                padding-left: 18px;
+            }
+            details.learn li {
+                font-size: 13px;
+                margin: 4px 0;
+                color: var(--soft);
+            }
+            .tips p {
+                font-size: 13px;
+                color: var(--soft);
+                margin: 9px 2px 2px;
+            }
 
-  /* ---- Reference cards (folded-in ROADMAP.md context) ---- */
-  .refwrap{margin-top:6px}
-  .refhead{margin:24px 2px 2px;font-size:11.5px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);font-weight:700}
-  .refcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-top:12px;padding:0;overflow:hidden}
-  .ref-sum{list-style:none;display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;user-select:none;font-weight:650;font-size:15px;color:var(--text)}
-  .ref-sum::-webkit-details-marker{display:none}
-  .ref-sum:hover{background:rgba(255,255,255,.015)}
-  .chev2{flex:0 0 auto;color:var(--muted);font-size:13px;width:14px;text-align:center;transform:rotate(-90deg);transition:transform .2s}
-  .refcard[open] .chev2{transform:rotate(0)}
-  .ref-title{flex:1 1 auto}
-  .ref-body{padding:4px 20px 18px;border-top:1px solid var(--line);color:var(--soft);font-size:14px}
-  .ref-body p{margin:12px 0}
-  .ref-body ul{margin:10px 0;padding-left:20px}
-  .ref-body li{margin:7px 0}
-  .ref-body b{color:var(--text)}
-  .ref-body code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;background:var(--card2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:#cdd6e8}
-  .callout{margin:14px 0 4px;padding:11px 14px;border-left:3px solid var(--accent);background:rgba(124,92,255,.08);border-radius:0 9px 9px 0;font-size:13.5px}
-  .callout.amber{border-left-color:var(--amber);background:rgba(255,194,75,.08)}
-  .cadence{width:100%;border-collapse:collapse;margin-top:8px;font-size:13.5px}
-  .cadence th,.cadence td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-  .cadence th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.5px}
-  .cadence td:first-child{color:var(--soft);width:46%}
+            /* ---- Reference cards (folded-in ROADMAP.md context) ---- */
+            .refwrap {
+                margin-top: 6px;
+            }
+            .refhead {
+                margin: 24px 2px 2px;
+                font-size: 11.5px;
+                letter-spacing: 0.9px;
+                text-transform: uppercase;
+                color: var(--muted);
+                font-weight: 700;
+            }
+            .refcard {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                margin-top: 12px;
+                padding: 0;
+                overflow: hidden;
+            }
+            .ref-sum {
+                list-style: none;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 15px 18px;
+                cursor: pointer;
+                user-select: none;
+                font-weight: 650;
+                font-size: 15px;
+                color: var(--text);
+            }
+            .ref-sum::-webkit-details-marker {
+                display: none;
+            }
+            .ref-sum:hover {
+                background: rgba(255, 255, 255, 0.015);
+            }
+            .chev2 {
+                flex: 0 0 auto;
+                color: var(--muted);
+                font-size: 13px;
+                width: 14px;
+                text-align: center;
+                transform: rotate(-90deg);
+                transition: transform 0.2s;
+            }
+            .refcard[open] .chev2 {
+                transform: rotate(0);
+            }
+            .ref-title {
+                flex: 1 1 auto;
+            }
+            .ref-body {
+                padding: 4px 20px 18px;
+                border-top: 1px solid var(--line);
+                color: var(--soft);
+                font-size: 14px;
+            }
+            .ref-body p {
+                margin: 12px 0;
+            }
+            .ref-body ul {
+                margin: 10px 0;
+                padding-left: 20px;
+            }
+            .ref-body li {
+                margin: 7px 0;
+            }
+            .ref-body b {
+                color: var(--text);
+            }
+            .ref-body code {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                font-size: 12.5px;
+                background: var(--card2);
+                border: 1px solid var(--line);
+                padding: 1px 6px;
+                border-radius: 5px;
+                color: #cdd6e8;
+            }
+            .callout {
+                margin: 14px 0 4px;
+                padding: 11px 14px;
+                border-left: 3px solid var(--accent);
+                background: rgba(124, 92, 255, 0.08);
+                border-radius: 0 9px 9px 0;
+                font-size: 13.5px;
+            }
+            .callout.amber {
+                border-left-color: var(--amber);
+                background: rgba(255, 194, 75, 0.08);
+            }
+            .cadence {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 8px;
+                font-size: 13.5px;
+            }
+            .cadence th,
+            .cadence td {
+                text-align: left;
+                padding: 9px 11px;
+                border-bottom: 1px solid var(--line);
+                vertical-align: top;
+            }
+            .cadence th {
+                color: var(--muted);
+                font-weight: 600;
+                font-size: 11.5px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            .cadence td:first-child {
+                color: var(--soft);
+                width: 46%;
+            }
 
-  footer.foot{margin-top:28px;text-align:center;color:var(--muted);font-size:12px}
-  footer.foot code{background:var(--card2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;font-size:11.5px}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand">
-      <div class="die" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-          <circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/>
-          <circle cx="12" cy="12" r="2"/>
-          <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
-        </svg>
-      </div>
-      <div>
-        <h1>Gamenight — Build Roadmap</h1>
-        <div class="sub">Click any square to tick it off. Your progress saves automatically in this browser.</div>
-      </div>
-    </div>
+            footer.foot {
+                margin-top: 28px;
+                text-align: center;
+                color: var(--muted);
+                font-size: 12px;
+            }
+            footer.foot code {
+                background: var(--card2);
+                border: 1px solid var(--line);
+                padding: 1px 6px;
+                border-radius: 5px;
+                font-size: 11.5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header class="top">
+                <div class="brand">
+                    <div class="die" aria-hidden="true">
+                        <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="white"
+                        >
+                            <circle cx="7" cy="7" r="2" />
+                            <circle cx="17" cy="7" r="2" />
+                            <circle cx="12" cy="12" r="2" />
+                            <circle cx="7" cy="17" r="2" />
+                            <circle cx="17" cy="17" r="2" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1>Gamenight — Build Roadmap</h1>
+                        <div class="sub">
+                            Click any square to tick it off. Your progress saves
+                            automatically in this browser.
+                        </div>
+                    </div>
+                </div>
 
-    <div class="progresswrap">
-      <div class="progress-top">
-        <span class="progress-label">Overall progress</span>
-        <span class="progress-num"><b id="doneCount">0</b> / <span id="totalCount">0</span> steps · <b id="pct">0%</b></span>
-      </div>
-      <div class="bar"><div class="bar-fill" id="overallFill"></div></div>
-      <div class="ship" id="shipMsg">🎉 Every step checked off — built, tested, and shipped through your own CI/CD pipeline!</div>
-      <div class="controls">
-        <button class="btn" id="expandAll">Expand all</button>
-        <button class="btn" id="collapseAll">Collapse all</button>
-        <button class="btn danger" id="resetBtn">Reset progress</button>
-      </div>
-    </div>
-  </header>
+                <div class="progresswrap">
+                    <div class="progress-top">
+                        <span class="progress-label">Overall progress</span>
+                        <span class="progress-num"
+                            ><b id="doneCount">0</b> /
+                            <span id="totalCount">0</span> steps ·
+                            <b id="pct">0%</b></span
+                        >
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" id="overallFill"></div>
+                    </div>
+                    <div class="ship" id="shipMsg">
+                        🎉 Every step checked off — built, tested, and shipped
+                        through your own CI/CD pipeline!
+                    </div>
+                    <div class="controls">
+                        <button class="btn" id="expandAll">Expand all</button>
+                        <button class="btn" id="collapseAll">
+                            Collapse all
+                        </button>
+                        <button class="btn danger" id="resetBtn">
+                            Reset progress
+                        </button>
+                    </div>
+                </div>
+            </header>
 
-  <section class="refwrap">
-    <div class="refhead">Before you start · keep handy</div>
+            <section class="refwrap">
+                <div class="refhead">Before you start · keep handy</div>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">How this roadmap works</span></summary>
-      <div class="ref-body">
-        <p>It tells you <b>what</b> to build, in <b>what order</b>, <b>why</b>, and <b>when to commit and push</b> — but not <b>how</b>. Every phase starts with “Learn first” links so you discover the actual code yourself. The parts marked <b>Design decision</b> are the ones worth struggling with — that's where the real learning is. No code is included on purpose; ask for code only when you're genuinely stuck.</p>
-        <ul>
-          <li>Work <b>top to bottom</b>. Each phase is a shippable slice the next one builds on — don't jump ahead.</li>
-          <li>Tick the squares as you go — this is your progress tracker.</li>
-          <li>Read the <b>Learn first</b> links <i>before</i> writing anything in that phase.</li>
-          <li>The <b>commit chips</b> tell you exactly when to commit and give you a ready-made message.</li>
-          <li><b>Design decision</b> notes are mini-assignments: decide, write down your reasoning, then build.</li>
-          <li><b>Pro practice</b> lines are the real-world / DevOps habit for that phase — what a senior engineer would insist on.</li>
-        </ul>
-      </div>
-    </details>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title">How this roadmap works</span>
+                    </summary>
+                    <div class="ref-body">
+                        <p>
+                            It tells you <b>what</b> to build, in
+                            <b>what order</b>, <b>why</b>, and
+                            <b>when to commit and push</b> — but not <b>how</b>.
+                            Every phase starts with “Learn first” links so you
+                            discover the actual code yourself. The parts marked
+                            <b>Design decision</b> are the ones worth struggling
+                            with — that's where the real learning is. No code is
+                            included on purpose; ask for code only when you're
+                            genuinely stuck.
+                        </p>
+                        <ul>
+                            <li>
+                                Work <b>top to bottom</b>. Each phase is a
+                                shippable slice the next one builds on — don't
+                                jump ahead.
+                            </li>
+                            <li>
+                                Tick the squares as you go — this is your
+                                progress tracker.
+                            </li>
+                            <li>
+                                Read the <b>Learn first</b> links
+                                <i>before</i> writing anything in that phase.
+                            </li>
+                            <li>
+                                The <b>commit chips</b> tell you exactly when to
+                                commit and give you a ready-made message.
+                            </li>
+                            <li>
+                                <b>Design decision</b> notes are
+                                mini-assignments: decide, write down your
+                                reasoning, then build.
+                            </li>
+                            <li>
+                                <b>Pro practice</b> lines are the real-world /
+                                DevOps habit for that phase — what a senior
+                                engineer would insist on.
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">Git workflow — read once, apply every phase</span></summary>
-      <div class="ref-body">
-        <ul>
-          <li><b>Branch per phase.</b> Create a branch like <code>feat/phase-2-auth</code> off <code>main</code>, do the phase's work there, then open a Pull Request into <code>main</code> and merge it — even solo. Reviewing your own PR is a great habit. <a href="https://docs.github.com/en/get-started/using-github/github-flow" target="_blank" rel="noopener">GitHub Flow</a></li>
-          <li><b>Commit small and often.</b> One <i>atomic</i> commit per logical change (≈ one square). A commit should do one thing and still leave the app working.</li>
-          <li><b>Use Conventional Commits:</b> <code>type(scope): short description</code> in the imperative. Types: feat, fix, refactor, chore, docs, test, style, perf. <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank" rel="noopener">Spec</a> · <a href="https://cbea.ms/git-commit/" target="_blank" rel="noopener">Why it matters</a></li>
-          <li><b>Push</b> at the end of every work session, and always at the end of a phase.</li>
-          <li><b>Tag releases</b> at the milestones using semantic versioning (v0.1.0, v0.2.0…). <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">Pro Git: Tagging</a> (one short chapter)</li>
-          <li><b>Never commit secrets.</b> Write your <code>.gitignore</code> before your first commit (ignore <code>node_modules</code>, <code>.env*</code>, build output, <code>.expo</code>). <a href="https://github.com/github/gitignore" target="_blank" rel="noopener">github/gitignore</a></li>
-        </ul>
-        <div class="callout"><b>If you forget everything else:</b> commit per logical change, push at the end of each session, tag at each milestone.</div>
-      </div>
-    </details>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >Git workflow — read once, apply every phase</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <ul>
+                            <li>
+                                <b>Branch per phase.</b> Create a branch like
+                                <code>feat/phase-2-auth</code> off
+                                <code>main</code>, do the phase's work there,
+                                then open a Pull Request into
+                                <code>main</code> and merge it — even solo.
+                                Reviewing your own PR is a great habit.
+                                <a
+                                    href="https://docs.github.com/en/get-started/using-github/github-flow"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >GitHub Flow</a
+                                >
+                            </li>
+                            <li>
+                                <b>Commit small and often.</b> One
+                                <i>atomic</i> commit per logical change (≈ one
+                                square). A commit should do one thing and still
+                                leave the app working.
+                            </li>
+                            <li>
+                                <b>Use Conventional Commits:</b>
+                                <code>type(scope): short description</code> in
+                                the imperative. Types: feat, fix, refactor,
+                                chore, docs, test, style, perf.
+                                <a
+                                    href="https://www.conventionalcommits.org/en/v1.0.0/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Spec</a
+                                >
+                                ·
+                                <a
+                                    href="https://cbea.ms/git-commit/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Why it matters</a
+                                >
+                            </li>
+                            <li>
+                                <b>Push</b> at the end of every work session,
+                                and always at the end of a phase.
+                            </li>
+                            <li>
+                                <b>Tag releases</b> at the milestones using
+                                semantic versioning (v0.1.0, v0.2.0…).
+                                <a
+                                    href="https://git-scm.com/book/en/v2/Git-Basics-Tagging"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Pro Git: Tagging</a
+                                >
+                                (one short chapter)
+                            </li>
+                            <li>
+                                <b>Never commit secrets.</b> Write your
+                                <code>.gitignore</code> before your first commit
+                                (ignore <code>node_modules</code>,
+                                <code>.env*</code>, build output,
+                                <code>.expo</code>).
+                                <a
+                                    href="https://github.com/github/gitignore"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >github/gitignore</a
+                                >
+                            </li>
+                        </ul>
+                        <div class="callout">
+                            <b>If you forget everything else:</b> commit per
+                            logical change, push at the end of each session, tag
+                            at each milestone.
+                        </div>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">Keeping it $0 — cost breakdown</span></summary>
-      <div class="ref-body">
-        <p>Your constraint is “free.” This whole stack has a real free tier — here's the budget reality so nothing surprises you:</p>
-        <ul>
-          <li><b>Expo SDK + CLI</b> — free forever; develop locally and in Expo Go. <a href="https://expo.dev/pricing" target="_blank" rel="noopener">Expo pricing</a></li>
-          <li><b>Supabase</b> (db, auth, realtime, storage, functions) — free tier: 500 MB db, 1 GB storage, 50,000 monthly active users, 5 GB egress, 2 projects, no card required. Caveat: a free project <b>pauses after ~1 week of inactivity</b> (click to restore). <a href="https://supabase.com/pricing" target="_blank" rel="noopener">Supabase pricing</a></li>
-          <li><b>Expo Push Notifications</b> — free, no per-message charge. <a href="https://docs.expo.dev/push-notifications/overview/" target="_blank" rel="noopener">Push overview</a></li>
-          <li><b>EAS Build</b> — free tier 15 iOS + 15 Android builds/month, or build locally for free. Needed for push (Phase 9). <a href="https://docs.expo.dev/build/introduction/" target="_blank" rel="noopener">EAS Build</a> · <a href="https://docs.expo.dev/build-reference/local-builds/" target="_blank" rel="noopener">Local builds</a></li>
-          <li><b>CI/CD &amp; DevOps tooling</b> — GitHub Actions (2,000 free Linux min/month private, unlimited public), Dependabot + secret scanning + CodeQL, Husky/lint-staged/commitlint, and Docker Desktop for the local Supabase stack — all free. <a href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions" target="_blank" rel="noopener">Actions billing</a></li>
-          <li><b>Error monitoring</b> — Sentry free Developer tier: 5,000 errors/month. <a href="https://sentry.io/pricing/" target="_blank" rel="noopener">Sentry pricing</a></li>
-          <li><b>BoardGameGeek XML API2</b> — free. <a href="https://boardgamegeek.com/wiki/page/BGG_XML_API2" target="_blank" rel="noopener">Docs</a></li>
-          <li><b>GitHub</b> — free private repos. <b>Web hosting</b> — free tiers from <a href="https://docs.expo.dev/eas/hosting/introduction/" target="_blank" rel="noopener">EAS Hosting</a>, Vercel, Netlify, or Cloudflare Pages.</li>
-        </ul>
-        <div class="callout amber"><b>Design decision:</b> stay on Supabase free tier and accept project-pausing during the build, or not? For a learning project, free tier is the right call — just know about the pause.</div>
-      </div>
-    </details>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >Keeping it $0 — cost breakdown</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <p>
+                            Your constraint is “free.” This whole stack has a
+                            real free tier — here's the budget reality so
+                            nothing surprises you:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Expo SDK + CLI</b> — free forever; develop
+                                locally and in Expo Go.
+                                <a
+                                    href="https://expo.dev/pricing"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Expo pricing</a
+                                >
+                            </li>
+                            <li>
+                                <b>Supabase</b> (db, auth, realtime, storage,
+                                functions) — free tier: 500 MB db, 1 GB storage,
+                                50,000 monthly active users, 5 GB egress, 2
+                                projects, no card required. Caveat: a free
+                                project
+                                <b>pauses after ~1 week of inactivity</b> (click
+                                to restore).
+                                <a
+                                    href="https://supabase.com/pricing"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Supabase pricing</a
+                                >
+                            </li>
+                            <li>
+                                <b>Expo Push Notifications</b> — free, no
+                                per-message charge.
+                                <a
+                                    href="https://docs.expo.dev/push-notifications/overview/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Push overview</a
+                                >
+                            </li>
+                            <li>
+                                <b>EAS Build</b> — free tier 15 iOS + 15 Android
+                                builds/month, or build locally for free. Needed
+                                for push (Phase 9).
+                                <a
+                                    href="https://docs.expo.dev/build/introduction/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >EAS Build</a
+                                >
+                                ·
+                                <a
+                                    href="https://docs.expo.dev/build-reference/local-builds/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Local builds</a
+                                >
+                            </li>
+                            <li>
+                                <b>CI/CD &amp; DevOps tooling</b> — GitHub
+                                Actions (2,000 free Linux min/month private,
+                                unlimited public), Dependabot + secret scanning
+                                + CodeQL, Husky/lint-staged/commitlint, and
+                                Docker Desktop for the local Supabase stack —
+                                all free.
+                                <a
+                                    href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Actions billing</a
+                                >
+                            </li>
+                            <li>
+                                <b>Error monitoring</b> — Sentry free Developer
+                                tier: 5,000 errors/month.
+                                <a
+                                    href="https://sentry.io/pricing/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Sentry pricing</a
+                                >
+                            </li>
+                            <li>
+                                <b>BoardGameGeek XML API2</b> — free.
+                                <a
+                                    href="https://boardgamegeek.com/wiki/page/BGG_XML_API2"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Docs</a
+                                >
+                            </li>
+                            <li>
+                                <b>GitHub</b> — free private repos.
+                                <b>Web hosting</b> — free tiers from
+                                <a
+                                    href="https://docs.expo.dev/eas/hosting/introduction/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >EAS Hosting</a
+                                >, Vercel, Netlify, or Cloudflare Pages.
+                            </li>
+                        </ul>
+                        <div class="callout amber">
+                            <b>Design decision:</b> stay on Supabase free tier
+                            and accept project-pausing during the build, or not?
+                            For a learning project, free tier is the right call
+                            — just know about the pause.
+                        </div>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">Tech stack &amp; why</span></summary>
-      <div class="ref-body">
-        <p>You picked “some React Native experience,” TypeScript, and lowest-cost backend. Given that:</p>
-        <ul>
-          <li><b>Expo (latest SDK) + Expo Router + TypeScript</b> — file-based routing that works on iOS, Android, <b>and web</b> from one codebase. <a href="https://docs.expo.dev/router/introduction/" target="_blank" rel="noopener">Expo Router</a> · <a href="https://docs.expo.dev/guides/typescript/" target="_blank" rel="noopener">Expo + TypeScript</a> · <a href="https://expo.dev/changelog" target="_blank" rel="noopener">Expo changelog</a></li>
-          <li><b>Supabase</b> — Postgres + auth + realtime + storage + functions on one free tier. Postgres fits because almost everything you track is relationships and aggregates. <a href="https://supabase.com/docs" target="_blank" rel="noopener">Supabase docs</a></li>
-          <li><b>TanStack Query (server state) + Zustand (local/UI state)</b> — the 2026 standard split; don't make one tool do both. <a href="https://tanstack.com/query/latest" target="_blank" rel="noopener">TanStack Query</a> · <a href="https://tanstack.com/query/latest/docs/framework/react/react-native" target="_blank" rel="noopener">in React Native</a> · <a href="https://zustand.docs.pmnd.rs/" target="_blank" rel="noopener">Zustand</a></li>
-        </ul>
-        <div class="callout amber"><b>Design decision:</b> confirm you're comfortable with this stack before Phase 0. Prefer React Context over Zustand for a small app? Fine — decide and note why.</div>
-      </div>
-    </details>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title">Tech stack &amp; why</span>
+                    </summary>
+                    <div class="ref-body">
+                        <p>
+                            You picked “some React Native experience,”
+                            TypeScript, and lowest-cost backend. Given that:
+                        </p>
+                        <ul>
+                            <li>
+                                <b
+                                    >Expo (latest SDK) + Expo Router +
+                                    TypeScript</b
+                                >
+                                — file-based routing that works on iOS, Android,
+                                <b>and web</b> from one codebase.
+                                <a
+                                    href="https://docs.expo.dev/router/introduction/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Expo Router</a
+                                >
+                                ·
+                                <a
+                                    href="https://docs.expo.dev/guides/typescript/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Expo + TypeScript</a
+                                >
+                                ·
+                                <a
+                                    href="https://expo.dev/changelog"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Expo changelog</a
+                                >
+                            </li>
+                            <li>
+                                <b>Supabase</b> — Postgres + auth + realtime +
+                                storage + functions on one free tier. Postgres
+                                fits because almost everything you track is
+                                relationships and aggregates.
+                                <a
+                                    href="https://supabase.com/docs"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Supabase docs</a
+                                >
+                            </li>
+                            <li>
+                                <b
+                                    >TanStack Query (server state) + Zustand
+                                    (local/UI state)</b
+                                >
+                                — the 2026 standard split; don't make one tool
+                                do both.
+                                <a
+                                    href="https://tanstack.com/query/latest"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >TanStack Query</a
+                                >
+                                ·
+                                <a
+                                    href="https://tanstack.com/query/latest/docs/framework/react/react-native"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >in React Native</a
+                                >
+                                ·
+                                <a
+                                    href="https://zustand.docs.pmnd.rs/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >Zustand</a
+                                >
+                            </li>
+                        </ul>
+                        <div class="callout amber">
+                            <b>Design decision:</b> confirm you're comfortable
+                            with this stack before Phase 0. Prefer React Context
+                            over Zustand for a small app? Fine — decide and note
+                            why.
+                        </div>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">DevOps &amp; Docker — applied honestly</span></summary>
-      <div class="ref-body">
-        <p>Real-project habits, used where they actually help — not cargo-culted:</p>
-        <ul>
-          <li><b>Docker does NOT wrap the app.</b> React Native / Expo builds use native toolchains (locally or on EAS) — don't try to containerize the mobile app itself.</li>
-          <li><b>Docker DOES run your backend.</b> The Supabase CLI launches Postgres + Auth + Storage + Realtime in containers — real prod-parity local dev, plus local Edge Function testing and an identical database in CI.</li>
-          <li><b>Everything is code:</b> schema as migrations, pipelines as YAML, config as <code>.env.example</code> — all reviewed in PRs.</li>
-          <li><b>Quality enforced by tooling:</b> pre-commit hooks block bad commits, CI blocks bad merges, branch protection makes it non-optional.</li>
-          <li><b>The mantra: local = CI = prod.</b> Same containers and migrations everywhere, so “works on my machine” disappears.</li>
-        </ul>
-        <div class="callout">Set up in <b>Phase 0.7</b> (foundations); fully automated in <b>Phase 11</b> (CI/CD).</div>
-      </div>
-    </details>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >DevOps &amp; Docker — applied honestly</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <p>
+                            Real-project habits, used where they actually help —
+                            not cargo-culted:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Docker does NOT wrap the app.</b> React
+                                Native / Expo builds use native toolchains
+                                (locally or on EAS) — don't try to containerize
+                                the mobile app itself.
+                            </li>
+                            <li>
+                                <b>Docker DOES run your backend.</b> The
+                                Supabase CLI launches Postgres + Auth + Storage
+                                + Realtime in containers — real prod-parity
+                                local dev, plus local Edge Function testing and
+                                an identical database in CI.
+                            </li>
+                            <li>
+                                <b>Everything is code:</b> schema as migrations,
+                                pipelines as YAML, config as
+                                <code>.env.example</code> — all reviewed in PRs.
+                            </li>
+                            <li>
+                                <b>Quality enforced by tooling:</b> pre-commit
+                                hooks block bad commits, CI blocks bad merges,
+                                branch protection makes it non-optional.
+                            </li>
+                            <li>
+                                <b>The mantra: local = CI = prod.</b> Same
+                                containers and migrations everywhere, so “works
+                                on my machine” disappears.
+                            </li>
+                        </ul>
+                        <div class="callout">
+                            Set up in <b>Phase 0.7</b> (foundations); fully
+                            automated in <b>Phase 11</b> (CI/CD).
+                        </div>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">Free-tier cheat sheet (verified June 2026)</span></summary>
-      <div class="ref-body">
-        <table class="cadence">
-          <thead><tr><th>Tool</th><th>Free allowance</th></tr></thead>
-          <tbody>
-            <tr><td><a href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions" target="_blank" rel="noopener">GitHub Actions</a></td><td>2,000 Linux min/month (private) · unlimited (public)</td></tr>
-            <tr><td><a href="https://docs.expo.dev/billing/plans/" target="_blank" rel="noopener">EAS Build</a></td><td>15 iOS + 15 Android builds/month · unlimited local</td></tr>
-            <tr><td><a href="https://supabase.com/pricing" target="_blank" rel="noopener">Supabase</a></td><td>Free project + CLI/Docker local stack</td></tr>
-            <tr><td><a href="https://sentry.io/pricing/" target="_blank" rel="noopener">Sentry</a></td><td>5,000 errors/month, 1 user (Developer)</td></tr>
-            <tr><td>Dependabot · secret scanning · CodeQL</td><td>Free (CodeQL free on public repos)</td></tr>
-            <tr><td>Husky · lint-staged · commitlint · Maestro</td><td>Free &amp; open source</td></tr>
-            <tr><td>Web hosting</td><td>Cloudflare Pages / Vercel / Netlify / EAS Hosting</td></tr>
-          </tbody>
-        </table>
-        <div class="callout amber">Free limits change — these were verified June 2026; check the provider's pricing page before relying on them.</div>
-      </div>
-    </details>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >Free-tier cheat sheet (verified June 2026)</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <table class="cadence">
+                            <thead>
+                                <tr>
+                                    <th>Tool</th>
+                                    <th>Free allowance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >GitHub Actions</a
+                                        >
+                                    </td>
+                                    <td>
+                                        2,000 Linux min/month (private) ·
+                                        unlimited (public)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="https://docs.expo.dev/billing/plans/"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >EAS Build</a
+                                        >
+                                    </td>
+                                    <td>
+                                        15 iOS + 15 Android builds/month ·
+                                        unlimited local
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="https://supabase.com/pricing"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >Supabase</a
+                                        >
+                                    </td>
+                                    <td>
+                                        Free project + CLI/Docker local stack
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="https://sentry.io/pricing/"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >Sentry</a
+                                        >
+                                    </td>
+                                    <td>
+                                        5,000 errors/month, 1 user (Developer)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dependabot · secret scanning · CodeQL
+                                    </td>
+                                    <td>Free (CodeQL free on public repos)</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Husky · lint-staged · commitlint ·
+                                        Maestro
+                                    </td>
+                                    <td>Free &amp; open source</td>
+                                </tr>
+                                <tr>
+                                    <td>Web hosting</td>
+                                    <td>
+                                        Cloudflare Pages / Vercel / Netlify /
+                                        EAS Hosting
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="callout amber">
+                            Free limits change — these were verified June 2026;
+                            check the provider's pricing page before relying on
+                            them.
+                        </div>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">Data model overview — think it through before Phase 1</span></summary>
-      <div class="ref-body">
-        <p>You don't need SQL yet — just understand the shapes:</p>
-        <ul>
-          <li><b>Profile</b> — one per user (display name, avatar), linked to the auth user.</li>
-          <li><b>Friendship</b> — a link between two profiles with a status (pending / accepted).</li>
-          <li><b>Party</b> — created by a host; just a <b>name</b> and a fixed roster. The when / where / what does NOT live here.</li>
-          <li><b>Party roster</b> — the players in a party. <b>This is your hardest design problem.</b></li>
-          <li><b>Game night</b> — one evening inside a party; carries its own date/time, location, and games played. Scheduling lives here, not on the party.</li>
-          <li><b>Game</b> — a catalog entry (BGG or custom) with type, player count, difficulty, and a scoring schema.</li>
-          <li><b>Game result</b> — links a game night + a game + structured per-player data (points, bonuses, placement, money…) plus the computed winner.</li>
-          <li><b>Scoring schema</b> — per game: a win-condition archetype + the fields to capture. Sources: hand-curated, mechanic-based default, AI-generated, or override.</li>
-          <li><b>Message</b> — chat between friends (and maybe party group chats).</li>
-        </ul>
-        <div class="callout"><b>Decision (locked in) — the immutable roster:</b> a party's player count and identities are <b>fixed once set</b> so scores stay comparable. You've chosen to <b>enforce this in the database</b> — the strongest option, because the rule holds no matter what touches the data. The UI can hide the buttons, but the database is what guarantees it.</div>
-        <p><b>Implementation shape (work out the SQL yourself):</b> give a party a <code>locked</code> state, then add a Postgres trigger (backed by matching RLS) that rejects any insert/delete on roster rows, and any change to a player's identity, once locked. <b>When to lock?</b> Recommended: lock the moment the first game night is created — fix typos before scores exist, frozen forever after real play begins.</p>
-        <p>Learn the tools: <a href="https://supabase.com/docs/guides/database/postgres/triggers" target="_blank" rel="noopener">Postgres triggers</a> · <a href="https://supabase.com/docs/guides/database/postgres/row-level-security" target="_blank" rel="noopener">Row Level Security</a> · <a href="https://www.postgresql.org/docs/current/ddl-constraints.html" target="_blank" rel="noopener">Postgres constraints</a>. Sketch the model first with <a href="https://dbdiagram.io" target="_blank" rel="noopener">dbdiagram.io</a>.</p>
-      </div>
-    </details>
-  </section>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >Data model overview — think it through before Phase
+                            1</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <p>
+                            You don't need SQL yet — just understand the shapes:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Profile</b> — one per user (display name,
+                                avatar), linked to the auth user.
+                            </li>
+                            <li>
+                                <b>Friendship</b> — a link between two profiles
+                                with a status (pending / accepted).
+                            </li>
+                            <li>
+                                <b>Party</b> — created by a host; just a
+                                <b>name</b> and a fixed roster. The when / where
+                                / what does NOT live here.
+                            </li>
+                            <li>
+                                <b>Party roster</b> — the players in a party.
+                                <b>This is your hardest design problem.</b>
+                            </li>
+                            <li>
+                                <b>Game night</b> — one evening inside a party;
+                                carries its own date/time, location, and games
+                                played. Scheduling lives here, not on the party.
+                            </li>
+                            <li>
+                                <b>Game</b> — a catalog entry (BGG or custom)
+                                with type, player count, difficulty, and a
+                                scoring schema.
+                            </li>
+                            <li>
+                                <b>Game result</b> — links a game night + a game
+                                + structured per-player data (points, bonuses,
+                                placement, money…) plus the computed winner.
+                            </li>
+                            <li>
+                                <b>Scoring schema</b> — per game: a
+                                win-condition archetype + the fields to capture.
+                                Sources: hand-curated, mechanic-based default,
+                                AI-generated, or override.
+                            </li>
+                            <li>
+                                <b>Message</b> — chat between friends (and maybe
+                                party group chats).
+                            </li>
+                        </ul>
+                        <div class="callout">
+                            <b>Decision (locked in) — the immutable roster:</b>
+                            a party's player count and identities are
+                            <b>fixed once set</b> so scores stay comparable.
+                            You've chosen to
+                            <b>enforce this in the database</b> — the strongest
+                            option, because the rule holds no matter what
+                            touches the data. The UI can hide the buttons, but
+                            the database is what guarantees it.
+                        </div>
+                        <p>
+                            <b
+                                >Implementation shape (work out the SQL
+                                yourself):</b
+                            >
+                            give a party a <code>locked</code> state, then add a
+                            Postgres trigger (backed by matching RLS) that
+                            rejects any insert/delete on roster rows, and any
+                            change to a player's identity, once locked.
+                            <b>When to lock?</b> Recommended: lock the moment
+                            the first game night is created — fix typos before
+                            scores exist, frozen forever after real play begins.
+                        </p>
+                        <p>
+                            Learn the tools:
+                            <a
+                                href="https://supabase.com/docs/guides/database/postgres/triggers"
+                                target="_blank"
+                                rel="noopener"
+                                >Postgres triggers</a
+                            >
+                            ·
+                            <a
+                                href="https://supabase.com/docs/guides/database/postgres/row-level-security"
+                                target="_blank"
+                                rel="noopener"
+                                >Row Level Security</a
+                            >
+                            ·
+                            <a
+                                href="https://www.postgresql.org/docs/current/ddl-constraints.html"
+                                target="_blank"
+                                rel="noopener"
+                                >Postgres constraints</a
+                            >. Sketch the model first with
+                            <a
+                                href="https://dbdiagram.io"
+                                target="_blank"
+                                rel="noopener"
+                                >dbdiagram.io</a
+                            >.
+                        </p>
+                    </div>
+                </details>
+            </section>
 
-  <main id="phases"></main>
+            <main id="phases"></main>
 
-  <section class="refwrap">
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">After v1.1.0 — ideas to keep learning</span></summary>
-      <div class="ref-body">
-        <ul>
-          <li>Group chats per party</li>
-          <li>Photo uploads to Supabase Storage</li>
-          <li>Offline support with TanStack Query persistence</li>
-          <li>Real map locations via OpenStreetMap/Leaflet on web + a free map view on mobile</li>
-          <li>Containerize any custom Node service or worker with Docker, deployed to a free host</li>
-          <li>Automated changelog + semantic-release from your Conventional Commits</li>
-        </ul>
-      </div>
-    </details>
+            <section class="refwrap">
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >After v1.1.0 — ideas to keep learning</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <ul>
+                            <li>Group chats per party</li>
+                            <li>Photo uploads to Supabase Storage</li>
+                            <li>
+                                Offline support with TanStack Query persistence
+                            </li>
+                            <li>
+                                Real map locations via OpenStreetMap/Leaflet on
+                                web + a free map view on mobile
+                            </li>
+                            <li>
+                                Containerize any custom Node service or worker
+                                with Docker, deployed to a free host
+                            </li>
+                            <li>
+                                Automated changelog + semantic-release from your
+                                Conventional Commits
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-    <details class="refcard">
-      <summary class="ref-sum"><span class="chev2">▾</span><span class="ref-title">Quick reference — commit cadence</span></summary>
-      <div class="ref-body">
-        <table class="cadence">
-          <thead><tr><th>When</th><th>Do</th></tr></thead>
-          <tbody>
-            <tr><td>Finished one logical change (≈ a square)</td><td><b>Commit</b> with a Conventional Commit message</td></tr>
-            <tr><td>Open / update a pull request</td><td>CI runs lint + typecheck + test automatically (Phase 0.7)</td></tr>
-            <tr><td>End of a work session</td><td><b>Push</b> your branch</td></tr>
-            <tr><td>End of a phase</td><td>Open PR → CI green → merge to <code>main</code> → <b>push</b></td></tr>
-            <tr><td>Milestone phases (2, 4, 6, 8, 10, 11)</td><td>Also <b>tag</b> v0.1.0 … v1.1.0 (tag triggers build/deploy)</td></tr>
-            <tr><td>Before any merge to <code>main</code></td><td>Required checks must pass (branch protection)</td></tr>
-          </tbody>
-        </table>
-        <div class="callout">Build one phase at a time, keep <code>main</code> always green, and let the pipeline do the repetitive work. You've got this.</div>
-      </div>
-    </details>
-  </section>
+                <details class="refcard">
+                    <summary class="ref-sum">
+                        <span class="chev2">▾</span
+                        ><span class="ref-title"
+                            >Quick reference — commit cadence</span
+                        >
+                    </summary>
+                    <div class="ref-body">
+                        <table class="cadence">
+                            <thead>
+                                <tr>
+                                    <th>When</th>
+                                    <th>Do</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Finished one logical change (≈ a square)
+                                    </td>
+                                    <td>
+                                        <b>Commit</b> with a Conventional Commit
+                                        message
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Open / update a pull request</td>
+                                    <td>
+                                        CI runs lint + typecheck + test
+                                        automatically (Phase 0.7)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>End of a work session</td>
+                                    <td><b>Push</b> your branch</td>
+                                </tr>
+                                <tr>
+                                    <td>End of a phase</td>
+                                    <td>
+                                        Open PR → CI green → merge to
+                                        <code>main</code> → <b>push</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Milestone phases (2, 4, 6, 8, 10, 11)
+                                    </td>
+                                    <td>
+                                        Also <b>tag</b> v0.1.0 … v1.1.0 (tag
+                                        triggers build/deploy)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Before any merge to <code>main</code>
+                                    </td>
+                                    <td>
+                                        Required checks must pass (branch
+                                        protection)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="callout">
+                            Build one phase at a time, keep
+                            <code>main</code> always green, and let the pipeline
+                            do the repetitive work. You've got this.
+                        </div>
+                    </div>
+                </details>
+            </section>
 
-  <footer class="foot">
-    Self-contained companion to <code>ROADMAP.md</code> · Milestones: v0.1.0 auth · v0.2.0 parties+scoring · v0.3.0 stats+catalog · v0.4.0 friends+chat · v1.0.0 release · v1.1.0 CI/CD
-  </footer>
-</div>
+            <footer class="foot">
+                Self-contained companion to <code>ROADMAP.md</code> ·
+                Milestones: v0.1.0 auth · v0.2.0 parties+scoring · v0.3.0
+                stats+catalog · v0.4.0 friends+chat · v1.0.0 release · v1.1.0
+                CI/CD
+            </footer>
+        </div>
 
-<script>
-const PHASES = [
- {num:"Phase 0", title:"Foundations & project setup", milestone:"",
-  goal:"A running Expo + TypeScript app (on a phone and in the browser), in a clean GitHub repo, with linting and formatting wired up. No features yet.",
-  steps:[
-   ["Install/verify the toolchain: a current Node LTS, a code editor, and Git.",""],
-   ["Scaffold a new Expo app with TypeScript and Expo Router (Expo's project creator). Confirm it runs on a device via Expo Go.",""],
-   ["Confirm the same app runs in the browser (Expo web). Proves web compatibility from day one — keep checking it every phase.","chore: scaffold expo app with typescript and expo router"],
-   ["Initialize git, write your .gitignore (before anything else), and make the first commit.",""],
-   ["Create the GitHub repo and push. Set main as protected if you like.","chore: add gitignore and project metadata"],
-   ["Add ESLint + Prettier and an editor format-on-save. Decide a folder structure (e.g. app/ for routes, src/ for components/lib/hooks).","chore: configure eslint, prettier, and project structure"]
-  ],
-  push:"Push the branch, merge to main. No tag yet — nothing to release.",
-  learn:[["Expo: create your first app (tutorial)","https://docs.expo.dev/tutorial/introduction/"],["Expo Router intro","https://docs.expo.dev/router/introduction/"],["React docs","https://react.dev/learn"],["Running on web","https://docs.expo.dev/workflow/web/"]],
-  tips:"Pick the folder structure now and stick to it. Get web working now — web bugs are far cheaper to catch early than after 8 phases of mobile-only assumptions.",
-  pro:"Pin your toolchain — add an .nvmrc (or Volta) for the Node version and an .editorconfig — so your machine and CI build identically."},
+        <script>
+            const PHASES = [
+                {
+                    num: 'Phase 0',
+                    title: 'Foundations & project setup',
+                    milestone: '',
+                    goal: 'A running Expo + TypeScript app (on a phone and in the browser), in a clean GitHub repo, with linting and formatting wired up. No features yet.',
+                    steps: [
+                        [
+                            'Install/verify the toolchain: a current Node LTS, a code editor, and Git.',
+                            ''
+                        ],
+                        [
+                            "Scaffold a new Expo app with TypeScript and Expo Router (Expo's project creator). Confirm it runs on a device via Expo Go.",
+                            ''
+                        ],
+                        [
+                            'Confirm the same app runs in the browser (Expo web). Proves web compatibility from day one — keep checking it every phase.',
+                            'chore: scaffold expo app with typescript and expo router'
+                        ],
+                        [
+                            'Initialize git, write your .gitignore (before anything else), and make the first commit.',
+                            ''
+                        ],
+                        [
+                            'Create the GitHub repo and push. Set main as protected if you like.',
+                            'chore: add gitignore and project metadata'
+                        ],
+                        [
+                            'Add ESLint + Prettier and an editor format-on-save. Decide a folder structure (e.g. app/ for routes, src/ for components/lib/hooks).',
+                            'chore: configure eslint, prettier, and project structure'
+                        ]
+                    ],
+                    push: 'Push the branch, merge to main. No tag yet — nothing to release.',
+                    learn: [
+                        [
+                            'Expo: create your first app (tutorial)',
+                            'https://docs.expo.dev/tutorial/introduction/'
+                        ],
+                        [
+                            'Expo Router intro',
+                            'https://docs.expo.dev/router/introduction/'
+                        ],
+                        ['React docs', 'https://react.dev/learn'],
+                        [
+                            'Running on web',
+                            'https://docs.expo.dev/workflow/web/'
+                        ]
+                    ],
+                    tips: 'Pick the folder structure now and stick to it. Get web working now — web bugs are far cheaper to catch early than after 8 phases of mobile-only assumptions.',
+                    pro: 'Pin your toolchain — add an .nvmrc (or Volta) for the Node version and an .editorconfig — so your machine and CI build identically.'
+                },
 
- {num:"Phase 0.5", title:"Design system & theming (light, dark & system)", milestone:"",
-  goal:"One reusable design system — colors, typography, spacing, and base components — supporting light, dark, and automatic device-theme following. Build this before the feature screens.",
-  steps:[
-   ["Turn the design spec (see DESIGN.md) into design tokens: a light palette and a dark palette, a spacing scale, a type scale, and corner radii. Keep colors as named tokens — never a raw hex inside a screen.","feat(theme): add light and dark design tokens"],
-   ["Build a theme provider that reads the device color scheme and exposes the active theme app-wide. Support three modes: light, dark, and system.","feat(theme): add theme provider with system, light, and dark modes"],
-   ["Persist the user's choice so it survives restarts; default to system.","feat(theme): persist user theme preference"],
-   ["Build base components from the tokens — at minimum Screen, Text, Button, Card, Input — plus a theme toggle for the settings screen.","feat(ui): add themed base components and theme toggle"],
-   ["Verify both themes on device and web, and that flipping the device theme updates the app live.",""]
-  ],
-  push:"Merge to main.",
-  learn:[["Expo: color themes / dark mode","https://docs.expo.dev/develop/user-interface/color-themes/"],["React Native useColorScheme","https://reactnative.dev/docs/usecolorscheme"],["React Navigation theming","https://reactnavigation.org/docs/themes/"],["Material color system","https://m3.material.io/styles/color/system/overview"]],
-  tips:"Never hard-code a color in a screen — always reference a token, or retrofitting dark mode becomes a nightmare. Check contrast in both themes. Set the status-bar style per theme.",
-  pro:"Treat the design system as testable — add a component-gallery screen (or Storybook for React Native) plus snapshot tests so styles can't silently drift."},
+                {
+                    num: 'Phase 0.5',
+                    title: 'Design system & theming (light, dark & system)',
+                    milestone: '',
+                    goal: 'One reusable design system — colors, typography, spacing, and base components — supporting light, dark, and automatic device-theme following. Build this before the feature screens.',
+                    steps: [
+                        [
+                            'Turn the design spec (see DESIGN.md) into design tokens: a light palette and a dark palette, a spacing scale, a type scale, and corner radii. Keep colors as named tokens — never a raw hex inside a screen.',
+                            'feat(theme): add light and dark design tokens'
+                        ],
+                        [
+                            'Build a theme provider that reads the device color scheme and exposes the active theme app-wide. Support three modes: light, dark, and system.',
+                            'feat(theme): add theme provider with system, light, and dark modes'
+                        ],
+                        [
+                            "Persist the user's choice so it survives restarts; default to system.",
+                            'feat(theme): persist user theme preference'
+                        ],
+                        [
+                            'Build base components from the tokens — at minimum Screen, Text, Button, Card, Input — plus a theme toggle for the settings screen.',
+                            'feat(ui): add themed base components and theme toggle'
+                        ],
+                        [
+                            'Verify both themes on device and web, and that flipping the device theme updates the app live.',
+                            ''
+                        ]
+                    ],
+                    push: 'Merge to main.',
+                    learn: [
+                        [
+                            'Expo: color themes / dark mode',
+                            'https://docs.expo.dev/develop/user-interface/color-themes/'
+                        ],
+                        [
+                            'React Native useColorScheme',
+                            'https://reactnative.dev/docs/usecolorscheme'
+                        ],
+                        [
+                            'React Navigation theming',
+                            'https://reactnavigation.org/docs/themes/'
+                        ],
+                        [
+                            'Material color system',
+                            'https://m3.material.io/styles/color/system/overview'
+                        ]
+                    ],
+                    tips: 'Never hard-code a color in a screen — always reference a token, or retrofitting dark mode becomes a nightmare. Check contrast in both themes. Set the status-bar style per theme.',
+                    pro: "Treat the design system as testable — add a component-gallery screen (or Storybook for React Native) plus snapshot tests so styles can't silently drift."
+                },
 
- {num:"Phase 0.7", title:"DevOps foundations (local parity, secrets & automated hygiene)", milestone:"",
-  goal:"Before any features, stand up a real engineering setup: a containerized local backend that mirrors production, schema as versioned migrations, safe secret handling, and automated checks on every commit and PR — quality enforced by tooling, not willpower. All free.",
-  steps:[
-   ["Install Docker Desktop (free for personal use) and run the whole Supabase stack locally with the Supabase CLI (supabase init, supabase start). Identical Postgres + Auth + Storage + Realtime in containers — develop offline, reset the DB at will.","chore(devops): run supabase locally via cli and docker"],
-   ["Set up the migrations workflow (supabase migration new, supabase db diff) so the database is versioned SQL files, not dashboard clicks. Confirm a file lands in supabase/migrations/. You write the real tables in Phase 1 (after dbdiagram.io) — for now this is just the plumbing.","chore(db): set up versioned migrations workflow"],
-   ["Set up env management: a git-ignored .env for local secrets, a committed .env.example documenting every required variable, and a clear EXPO_PUBLIC_ (client-safe) vs server-only split. Never hard-code a key.","chore(devops): add env example and document configuration"],
-   ["Add pre-commit hooks with Husky + lint-staged so ESLint, Prettier, and a typecheck run on staged files before every commit. Broken code can't even be committed.","chore(devops): add husky pre-commit hooks with lint-staged"],
-   ["Add commitlint to enforce the Conventional Commits you're already writing, keeping history clean for an automated changelog later.","chore(devops): enforce conventional commits with commitlint"],
-   ["Add a minimal CI workflow (GitHub Actions) on every PR: install with cache, then lint, typecheck, test. Turn on branch protection for main requiring it. Quality is now gated, not optional.","ci: add lint, typecheck, and test on pull requests"],
-   ["Set up a free GitHub Project board (Backlog -> To Do -> In Progress -> In Review -> Done) with an issue Type field (Epic / Story / Task / Bug / Chore) and issue + PR templates. Make each roadmap phase an Epic and break the current phase into Stories/Tasks. Your team's single source of truth — Denis owns the board (see TEAM.md).","chore(devops): add github project board and issue templates"],
-   ["Add task scripts (a Makefile or npm scripts) for everyday commands — dev, db:reset, db:migrate, lint, test, typecheck — so the workflow is one command and self-documenting.","chore(devops): add task scripts for common workflows"]
-  ],
-  push:"Merge to main. No app tag — this is groundwork.",
-  learn:[["Supabase local development","https://supabase.com/docs/guides/local-development"],["Supabase CLI getting started","https://supabase.com/docs/guides/local-development/cli/getting-started"],["Docker Desktop","https://docs.docker.com/desktop/"],["Husky git hooks","https://typicode.github.io/husky/"],["lint-staged","https://github.com/lint-staged/lint-staged"],["commitlint","https://commitlint.js.org/"],["Expo environment variables","https://docs.expo.dev/guides/environment-variables/"]],
-  tips:"Docker does NOT containerize the React Native app (mobile builds use native toolchains locally or on EAS) — use it for the backend (local Supabase, Edge Function testing) and CI, not the app. Keep CI fast (cache deps) or people skip it. Goal: local = CI = prod.",
-  pro:"This is the meta-practice — every later phase's schema change becomes a migration and every feature ships through the same pipeline. Set it up once, benefit in every phase after."},
+                {
+                    num: 'Phase 0.7',
+                    title: 'DevOps foundations (local parity, secrets & automated hygiene)',
+                    milestone: '',
+                    goal: 'Before any features, stand up a real engineering setup: a containerized local backend that mirrors production, schema as versioned migrations, safe secret handling, and automated checks on every commit and PR — quality enforced by tooling, not willpower. All free.',
+                    steps: [
+                        [
+                            'Install Docker Desktop (free for personal use) and run the whole Supabase stack locally with the Supabase CLI (supabase init, supabase start). Identical Postgres + Auth + Storage + Realtime in containers — develop offline, reset the DB at will.',
+                            'chore(devops): run supabase locally via cli and docker'
+                        ],
+                        [
+                            'Set up the migrations workflow (supabase migration new, supabase db diff) so the database is versioned SQL files, not dashboard clicks. Confirm a file lands in supabase/migrations/. You write the real tables in Phase 1 (after dbdiagram.io) — for now this is just the plumbing.',
+                            'chore(db): set up versioned migrations workflow'
+                        ],
+                        [
+                            'Set up env management: a git-ignored .env for local secrets, a committed .env.example documenting every required variable, and a clear EXPO_PUBLIC_ (client-safe) vs server-only split. Never hard-code a key.',
+                            'chore(devops): add env example and document configuration'
+                        ],
+                        [
+                            "Add pre-commit hooks with Husky + lint-staged so ESLint, Prettier, and a typecheck run on staged files before every commit. Broken code can't even be committed.",
+                            'chore(devops): add husky pre-commit hooks with lint-staged'
+                        ],
+                        [
+                            "Add commitlint to enforce the Conventional Commits you're already writing, keeping history clean for an automated changelog later.",
+                            'chore(devops): enforce conventional commits with commitlint'
+                        ],
+                        [
+                            'Add a minimal CI workflow (GitHub Actions) on every PR: install with cache, then lint, typecheck, test. Turn on branch protection for main requiring it. Quality is now gated, not optional.',
+                            'ci: add lint, typecheck, and test on pull requests'
+                        ],
+                        [
+                            "Set up a free GitHub Project board (Backlog -> To Do -> In Progress -> In Review -> Done) with an issue Type field (Epic / Story / Task / Bug / Chore) and issue + PR templates. Make each roadmap phase an Epic and break the current phase into Stories/Tasks. Your team's single source of truth — Denis owns the board (see TEAM.md).",
+                            'chore(devops): add github project board and issue templates'
+                        ],
+                        [
+                            'Add task scripts (a Makefile or npm scripts) for everyday commands — dev, db:reset, db:migrate, lint, test, typecheck — so the workflow is one command and self-documenting.',
+                            'chore(devops): add task scripts for common workflows'
+                        ]
+                    ],
+                    push: 'Merge to main. No app tag — this is groundwork.',
+                    learn: [
+                        [
+                            'Supabase local development',
+                            'https://supabase.com/docs/guides/local-development'
+                        ],
+                        [
+                            'Supabase CLI getting started',
+                            'https://supabase.com/docs/guides/local-development/cli/getting-started'
+                        ],
+                        ['Docker Desktop', 'https://docs.docker.com/desktop/'],
+                        [
+                            'Husky git hooks',
+                            'https://typicode.github.io/husky/'
+                        ],
+                        [
+                            'lint-staged',
+                            'https://github.com/lint-staged/lint-staged'
+                        ],
+                        ['commitlint', 'https://commitlint.js.org/'],
+                        [
+                            'Expo environment variables',
+                            'https://docs.expo.dev/guides/environment-variables/'
+                        ]
+                    ],
+                    tips: 'Docker does NOT containerize the React Native app (mobile builds use native toolchains locally or on EAS) — use it for the backend (local Supabase, Edge Function testing) and CI, not the app. Keep CI fast (cache deps) or people skip it. Goal: local = CI = prod.',
+                    pro: "This is the meta-practice — every later phase's schema change becomes a migration and every feature ships through the same pipeline. Set it up once, benefit in every phase after."
+                },
 
- {num:"Phase 1", title:"Backend foundation (Supabase)", milestone:"",
-  goal:"A Supabase project with your schema, Row Level Security on, and the app able to talk to it securely.",
-  steps:[
-   ["Create a free Supabase project. Save its URL and publishable key (not the secret key) for the app.",""],
-   ["Turn your data-model sketch into real tables: profiles, parties, party roster, game nights, games, game results. Add friendships + messages later.","feat(db): add core schema for profiles, parties, and game nights"],
-   ["Enable RLS on every table and write policies so users only read/write what they should. Not optional — without it the publishable key would expose everything.","feat(db): enable row level security and access policies"],
-   ["Wire the Supabase client into the app, reading config from environment variables (EXPO_PUBLIC_ prefix). Use secure storage for the session on device.","feat(api): add supabase client with secure session storage"]
-  ],
-  push:"Push, open PR, merge to main.",
-  learn:[["Use Supabase with Expo","https://docs.expo.dev/guides/using-supabase/"],["Supabase Expo quickstart","https://supabase.com/docs/guides/getting-started/quickstarts/expo-react-native"],["Tables & relationships","https://supabase.com/docs/guides/database/tables"],["Row Level Security","https://supabase.com/docs/guides/database/postgres/row-level-security"]],
-  tips:"RLS-first thinking saves you from rewriting security later. Keep secrets in .env (git-ignored). Generate TypeScript types from your schema so code and DB never drift.",
-  pro:"Write this schema as your first migration (Phase 0.7), and auto-generate DB types in CI so a build fails the moment code and schema drift."},
+                {
+                    num: 'Phase 1',
+                    title: 'Backend foundation (Supabase)',
+                    milestone: '',
+                    goal: 'A Supabase project with your schema, Row Level Security on, and the app able to talk to it securely.',
+                    steps: [
+                        [
+                            'Create a free Supabase project. Save its URL and publishable key (not the secret key) for the app.',
+                            ''
+                        ],
+                        [
+                            'Turn your data-model sketch into real tables: profiles, parties, party roster, game nights, games, game results. Add friendships + messages later.',
+                            'feat(db): add core schema for profiles, parties, and game nights'
+                        ],
+                        [
+                            'Enable RLS on every table and write policies so users only read/write what they should. Not optional — without it the publishable key would expose everything.',
+                            'feat(db): enable row level security and access policies'
+                        ],
+                        [
+                            'Wire the Supabase client into the app, reading config from environment variables (EXPO_PUBLIC_ prefix). Use secure storage for the session on device.',
+                            'feat(api): add supabase client with secure session storage'
+                        ]
+                    ],
+                    push: 'Push, open PR, merge to main.',
+                    learn: [
+                        [
+                            'Use Supabase with Expo',
+                            'https://docs.expo.dev/guides/using-supabase/'
+                        ],
+                        [
+                            'Supabase Expo quickstart',
+                            'https://supabase.com/docs/guides/getting-started/quickstarts/expo-react-native'
+                        ],
+                        [
+                            'Tables & relationships',
+                            'https://supabase.com/docs/guides/database/tables'
+                        ],
+                        [
+                            'Row Level Security',
+                            'https://supabase.com/docs/guides/database/postgres/row-level-security'
+                        ]
+                    ],
+                    tips: 'RLS-first thinking saves you from rewriting security later. Keep secrets in .env (git-ignored). Generate TypeScript types from your schema so code and DB never drift.',
+                    pro: 'Write this schema as your first migration (Phase 0.7), and auto-generate DB types in CI so a build fails the moment code and schema drift.'
+                },
 
- {num:"Phase 2", title:"Authentication", milestone:"v0.1.0",
-  goal:"Users can sign up, log in, log out; a profile row is created on signup; logged-out users can't reach the app's inner screens.",
-  steps:[
-   ["Build sign-up, login, and logout. (Email + password is simplest to start; magic links are an option.)","feat(auth): add email/password sign up and login"],
-   ["On signup, create the user's profile row automatically. Decide where: a database trigger vs. an app call. (Trigger is more robust.)","feat(auth): create profile on sign up"],
-   ["Add an auth-state provider and protect routes: unauthenticated users are redirected to login; authenticated users land on home.","feat(auth): guard app routes by session state"],
-   ["Verify the whole flow on device and web.",""]
-  ],
-  push:"Merge to main, then tag v0.1.0 — your first real milestone.",
-  learn:[["Supabase Auth with React Native","https://supabase.com/docs/guides/auth/quickstarts/react-native"],["Full Expo user-management tutorial","https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native"],["Expo Router protected routes","https://docs.expo.dev/router/advanced/authentication/"]],
-  tips:"Handle the loading state while the session restores (avoid a flash of the login screen on launch). Show clear errors for wrong passwords / taken emails. Confirm the session survives a restart.",
-  pro:"Cover the auth guard with tests, never log tokens, and keep auth secrets in env — not in code."},
+                {
+                    num: 'Phase 2',
+                    title: 'Authentication',
+                    milestone: 'v0.1.0',
+                    goal: "Users can sign up, log in, log out; a profile row is created on signup; logged-out users can't reach the app's inner screens.",
+                    steps: [
+                        [
+                            'Build sign-up, login, and logout. (Email + password is simplest to start; magic links are an option.)',
+                            'feat(auth): add email/password sign up and login'
+                        ],
+                        [
+                            "On signup, create the user's profile row automatically. Decide where: a database trigger vs. an app call. (Trigger is more robust.)",
+                            'feat(auth): create profile on sign up'
+                        ],
+                        [
+                            'Add an auth-state provider and protect routes: unauthenticated users are redirected to login; authenticated users land on home.',
+                            'feat(auth): guard app routes by session state'
+                        ],
+                        ['Verify the whole flow on device and web.', '']
+                    ],
+                    push: 'Merge to main, then tag v0.1.0 — your first real milestone.',
+                    learn: [
+                        [
+                            'Supabase Auth with React Native',
+                            'https://supabase.com/docs/guides/auth/quickstarts/react-native'
+                        ],
+                        [
+                            'Full Expo user-management tutorial',
+                            'https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native'
+                        ],
+                        [
+                            'Expo Router protected routes',
+                            'https://docs.expo.dev/router/advanced/authentication/'
+                        ]
+                    ],
+                    tips: 'Handle the loading state while the session restores (avoid a flash of the login screen on launch). Show clear errors for wrong passwords / taken emails. Confirm the session survives a restart.',
+                    pro: 'Cover the auth guard with tests, never log tokens, and keep auth secrets in env — not in code.'
+                },
 
- {num:"Phase 3", title:"Parties & the immutable roster", milestone:"",
-  goal:"Create a party with a locked set of players, and view your parties. This is the heart of why the app exists — comparable scores.",
-  steps:[
-   ["Build the 'create party' flow: just a name (location, time, and games belong to each game night, Phase 4).","feat(party): add create-party form"],
-   ["Add players to the party at creation time (start by picking from existing users/usernames). Persist the roster.","feat(party): add players to a new party"],
-   ["Enforce immutability with your database rule: a locked state plus a Postgres trigger (and RLS) so roster rows can't be added, removed, or have a player's identity changed once locked. Prove it via a direct API call.","feat(db): add trigger to lock party roster after creation"],
-   ["Build a 'my parties' list + a party detail screen.","feat(party): list parties and show party details"]
-  ],
-  push:"Merge to main.",
-  learn:[["Postgres triggers","https://supabase.com/docs/guides/database/postgres/triggers"],["Typed routes / forms","https://docs.expo.dev/router/reference/typed-routes/"]],
-  tips:"Get immutability genuinely enforced in the database, not just hidden in the UI. Store the planned time in UTC and format per device. Validate inputs (no empty names, at least 2 players).",
-  pro:"Make the lock trigger a tested guarantee — a CI test that fires a direct API insert and asserts the database itself rejects it."},
+                {
+                    num: 'Phase 3',
+                    title: 'Parties & the immutable roster',
+                    milestone: '',
+                    goal: 'Create a party with a locked set of players, and view your parties. This is the heart of why the app exists — comparable scores.',
+                    steps: [
+                        [
+                            "Build the 'create party' flow: just a name (location, time, and games belong to each game night, Phase 4).",
+                            'feat(party): add create-party form'
+                        ],
+                        [
+                            'Add players to the party at creation time (start by picking from existing users/usernames). Persist the roster.',
+                            'feat(party): add players to a new party'
+                        ],
+                        [
+                            "Enforce immutability with your database rule: a locked state plus a Postgres trigger (and RLS) so roster rows can't be added, removed, or have a player's identity changed once locked. Prove it via a direct API call.",
+                            'feat(db): add trigger to lock party roster after creation'
+                        ],
+                        [
+                            "Build a 'my parties' list + a party detail screen.",
+                            'feat(party): list parties and show party details'
+                        ]
+                    ],
+                    push: 'Merge to main.',
+                    learn: [
+                        [
+                            'Postgres triggers',
+                            'https://supabase.com/docs/guides/database/postgres/triggers'
+                        ],
+                        [
+                            'Typed routes / forms',
+                            'https://docs.expo.dev/router/reference/typed-routes/'
+                        ]
+                    ],
+                    tips: 'Get immutability genuinely enforced in the database, not just hidden in the UI. Store the planned time in UTC and format per device. Validate inputs (no empty names, at least 2 players).',
+                    pro: 'Make the lock trigger a tested guarantee — a CI test that fires a direct API insert and asserts the database itself rejects it.'
+                },
 
- {num:"Phase 4", title:"Game nights & scoring", milestone:"v0.2.0",
-  goal:"Inside a party, run a game night, record each game's per-player scores when it ends, and see who's winning the night.",
-  steps:[
-   ["Build the 'new game night' flow: a date/time, a location (free text or map), and the games you plan to play.","feat(gamenight): create a game night within a party"],
-   ["Add a played game to the night — pick from the catalog (Phase 6) or, for now, type a game name.","feat(gamenight): add a played game to a night"],
-   ["Build a generic score entry first (one number per player) and record the per-game result + winner.","feat(scoring): record per-player scores for a game"],
-   ["Make entry schema-driven: render inputs dynamically from the game's scoring schema (points, bonuses, placement, money…) and compute the winner from its archetype.","feat(scoring): render score entry from the game's schema"],
-   ["Show a live game-night leaderboard (points per player, current leader).","feat(scoring): show game-night leaderboard"]
-  ],
-  push:"Merge to main, then tag v0.2.0.",
-  learn:[["TanStack Query basics","https://tanstack.com/query/latest/docs/framework/react/overview"],["Supabase joins & nesting","https://supabase.com/docs/guides/database/joins-and-nesting"]],
-  tips:"Define what a 'win' means per archetype and what the night winner is — write it down; every Phase 5 stat depends on it. Build the generic flow first, then layer the dynamic renderer. Only the host can enter scores (enforce in RLS).",
-  pro:"Extract scoring/win logic into pure functions and unit-test them (your highest-risk code), and gate merges on those tests."},
+                {
+                    num: 'Phase 4',
+                    title: 'Game nights & scoring',
+                    milestone: 'v0.2.0',
+                    goal: "Inside a party, run a game night, record each game's per-player scores when it ends, and see who's winning the night.",
+                    steps: [
+                        [
+                            "Build the 'new game night' flow: a date/time, a location (free text or map), and the games you plan to play.",
+                            'feat(gamenight): create a game night within a party'
+                        ],
+                        [
+                            'Add a played game to the night — pick from the catalog (Phase 6) or, for now, type a game name.',
+                            'feat(gamenight): add a played game to a night'
+                        ],
+                        [
+                            'Build a generic score entry first (one number per player) and record the per-game result + winner.',
+                            'feat(scoring): record per-player scores for a game'
+                        ],
+                        [
+                            "Make entry schema-driven: render inputs dynamically from the game's scoring schema (points, bonuses, placement, money…) and compute the winner from its archetype.",
+                            "feat(scoring): render score entry from the game's schema"
+                        ],
+                        [
+                            'Show a live game-night leaderboard (points per player, current leader).',
+                            'feat(scoring): show game-night leaderboard'
+                        ]
+                    ],
+                    push: 'Merge to main, then tag v0.2.0.',
+                    learn: [
+                        [
+                            'TanStack Query basics',
+                            'https://tanstack.com/query/latest/docs/framework/react/overview'
+                        ],
+                        [
+                            'Supabase joins & nesting',
+                            'https://supabase.com/docs/guides/database/joins-and-nesting'
+                        ]
+                    ],
+                    tips: "Define what a 'win' means per archetype and what the night winner is — write it down; every Phase 5 stat depends on it. Build the generic flow first, then layer the dynamic renderer. Only the host can enter scores (enforce in RLS).",
+                    pro: 'Extract scoring/win logic into pure functions and unit-test them (your highest-risk code), and gate merges on those tests.'
+                },
 
- {num:"Phase 5", title:"Stats & win rates", milestone:"",
-  goal:"Global and per-context win rates: overall, per party, per game, and head-to-head per friend.",
-  steps:[
-   ["Compute and display each user's global win rate across all game nights.","feat(stats): compute global win rate"],
-   ["Add per-game and per-party breakdowns.","feat(stats): add per-game and per-party win rates"],
-   ["Add head-to-head: times you've played with a given friend, and your win rate against them per game and in total.","feat(stats): add head-to-head stats between players"]
-  ],
-  push:"Merge to main.",
-  learn:[["Postgres aggregate functions","https://www.postgresql.org/docs/current/functions-aggregate.html"],["Supabase database functions (RPC) & views","https://supabase.com/docs/guides/database/functions"]],
-  tips:"Put aggregation logic in one place (a view or RPC) so every screen shows consistent numbers. Decide how to handle ties and missing scores before you compute, or your percentages will quietly lie. Cache stats with TanStack Query.",
-  pro:"Verify win-rate math against a committed seed dataset with known expected results, so a refactor can't quietly change the numbers."},
+                {
+                    num: 'Phase 5',
+                    title: 'Stats & win rates',
+                    milestone: '',
+                    goal: 'Global and per-context win rates: overall, per party, per game, and head-to-head per friend.',
+                    steps: [
+                        [
+                            "Compute and display each user's global win rate across all game nights.",
+                            'feat(stats): compute global win rate'
+                        ],
+                        [
+                            'Add per-game and per-party breakdowns.',
+                            'feat(stats): add per-game and per-party win rates'
+                        ],
+                        [
+                            "Add head-to-head: times you've played with a given friend, and your win rate against them per game and in total.",
+                            'feat(stats): add head-to-head stats between players'
+                        ]
+                    ],
+                    push: 'Merge to main.',
+                    learn: [
+                        [
+                            'Postgres aggregate functions',
+                            'https://www.postgresql.org/docs/current/functions-aggregate.html'
+                        ],
+                        [
+                            'Supabase database functions (RPC) & views',
+                            'https://supabase.com/docs/guides/database/functions'
+                        ]
+                    ],
+                    tips: 'Put aggregation logic in one place (a view or RPC) so every screen shows consistent numbers. Decide how to handle ties and missing scores before you compute, or your percentages will quietly lie. Cache stats with TanStack Query.',
+                    pro: "Verify win-rate math against a committed seed dataset with known expected results, so a refactor can't quietly change the numbers."
+                },
 
- {num:"Phase 6", title:"Board-game catalog (BoardGameGeek + custom)", milestone:"v0.3.0",
-  goal:"A searchable, filterable catalog combining BoardGameGeek data and your own custom entries, with type, player count, and difficulty.",
-  steps:[
-   ["Integrate BGG search: query by name, then fetch details (type, player count, weight/difficulty) for a chosen game.","feat(catalog): integrate boardgamegeek search and details"],
-   ["Cache fetched games into your own Supabase table so you're not hitting BGG repeatedly.","feat(catalog): cache board games in the database"],
-   ["Add custom (non-BGG) games with the same fields.","feat(catalog): add custom user-created games"],
-   ["Build the search bar + filters (type, player count, difficulty). Player-count rule is already implemented server-side — see scripts/games_schema.sql.","feat(catalog): add catalog search bar and filters"],
-   ["Wire the catalog into Phase 4's 'add a played game' picker.","feat(catalog): select catalog games when scoring"],
-   ["Add a game detail screen and give every game a scoring schema. Define ~10 win-condition archetypes, then a default classifier that maps a game to an archetype from its BGG mechanics/categories.","feat(catalog): add scoring archetypes and mechanic-based defaults"],
-   ["Enrich popular games with detailed schemas via an offline batch script (an LLM reads the BGG description, proposes the fields), then cache the JSON. Hand-curate the top ~100; let hosts override per party.","feat(catalog): generate detailed scoring schemas (cached)"]
-  ],
-  push:"Merge to main, then tag v0.3.0.",
-  learn:[["BGG XML API2 docs","https://boardgamegeek.com/wiki/page/BGG_XML_API2"]],
-  tips:"Map BGG 'weight' to your difficulty scale and decide a refresh cadence. Never block the UI on BGG being slow/down. Debounce the search box. Keep schema generation free: deterministic defaults for the long tail, AI only for games people actually use (then cached). The score-entry UI never calls the AI — it only reads a stored schema.",
-  pro:"Never call BGG in tests — record fixtures and mock it; run schema generation as an offline cached job, never in the request path."},
+                {
+                    num: 'Phase 6',
+                    title: 'Board-game catalog (BoardGameGeek + custom)',
+                    milestone: 'v0.3.0',
+                    goal: 'A searchable, filterable catalog combining BoardGameGeek data and your own custom entries, with type, player count, and difficulty.',
+                    steps: [
+                        [
+                            'Integrate BGG search: query by name, then fetch details (type, player count, weight/difficulty) for a chosen game.',
+                            'feat(catalog): integrate boardgamegeek search and details'
+                        ],
+                        [
+                            "Cache fetched games into your own Supabase table so you're not hitting BGG repeatedly.",
+                            'feat(catalog): cache board games in the database'
+                        ],
+                        [
+                            'Add custom (non-BGG) games with the same fields.',
+                            'feat(catalog): add custom user-created games'
+                        ],
+                        [
+                            'Build the search bar + filters (type, player count, difficulty). Player-count rule is already implemented server-side — see scripts/games_schema.sql.',
+                            'feat(catalog): add catalog search bar and filters'
+                        ],
+                        [
+                            "Wire the catalog into Phase 4's 'add a played game' picker.",
+                            'feat(catalog): select catalog games when scoring'
+                        ],
+                        [
+                            'Add a game detail screen and give every game a scoring schema. Define ~10 win-condition archetypes, then a default classifier that maps a game to an archetype from its BGG mechanics/categories.',
+                            'feat(catalog): add scoring archetypes and mechanic-based defaults'
+                        ],
+                        [
+                            'Enrich popular games with detailed schemas via an offline batch script (an LLM reads the BGG description, proposes the fields), then cache the JSON. Hand-curate the top ~100; let hosts override per party.',
+                            'feat(catalog): generate detailed scoring schemas (cached)'
+                        ]
+                    ],
+                    push: 'Merge to main, then tag v0.3.0.',
+                    learn: [
+                        [
+                            'BGG XML API2 docs',
+                            'https://boardgamegeek.com/wiki/page/BGG_XML_API2'
+                        ]
+                    ],
+                    tips: "Map BGG 'weight' to your difficulty scale and decide a refresh cadence. Never block the UI on BGG being slow/down. Debounce the search box. Keep schema generation free: deterministic defaults for the long tail, AI only for games people actually use (then cached). The score-entry UI never calls the AI — it only reads a stored schema.",
+                    pro: 'Never call BGG in tests — record fixtures and mock it; run schema generation as an offline cached job, never in the request path.'
+                },
 
- {num:"Phase 7", title:"Friends system", milestone:"",
-  goal:"Send/accept friend requests, see a friends list, and view a friend's profile with their win rate, games played together, and head-to-head record.",
-  steps:[
-   ["Friend requests: send, accept, decline.","feat(friends): send and respond to friend requests"],
-   ["Friends list page.","feat(friends): add friends list"],
-   ["Friend profile showing their global win rate + the head-to-head stats from Phase 5.","feat(friends): show friend profile with stats"],
-   ["Upgrade party invites (Phase 3) to invite from your friends list.","feat(party): invite players from friends list"]
-  ],
-  push:"Merge to main.",
-  learn:[["Modeling many-to-many relationships","https://supabase.com/docs/guides/database/joins-and-nesting"]],
-  tips:"A friendship is one relationship between two people — store it once and query both directions, rather than duplicating rows. Lock down with RLS: you only see friend data once the friendship is accepted.",
-  pro:"Write RLS policy tests that assert a non-friend cannot read friend data — treat security as automated tests, not hope."},
+                {
+                    num: 'Phase 7',
+                    title: 'Friends system',
+                    milestone: '',
+                    goal: "Send/accept friend requests, see a friends list, and view a friend's profile with their win rate, games played together, and head-to-head record.",
+                    steps: [
+                        [
+                            'Friend requests: send, accept, decline.',
+                            'feat(friends): send and respond to friend requests'
+                        ],
+                        [
+                            'Friends list page.',
+                            'feat(friends): add friends list'
+                        ],
+                        [
+                            'Friend profile showing their global win rate + the head-to-head stats from Phase 5.',
+                            'feat(friends): show friend profile with stats'
+                        ],
+                        [
+                            'Upgrade party invites (Phase 3) to invite from your friends list.',
+                            'feat(party): invite players from friends list'
+                        ]
+                    ],
+                    push: 'Merge to main.',
+                    learn: [
+                        [
+                            'Modeling many-to-many relationships',
+                            'https://supabase.com/docs/guides/database/joins-and-nesting'
+                        ]
+                    ],
+                    tips: 'A friendship is one relationship between two people — store it once and query both directions, rather than duplicating rows. Lock down with RLS: you only see friend data once the friendship is accepted.',
+                    pro: 'Write RLS policy tests that assert a non-friend cannot read friend data — treat security as automated tests, not hope.'
+                },
 
- {num:"Phase 8", title:"Realtime messaging / chat", milestone:"v0.4.0",
-  goal:"Friends can chat, with messages appearing in real time.",
-  steps:[
-   ["Messages table + RLS so only conversation participants can read/write.","feat(chat): add messages schema and policies"],
-   ["One-to-one conversation screen: load history, send a message.","feat(chat): add direct message conversation screen"],
-   ["Subscribe to realtime inserts so new messages appear instantly without refresh.","feat(chat): stream new messages in realtime"]
-  ],
-  push:"Merge to main, then tag v0.4.0.",
-  learn:[["Supabase Realtime","https://supabase.com/docs/guides/realtime"],["Getting started with Realtime","https://supabase.com/docs/guides/realtime/getting_started"],["Postgres Changes","https://supabase.com/docs/guides/realtime/postgres-changes"]],
-  tips:"Unsubscribe from channels when leaving a screen (or you'll leak subscriptions and hit limits). Optimistically show the sender's own message instantly. Decide: party group chats now, or ship 1:1 first?",
-  pro:"Lint/test for subscription leaks (unsubscribe on unmount), and exercise realtime against your local Docker stack before touching prod."},
+                {
+                    num: 'Phase 8',
+                    title: 'Realtime messaging / chat',
+                    milestone: 'v0.4.0',
+                    goal: 'Friends can chat, with messages appearing in real time.',
+                    steps: [
+                        [
+                            'Messages table + RLS so only conversation participants can read/write.',
+                            'feat(chat): add messages schema and policies'
+                        ],
+                        [
+                            'One-to-one conversation screen: load history, send a message.',
+                            'feat(chat): add direct message conversation screen'
+                        ],
+                        [
+                            'Subscribe to realtime inserts so new messages appear instantly without refresh.',
+                            'feat(chat): stream new messages in realtime'
+                        ]
+                    ],
+                    push: 'Merge to main, then tag v0.4.0.',
+                    learn: [
+                        [
+                            'Supabase Realtime',
+                            'https://supabase.com/docs/guides/realtime'
+                        ],
+                        [
+                            'Getting started with Realtime',
+                            'https://supabase.com/docs/guides/realtime/getting_started'
+                        ],
+                        [
+                            'Postgres Changes',
+                            'https://supabase.com/docs/guides/realtime/postgres-changes'
+                        ]
+                    ],
+                    tips: "Unsubscribe from channels when leaving a screen (or you'll leak subscriptions and hit limits). Optimistically show the sender's own message instantly. Decide: party group chats now, or ship 1:1 first?",
+                    pro: 'Lint/test for subscription leaks (unsubscribe on unmount), and exercise realtime against your local Docker stack before touching prod.'
+                },
 
- {num:"Phase 9", title:"Push notifications", milestone:"",
-  goal:"A user gets a push notification when they're invited to a party (and optionally on new messages).",
-  steps:[
-   ["Create a development build so you can actually test push (free locally, or via EAS free tier).","chore: add development build configuration"],
-   ["Request notification permission and store each user's Expo push token in the database.","feat(notifications): register and store push tokens"],
-   ["On a party invite, a Supabase Edge Function calls Expo's push service to notify the invitee.","feat(notifications): send push on party invite"],
-   ["Handle taps: open the relevant party/conversation.","feat(notifications): deep-link from notification taps"]
-  ],
-  push:"Merge to main.",
-  learn:[["Expo push overview","https://docs.expo.dev/push-notifications/overview/"],["Setup & getting a push token","https://docs.expo.dev/push-notifications/push-notifications-setup/"],["Sending from a server","https://docs.expo.dev/push-notifications/sending-notifications/"],["Supabase Edge Functions","https://supabase.com/docs/guides/functions"],["Development builds","https://docs.expo.dev/develop/development-builds/introduction/"]],
-  tips:"Never trust the client to notify others — do it server-side in the Edge Function. Handle permission denial gracefully. Since SDK 53, Expo Go can't receive push on Android — you need a development build.",
-  pro:"Test the Edge Function locally with the Supabase CLI (Docker), and keep the Expo push token in GitHub/EAS secrets — never in the client."},
+                {
+                    num: 'Phase 9',
+                    title: 'Push notifications',
+                    milestone: '',
+                    goal: "A user gets a push notification when they're invited to a party (and optionally on new messages).",
+                    steps: [
+                        [
+                            'Create a development build so you can actually test push (free locally, or via EAS free tier).',
+                            'chore: add development build configuration'
+                        ],
+                        [
+                            "Request notification permission and store each user's Expo push token in the database.",
+                            'feat(notifications): register and store push tokens'
+                        ],
+                        [
+                            "On a party invite, a Supabase Edge Function calls Expo's push service to notify the invitee.",
+                            'feat(notifications): send push on party invite'
+                        ],
+                        [
+                            'Handle taps: open the relevant party/conversation.',
+                            'feat(notifications): deep-link from notification taps'
+                        ]
+                    ],
+                    push: 'Merge to main.',
+                    learn: [
+                        [
+                            'Expo push overview',
+                            'https://docs.expo.dev/push-notifications/overview/'
+                        ],
+                        [
+                            'Setup & getting a push token',
+                            'https://docs.expo.dev/push-notifications/push-notifications-setup/'
+                        ],
+                        [
+                            'Sending from a server',
+                            'https://docs.expo.dev/push-notifications/sending-notifications/'
+                        ],
+                        [
+                            'Supabase Edge Functions',
+                            'https://supabase.com/docs/guides/functions'
+                        ],
+                        [
+                            'Development builds',
+                            'https://docs.expo.dev/develop/development-builds/introduction/'
+                        ]
+                    ],
+                    tips: "Never trust the client to notify others — do it server-side in the Edge Function. Handle permission denial gracefully. Since SDK 53, Expo Go can't receive push on Android — you need a development build.",
+                    pro: 'Test the Edge Function locally with the Supabase CLI (Docker), and keep the Expo push token in GitHub/EAS secrets — never in the client.'
+                },
 
- {num:"Phase 10", title:"Testing, polish, web & release", milestone:"v1.0.0",
-  goal:"The app is tested, handles errors/empty/loading states, looks right on web, and is shippable.",
-  steps:[
-   ["Add unit/component tests for your core logic (scoring, win-rate math, roster locking).","test: cover scoring and win-rate logic"],
-   ["Add at least one end-to-end happy-path test with Maestro (sign in → create party → record a score).","test(e2e): add core user-journey flow"],
-   ["Polish: consistent loading, empty, and error states everywhere; check the web layout; basic accessibility.","fix(ui): add loading, empty, and error states"],
-   ["Build and deploy: a mobile build via EAS (or local), and the web build to a free host.","chore: configure builds and web deploy"]
-  ],
-  push:"Merge to main, then tag v1.0.0 — you shipped it.",
-  learn:[["Unit testing with Jest in Expo","https://docs.expo.dev/develop/unit-testing/"],["React Native Testing Library","https://callstack.github.io/react-native-testing-library/"],["Maestro (E2E)","https://docs.maestro.dev/"],["EAS Build","https://docs.expo.dev/build/introduction/"],["EAS Hosting for web","https://docs.expo.dev/eas/hosting/introduction/"]],
-  tips:"Don't wait until here to test — write a test alongside any tricky logic as you build (especially Phases 4–5). Run your suite before every merge. Consider free error monitoring (Sentry has a dev tier).",
-  pro:"Enforce a coverage threshold and an E2E smoke test in CI, then automate the release: tag → build → deploy → changelog (see Phase 11)."},
+                {
+                    num: 'Phase 10',
+                    title: 'Testing, polish, web & release',
+                    milestone: 'v1.0.0',
+                    goal: 'The app is tested, handles errors/empty/loading states, looks right on web, and is shippable.',
+                    steps: [
+                        [
+                            'Add unit/component tests for your core logic (scoring, win-rate math, roster locking).',
+                            'test: cover scoring and win-rate logic'
+                        ],
+                        [
+                            'Add at least one end-to-end happy-path test with Maestro (sign in → create party → record a score).',
+                            'test(e2e): add core user-journey flow'
+                        ],
+                        [
+                            'Polish: consistent loading, empty, and error states everywhere; check the web layout; basic accessibility.',
+                            'fix(ui): add loading, empty, and error states'
+                        ],
+                        [
+                            'Build and deploy: a mobile build via EAS (or local), and the web build to a free host.',
+                            'chore: configure builds and web deploy'
+                        ]
+                    ],
+                    push: 'Merge to main, then tag v1.0.0 — you shipped it.',
+                    learn: [
+                        [
+                            'Unit testing with Jest in Expo',
+                            'https://docs.expo.dev/develop/unit-testing/'
+                        ],
+                        [
+                            'React Native Testing Library',
+                            'https://callstack.github.io/react-native-testing-library/'
+                        ],
+                        ['Maestro (E2E)', 'https://docs.maestro.dev/'],
+                        [
+                            'EAS Build',
+                            'https://docs.expo.dev/build/introduction/'
+                        ],
+                        [
+                            'EAS Hosting for web',
+                            'https://docs.expo.dev/eas/hosting/introduction/'
+                        ]
+                    ],
+                    tips: "Don't wait until here to test — write a test alongside any tricky logic as you build (especially Phases 4–5). Run your suite before every merge. Consider free error monitoring (Sentry has a dev tier).",
+                    pro: 'Enforce a coverage threshold and an E2E smoke test in CI, then automate the release: tag → build → deploy → changelog (see Phase 11).'
+                },
 
- {num:"Phase 11", title:"CI/CD & automation (all free)", milestone:"v1.1.0",
-  goal:"Every push and PR is automatically linted, type-checked, tested, and — on main — built, deployed, and migrated, with dependency updates, security scanning, and error monitoring running themselves. You stop deploying by hand.",
-  steps:[
-   ["Extend CI to test the database: spin up Postgres (or the Supabase stack) in a service container and run migrations against it on every PR, using the same images as local dev.","ci: run database migrations against disposable postgres in ci"],
-   ["Add continuous deployment for web: on merge to main, build the Expo web app and deploy to a free host (EAS Hosting, Cloudflare Pages, Vercel, Netlify). Add PR preview deploys for a shareable URL per PR.","ci: build and deploy web on merge to main"],
-   ["Wire EAS Build into CI for mobile binaries, triggered on release tags so each milestone produces an installable build. (Free: 15 iOS + 15 Android/month, or local.)","ci: trigger eas build on release tags"],
-   ["Automate database deploys: on merge to main, apply new Supabase migrations to your hosted project via the CLI in Actions, with the access token in a GitHub Actions secret.","ci: apply supabase migrations to production on release"],
-   ["Turn on automated dependency updates and security scanning — Dependabot (or Renovate), plus GitHub's free secret scanning and Dependabot alerts; enable CodeQL (free on public repos).","chore(security): enable dependabot, secret scanning, and code scanning"],
-   ["Add error monitoring with Sentry (free Developer tier: 5,000 errors/month) and upload source maps from CI so production stack traces are readable.","feat(observability): add sentry error monitoring with sourcemaps"],
-   ["Add status badges (CI, build) to your README and generate a CHANGELOG automatically from your Conventional Commits.","docs: add ci badges and automated changelog"]
-  ],
-  push:"Merge to main, then tag v1.1.0 — your first 'the robots do the work' release.",
-  learn:[["GitHub Actions quickstart","https://docs.github.com/en/actions/quickstart"],["Understanding GitHub Actions","https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions"],["Building Expo apps on CI","https://docs.expo.dev/build-reference/build-on-ci/"],["EAS + GitHub Actions","https://docs.expo.dev/eas-update/github-actions/"],["Supabase: managing environments","https://supabase.com/docs/guides/deployment/managing-environments"],["Dependabot","https://docs.github.com/en/code-security/dependabot"],["Sentry for React Native","https://docs.sentry.io/platforms/react-native/"]],
-  tips:"Secrets live in GitHub Actions secrets and EAS secrets, never in YAML or the repo. Keep pipelines fast and parallel (cache node_modules, split jobs). Make CI required via branch protection or it becomes decorative. Pin action versions and review Dependabot's own PRs. All free: Actions 2,000 min/mo private (unlimited public), EAS 15+15/mo or local, Sentry 5,000 errors/mo.",
-  pro:"A green pipeline you trust changes how you work — you refactor boldly because CI catches regressions. Keep it fast and reliable and it pays for itself many times over."}
-];
+                {
+                    num: 'Phase 11',
+                    title: 'CI/CD & automation (all free)',
+                    milestone: 'v1.1.0',
+                    goal: 'Every push and PR is automatically linted, type-checked, tested, and — on main — built, deployed, and migrated, with dependency updates, security scanning, and error monitoring running themselves. You stop deploying by hand.',
+                    steps: [
+                        [
+                            'Extend CI to test the database: spin up Postgres (or the Supabase stack) in a service container and run migrations against it on every PR, using the same images as local dev.',
+                            'ci: run database migrations against disposable postgres in ci'
+                        ],
+                        [
+                            'Add continuous deployment for web: on merge to main, build the Expo web app and deploy to a free host (EAS Hosting, Cloudflare Pages, Vercel, Netlify). Add PR preview deploys for a shareable URL per PR.',
+                            'ci: build and deploy web on merge to main'
+                        ],
+                        [
+                            'Wire EAS Build into CI for mobile binaries, triggered on release tags so each milestone produces an installable build. (Free: 15 iOS + 15 Android/month, or local.)',
+                            'ci: trigger eas build on release tags'
+                        ],
+                        [
+                            'Automate database deploys: on merge to main, apply new Supabase migrations to your hosted project via the CLI in Actions, with the access token in a GitHub Actions secret.',
+                            'ci: apply supabase migrations to production on release'
+                        ],
+                        [
+                            "Turn on automated dependency updates and security scanning — Dependabot (or Renovate), plus GitHub's free secret scanning and Dependabot alerts; enable CodeQL (free on public repos).",
+                            'chore(security): enable dependabot, secret scanning, and code scanning'
+                        ],
+                        [
+                            'Add error monitoring with Sentry (free Developer tier: 5,000 errors/month) and upload source maps from CI so production stack traces are readable.',
+                            'feat(observability): add sentry error monitoring with sourcemaps'
+                        ],
+                        [
+                            'Add status badges (CI, build) to your README and generate a CHANGELOG automatically from your Conventional Commits.',
+                            'docs: add ci badges and automated changelog'
+                        ]
+                    ],
+                    push: "Merge to main, then tag v1.1.0 — your first 'the robots do the work' release.",
+                    learn: [
+                        [
+                            'GitHub Actions quickstart',
+                            'https://docs.github.com/en/actions/quickstart'
+                        ],
+                        [
+                            'Understanding GitHub Actions',
+                            'https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions'
+                        ],
+                        [
+                            'Building Expo apps on CI',
+                            'https://docs.expo.dev/build-reference/build-on-ci/'
+                        ],
+                        [
+                            'EAS + GitHub Actions',
+                            'https://docs.expo.dev/eas-update/github-actions/'
+                        ],
+                        [
+                            'Supabase: managing environments',
+                            'https://supabase.com/docs/guides/deployment/managing-environments'
+                        ],
+                        [
+                            'Dependabot',
+                            'https://docs.github.com/en/code-security/dependabot'
+                        ],
+                        [
+                            'Sentry for React Native',
+                            'https://docs.sentry.io/platforms/react-native/'
+                        ]
+                    ],
+                    tips: "Secrets live in GitHub Actions secrets and EAS secrets, never in YAML or the repo. Keep pipelines fast and parallel (cache node_modules, split jobs). Make CI required via branch protection or it becomes decorative. Pin action versions and review Dependabot's own PRs. All free: Actions 2,000 min/mo private (unlimited public), EAS 15+15/mo or local, Sentry 5,000 errors/mo.",
+                    pro: 'A green pipeline you trust changes how you work — you refactor boldly because CI catches regressions. Keep it fast and reliable and it pays for itself many times over.'
+                }
+            ];
 
-const KEY = "gamenight-roadmap-progress-v1";
-const CKEY = "gamenight-roadmap-collapsed-v1";
+            const KEY = 'gamenight-roadmap-progress-v1';
+            const CKEY = 'gamenight-roadmap-collapsed-v1';
 
-const CHECK_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+            const CHECK_SVG =
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
-function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+            function esc(s) {
+                return s
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+            }
 
-function loadSet(k){ try{ return new Set(JSON.parse(localStorage.getItem(k)||"[]")); }catch(e){ return new Set(); } }
+            function loadSet(k) {
+                try {
+                    return new Set(JSON.parse(localStorage.getItem(k) || '[]'));
+                } catch (e) {
+                    return new Set();
+                }
+            }
 
-const doneSet = loadSet(KEY);
-const collapsedSet = loadSet(CKEY);
+            const doneSet = loadSet(KEY);
+            const collapsedSet = loadSet(CKEY);
 
-function render(){
-  const root = document.getElementById("phases");
-  let html = "";
-  PHASES.forEach((ph, pi)=>{
-    const pid = "p"+pi;
-    const collapsed = collapsedSet.has(pid) ? " collapsed" : "";
-    html += '<section class="phase'+collapsed+'" data-id="'+pid+'">';
-    html += '<div class="phase-head" data-toggle="'+pid+'">';
-    html += '<span class="chev">▾</span>';
-    html += '<div class="titlewrap"><div class="phase-num">'+esc(ph.num)+'</div>';
-    html += '<div class="phase-title">'+esc(ph.title)+(ph.milestone?'<span class="milestone">'+esc(ph.milestone)+'</span>':'')+'<span class="check-badge" title="Phase complete">✓</span></div></div>';
-    html += '<div class="phase-progress"><span class="phase-count">0/'+ph.steps.length+'</span>';
-    html += '<div class="phase-bar"><div class="phase-bar-fill"></div></div></div>';
-    html += '</div>';
+            function render() {
+                const root = document.getElementById('phases');
+                let html = '';
+                PHASES.forEach((ph, pi) => {
+                    const pid = 'p' + pi;
+                    const collapsed = collapsedSet.has(pid) ? ' collapsed' : '';
+                    html +=
+                        '<section class="phase' +
+                        collapsed +
+                        '" data-id="' +
+                        pid +
+                        '">';
+                    html +=
+                        '<div class="phase-head" data-toggle="' + pid + '">';
+                    html += '<span class="chev">▾</span>';
+                    html +=
+                        '<div class="titlewrap"><div class="phase-num">' +
+                        esc(ph.num) +
+                        '</div>';
+                    html +=
+                        '<div class="phase-title">' +
+                        esc(ph.title) +
+                        (ph.milestone
+                            ? '<span class="milestone">' +
+                              esc(ph.milestone) +
+                              '</span>'
+                            : '') +
+                        '<span class="check-badge" title="Phase complete">✓</span></div></div>';
+                    html +=
+                        '<div class="phase-progress"><span class="phase-count">0/' +
+                        ph.steps.length +
+                        '</span>';
+                    html +=
+                        '<div class="phase-bar"><div class="phase-bar-fill"></div></div></div>';
+                    html += '</div>';
 
-    html += '<div class="phase-body">';
-    html += '<p class="goal"><b>Goal:</b> '+esc(ph.goal)+'</p>';
-    html += '<ul class="steps">';
-    ph.steps.forEach((st, si)=>{
-      const id = pid+"-s"+si;
-      const checked = doneSet.has(id);
-      html += '<li><label class="step'+(checked?' done':'')+'" data-step="'+id+'">';
-      html += '<input class="step-check" type="checkbox" data-id="'+id+'"'+(checked?' checked':'')+'>';
-      html += '<span class="box">'+CHECK_SVG+'</span>';
-      html += '<span class="step-main"><span class="step-text">'+esc(st[0])+'</span>';
-      if(st[1]) html += '<br><span class="commit">'+esc(st[1])+'</span>';
-      html += '</span></label></li>';
-    });
-    html += '</ul>';
-    html += '<div class="pushtag"><span class="tag-ico">⤴</span><span><b>Push &amp; tag:</b> '+esc(ph.push)+'</span></div>';
-    if(ph.pro){ html += '<div class="pro"><span class="pro-tag">Pro practice</span>'+esc(ph.pro)+'</div>'; }
+                    html += '<div class="phase-body">';
+                    html +=
+                        '<p class="goal"><b>Goal:</b> ' + esc(ph.goal) + '</p>';
+                    html += '<ul class="steps">';
+                    ph.steps.forEach((st, si) => {
+                        const id = pid + '-s' + si;
+                        const checked = doneSet.has(id);
+                        html +=
+                            '<li><label class="step' +
+                            (checked ? ' done' : '') +
+                            '" data-step="' +
+                            id +
+                            '">';
+                        html +=
+                            '<input class="step-check" type="checkbox" data-id="' +
+                            id +
+                            '"' +
+                            (checked ? ' checked' : '') +
+                            '>';
+                        html += '<span class="box">' + CHECK_SVG + '</span>';
+                        html +=
+                            '<span class="step-main"><span class="step-text">' +
+                            esc(st[0]) +
+                            '</span>';
+                        if (st[1])
+                            html +=
+                                '<br><span class="commit">' +
+                                esc(st[1]) +
+                                '</span>';
+                        html += '</span></label></li>';
+                    });
+                    html += '</ul>';
+                    html +=
+                        '<div class="pushtag"><span class="tag-ico">⤴</span><span><b>Push &amp; tag:</b> ' +
+                        esc(ph.push) +
+                        '</span></div>';
+                    if (ph.pro) {
+                        html +=
+                            '<div class="pro"><span class="pro-tag">Pro practice</span>' +
+                            esc(ph.pro) +
+                            '</div>';
+                    }
 
-    if(ph.learn && ph.learn.length){
-      html += '<details class="learn"><summary>Learn first</summary><ul>';
-      ph.learn.forEach(l=>{ html += '<li><a href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+'</a></li>'; });
-      html += '</ul></details>';
-    }
-    if(ph.tips){
-      html += '<details class="tips"><summary>Tips &amp; gotchas</summary><p>'+esc(ph.tips)+'</p></details>';
-    }
-    html += '</div></section>';
-  });
-  root.innerHTML = html;
-}
+                    if (ph.learn && ph.learn.length) {
+                        html +=
+                            '<details class="learn"><summary>Learn first</summary><ul>';
+                        ph.learn.forEach(l => {
+                            html +=
+                                '<li><a href="' +
+                                l[1] +
+                                '" target="_blank" rel="noopener">' +
+                                esc(l[0]) +
+                                '</a></li>';
+                        });
+                        html += '</ul></details>';
+                    }
+                    if (ph.tips) {
+                        html +=
+                            '<details class="tips"><summary>Tips &amp; gotchas</summary><p>' +
+                            esc(ph.tips) +
+                            '</p></details>';
+                    }
+                    html += '</div></section>';
+                });
+                root.innerHTML = html;
+            }
 
-function save(){
-  const ids = [].slice.call(document.querySelectorAll(".step-check")).filter(c=>c.checked).map(c=>c.dataset.id);
-  localStorage.setItem(KEY, JSON.stringify(ids));
-}
-function saveCollapsed(){
-  const ids = [].slice.call(document.querySelectorAll(".phase.collapsed")).map(p=>p.dataset.id);
-  localStorage.setItem(CKEY, JSON.stringify(ids));
-}
+            function save() {
+                const ids = [].slice
+                    .call(document.querySelectorAll('.step-check'))
+                    .filter(c => c.checked)
+                    .map(c => c.dataset.id);
+                localStorage.setItem(KEY, JSON.stringify(ids));
+            }
+            function saveCollapsed() {
+                const ids = [].slice
+                    .call(document.querySelectorAll('.phase.collapsed'))
+                    .map(p => p.dataset.id);
+                localStorage.setItem(CKEY, JSON.stringify(ids));
+            }
 
-function updateUI(){
-  const all = [].slice.call(document.querySelectorAll(".step-check"));
-  const total = all.length;
-  const done = all.filter(c=>c.checked).length;
-  const pct = total ? Math.round(done/total*100) : 0;
-  document.getElementById("doneCount").textContent = done;
-  document.getElementById("totalCount").textContent = total;
-  document.getElementById("pct").textContent = pct+"%";
-  document.getElementById("overallFill").style.width = pct+"%";
-  document.getElementById("shipMsg").classList.toggle("show", total>0 && done===total);
+            function updateUI() {
+                const all = [].slice.call(
+                    document.querySelectorAll('.step-check')
+                );
+                const total = all.length;
+                const done = all.filter(c => c.checked).length;
+                const pct = total ? Math.round((done / total) * 100) : 0;
+                document.getElementById('doneCount').textContent = done;
+                document.getElementById('totalCount').textContent = total;
+                document.getElementById('pct').textContent = pct + '%';
+                document.getElementById('overallFill').style.width = pct + '%';
+                document
+                    .getElementById('shipMsg')
+                    .classList.toggle('show', total > 0 && done === total);
 
-  all.forEach(c=> c.closest(".step").classList.toggle("done", c.checked));
+                all.forEach(c =>
+                    c.closest('.step').classList.toggle('done', c.checked)
+                );
 
-  [].slice.call(document.querySelectorAll(".phase")).forEach(ph=>{
-    const cs = [].slice.call(ph.querySelectorAll(".step-check"));
-    const d = cs.filter(c=>c.checked).length;
-    ph.querySelector(".phase-count").textContent = d+"/"+cs.length;
-    ph.querySelector(".phase-bar-fill").style.width = (cs.length? d/cs.length*100:0)+"%";
-    ph.classList.toggle("complete", cs.length>0 && d===cs.length);
-  });
-}
+                [].slice
+                    .call(document.querySelectorAll('.phase'))
+                    .forEach(ph => {
+                        const cs = [].slice.call(
+                            ph.querySelectorAll('.step-check')
+                        );
+                        const d = cs.filter(c => c.checked).length;
+                        ph.querySelector('.phase-count').textContent =
+                            d + '/' + cs.length;
+                        ph.querySelector('.phase-bar-fill').style.width =
+                            (cs.length ? (d / cs.length) * 100 : 0) + '%';
+                        ph.classList.toggle(
+                            'complete',
+                            cs.length > 0 && d === cs.length
+                        );
+                    });
+            }
 
-render();
-updateUI();
+            render();
+            updateUI();
 
-const phasesEl = document.getElementById("phases");
+            const phasesEl = document.getElementById('phases');
 
-phasesEl.addEventListener("change", function(e){
-  if(e.target.classList.contains("step-check")){ save(); updateUI(); }
-});
+            phasesEl.addEventListener('change', function (e) {
+                if (e.target.classList.contains('step-check')) {
+                    save();
+                    updateUI();
+                }
+            });
 
-phasesEl.addEventListener("click", function(e){
-  const head = e.target.closest(".phase-head");
-  if(head){
-    head.closest(".phase").classList.toggle("collapsed");
-    saveCollapsed();
-  }
-});
+            phasesEl.addEventListener('click', function (e) {
+                const head = e.target.closest('.phase-head');
+                if (head) {
+                    head.closest('.phase').classList.toggle('collapsed');
+                    saveCollapsed();
+                }
+            });
 
-document.getElementById("expandAll").addEventListener("click", function(){
-  [].slice.call(document.querySelectorAll(".phase")).forEach(p=>p.classList.remove("collapsed"));
-  saveCollapsed();
-});
-document.getElementById("collapseAll").addEventListener("click", function(){
-  [].slice.call(document.querySelectorAll(".phase")).forEach(p=>p.classList.add("collapsed"));
-  saveCollapsed();
-});
-document.getElementById("resetBtn").addEventListener("click", function(){
-  if(confirm("Reset all roadmap progress? This clears every checked square.")){
-    localStorage.removeItem(KEY);
-    [].slice.call(document.querySelectorAll(".step-check")).forEach(c=>c.checked=false);
-    save(); updateUI();
-  }
-});
-</script>
-</body>
+            document
+                .getElementById('expandAll')
+                .addEventListener('click', function () {
+                    [].slice
+                        .call(document.querySelectorAll('.phase'))
+                        .forEach(p => p.classList.remove('collapsed'));
+                    saveCollapsed();
+                });
+            document
+                .getElementById('collapseAll')
+                .addEventListener('click', function () {
+                    [].slice
+                        .call(document.querySelectorAll('.phase'))
+                        .forEach(p => p.classList.add('collapsed'));
+                    saveCollapsed();
+                });
+            document
+                .getElementById('resetBtn')
+                .addEventListener('click', function () {
+                    if (
+                        confirm(
+                            'Reset all roadmap progress? This clears every checked square.'
+                        )
+                    ) {
+                        localStorage.removeItem(KEY);
+                        [].slice
+                            .call(document.querySelectorAll('.step-check'))
+                            .forEach(c => (c.checked = false));
+                        save();
+                        updateUI();
+                    }
+                });
+        </script>
+    </body>
 </html>

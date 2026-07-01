@@ -2,7 +2,7 @@
 
 **Direction:** Dark, clean, and native-feeling. **iOS structure** (large navigation titles, inset grouped lists, a bottom tab bar, clear hierarchy) meets **Discord's warmth** (soft rounded panels, comfortable dark grays, a calm blurple accent). **Dark is the default**; a light theme is fully specified too.
 
-This is the spec you implement in **Phase 0.5** of the roadmap — the source of truth for color, type, spacing, and components. Open `gamenight-mockups.html` next to it to *see* every screen. (No app code here on purpose; you build the components yourself.)
+This is the spec you implement in **Phase 0.5** of the roadmap — the source of truth for color, type, spacing, and components. Open `gamenight-mockups.html` next to it to _see_ every screen. (No app code here on purpose; you build the components yourself.)
 
 **Three theme modes, always:** dark (default), light, and **system** (follows the device). Every token has a dark value and a light value — never hard-code a hex in a screen; reference the token.
 
@@ -14,28 +14,28 @@ This is the spec you implement in **Phase 0.5** of the roadmap — the source of
 
 ### Core (dark = default)
 
-| Token | Dark | Light | Use |
-|---|---|---|---|
-| `bg` | `#17181B` | `#F2F2F7` | App background |
-| `surface` | `#212327` | `#FFFFFF` | Cards, grouped list cells |
-| `surfaceAlt` | `#2A2C31` | `#FFFFFF` | Inputs, raised/pressed fills |
-| `elevated` | `#303237` | `#FFFFFF` | Sheets, popovers, menus |
-| `border` | `#34363C` | `#E4E4EA` | Hairlines, separators |
-| `text` | `#F2F3F5` | `#1A1B1F` | Primary text |
-| `textSecondary` | `#B6BAC1` | `#5E6068` | Supporting text |
-| `textMuted` | `#82858C` | `#8E9098` | Placeholders, captions, icons |
+| Token           | Dark      | Light     | Use                           |
+| --------------- | --------- | --------- | ----------------------------- |
+| `bg`            | `#17181B` | `#F2F2F7` | App background                |
+| `surface`       | `#212327` | `#FFFFFF` | Cards, grouped list cells     |
+| `surfaceAlt`    | `#2A2C31` | `#FFFFFF` | Inputs, raised/pressed fills  |
+| `elevated`      | `#303237` | `#FFFFFF` | Sheets, popovers, menus       |
+| `border`        | `#34363C` | `#E4E4EA` | Hairlines, separators         |
+| `text`          | `#F2F3F5` | `#1A1B1F` | Primary text                  |
+| `textSecondary` | `#B6BAC1` | `#5E6068` | Supporting text               |
+| `textMuted`     | `#82858C` | `#8E9098` | Placeholders, captions, icons |
 
 ### Accent & semantic
 
-| Token | Dark | Light | Use |
-|---|---|---|---|
-| `accent` (blurple) | `#6E7DFF` | `#4F5BD5` | Primary actions, active tab, links, selection |
-| `onAccent` | `#FFFFFF` | `#FFFFFF` | Text/icons on accent |
-| `accentSoftBg` | `#23264A` | `#ECEEFF` | Tinted button / chip background |
-| `accentSoftText` | `#B9C0FF` | `#3A45B8` | Text on the tinted background |
-| `success` (online, wins) | `#3BA55D` | `#1E9E54` | Online dots, confirmations |
-| `danger` | `#ED4245` | `#D7373B` | Errors, destructive |
-| `warning` | `#E5A458` | `#B26C1E` | Cautions |
+| Token                      | Dark      | Light     | Use                                               |
+| -------------------------- | --------- | --------- | ------------------------------------------------- |
+| `accent` (blurple)         | `#6E7DFF` | `#4F5BD5` | Primary actions, active tab, links, selection     |
+| `onAccent`                 | `#FFFFFF` | `#FFFFFF` | Text/icons on accent                              |
+| `accentSoftBg`             | `#23264A` | `#ECEEFF` | Tinted button / chip background                   |
+| `accentSoftText`           | `#B9C0FF` | `#3A45B8` | Text on the tinted background                     |
+| `success` (online, wins)   | `#3BA55D` | `#1E9E54` | Online dots, confirmations                        |
+| `danger`                   | `#ED4245` | `#D7373B` | Errors, destructive                               |
+| `warning`                  | `#E5A458` | `#B26C1E` | Cautions                                          |
 | `gold` (winner crown only) | `#E5B567` | `#C08A2E` | The crown icon on a night winner — used sparingly |
 
 ### Avatar fills (rotate for distinct players)
@@ -52,15 +52,15 @@ Native feel = the system font. Use **Inter** as the cross-platform stand-in for 
 
 Load via [`@expo-google-fonts/inter`](https://www.npmjs.com/package/@expo-google-fonts/inter) + [`expo-font`](https://docs.expo.dev/versions/latest/sdk/font/). Numbers in leaderboards use `tabular-nums`.
 
-| Style | Weight | Size / line-height | Use |
-|---|---|---|---|
-| Large title | 700 | 32 / 38 | Top-of-screen title (iOS large title) |
-| Title | 600 | 22 / 28 | Sheet titles, section heroes |
-| Headline | 600 | 17 / 22 | Card titles, list row titles, button labels |
-| Body | 400 | 17 / 22 | Default text |
-| Subhead | 400 | 15 / 20 | Secondary row text |
-| Footnote | 400 | 13 / 18 | Group headers (uppercase, `textMuted`), captions |
-| Caption | 400 | 12 / 16 | Timestamps, fine print |
+| Style       | Weight | Size / line-height | Use                                              |
+| ----------- | ------ | ------------------ | ------------------------------------------------ |
+| Large title | 700    | 32 / 38            | Top-of-screen title (iOS large title)            |
+| Title       | 600    | 22 / 28            | Sheet titles, section heroes                     |
+| Headline    | 600    | 17 / 22            | Card titles, list row titles, button labels      |
+| Body        | 400    | 17 / 22            | Default text                                     |
+| Subhead     | 400    | 15 / 20            | Secondary row text                               |
+| Footnote    | 400    | 13 / 18            | Group headers (uppercase, `textMuted`), captions |
+| Caption     | 400    | 12 / 16            | Timestamps, fine print                           |
 
 Sentence case everywhere ("New party", "Start game night"). Group headers may be uppercase footnote with letter-spacing, iOS-style.
 
@@ -121,6 +121,7 @@ See roadmap **Phase 0.5** for build steps and links.
 - **New party.** Cancel/Create nav. Just a **name** and the **player roster** (rows + an "Add player" row). Footnote: "Players lock once the first game night starts — you'll set when, where, and which games when you start a night." Primary "Create party".
 
 **New game night.** Cancel/Start nav. Date & time, location (free-text + "Use map"), and the **games to play** (added from the catalogue as chips). Primary "Start night". This is where scheduling and game selection happen — never at party creation.
+
 - **Party detail.** Large title = party name; status chip + location/date subhead. Grouped "Players" section (avatars + names) with a footnote "Roster locked" + lock icon once locked. Grouped "Game nights" list (date, winner name, chevron). Primary "Start game night".
 
 **Later (the screens you asked for)**
@@ -149,7 +150,7 @@ The same screens reflow for the browser (the app is Expo web). Phone layout stac
 
 When you search by players, you type a single number (`4`) or a range (`3–5`). A game matches when it **covers your whole range and doesn't start more than one player below your minimum**:
 
-`min_players ≥ qmin − 1`  AND  `min_players ≤ qmin`  AND  `max_players ≥ qmax`
+`min_players ≥ qmin − 1` AND `min_players ≤ qmin` AND `max_players ≥ qmax`
 
 So `3–5` matches `3-5, 2-6, 2-5, 3-7` but **not** `1-5` (starts two below) or `2-4` (can't reach 5). A single `n` means `qmin = qmax = n`. This runs in the database — see `scripts/games_schema.sql` (`search_games_by_players`).
 
@@ -157,7 +158,7 @@ So `3–5` matches `3-5, 2-6, 2-5, 3-7` but **not** `1-5` (starts two below) or 
 
 ## 8. Game-dependent scoring (schema-driven)
 
-Scoring is **not** a single +/− counter — it changes per game. Each game carries a **scoring schema** that describes *what to capture*, and the score-entry screen is generated dynamically from it.
+Scoring is **not** a single +/− counter — it changes per game. Each game carries a **scoring schema** that describes _what to capture_, and the score-entry screen is generated dynamically from it.
 
 **Win-condition archetypes** (most of the ~5,000 games map to one): `highest_total` · `lowest_total` · `target_score` (first to N) · `last_standing` / elimination · `rounds` (per-round scores) · `rank_only` (just placement) · `cooperative` (win/lose together).
 
@@ -165,8 +166,8 @@ Scoring is **not** a single +/− counter — it changes per game. Each game car
 
 **Examples**
 
-- *Catan* — archetype `highest_total` (first to 10 VP). Per-player: victory points (number). Bonuses: longest road (player pick, +2), largest army (player pick, +2), VP cards (per-player integer). Totals update from base + bonuses; winner = highest.
-- *Monopoly* — archetype `last_standing`. Per-player: elimination order (placement) and ending money (money). Winner = last player standing.
+- _Catan_ — archetype `highest_total` (first to 10 VP). Per-player: victory points (number). Bonuses: longest road (player pick, +2), largest army (player pick, +2), VP cards (per-player integer). Totals update from base + bonuses; winner = highest.
+- _Monopoly_ — archetype `last_standing`. Per-player: elimination order (placement) and ending money (money). Winner = last player standing.
 
 **The UI** renders one control per field, grouped (e.g. "Points", then "Bonuses"), highlights the winner, and computes totals live. A **generic fallback schema** (just points, or placement) covers any game that doesn't have a specific schema yet — the app always works.
 
@@ -174,4 +175,4 @@ Scoring is **not** a single +/− counter — it changes per game. Each game car
 
 ---
 
-*Generated to match an Apple-native + Discord, dark-first direction. Tell me what to nudge — a different accent than blurple, lighter/darker grays, more or less rounding — and I'll revise the spec and mockups.*
+_Generated to match an Apple-native + Discord, dark-first direction. Tell me what to nudge — a different accent than blurple, lighter/darker grays, more or less rounding — and I'll revise the spec and mockups._

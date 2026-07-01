@@ -1,295 +1,1232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gamenight — Team Playbook</title>
-<style>
-  :root{
-    --bg:#0e1016; --card:#161b25; --card2:#1c2330; --line:#283042;
-    --text:#e7ecf5; --muted:#93a0b6; --soft:#b6c0d4;
-    --accent:#7c5cff; --accent2:#ff5c93; --green:#39d98a; --amber:#ffc24b; --cyan:#46d5e0;
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:radial-gradient(1200px 600px at 50% -10%, #1a2030 0%, var(--bg) 55%) fixed, var(--bg);
-    color:var(--text); line-height:1.55; -webkit-font-smoothing:antialiased;}
-  a{color:#a99bff;text-decoration:none} a:hover{text-decoration:underline}
-  .wrap{max-width:940px;margin:0 auto;padding:30px 20px 80px}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Gamenight — Team Playbook</title>
+        <style>
+            :root {
+                --bg: #0e1016;
+                --card: #161b25;
+                --card2: #1c2330;
+                --line: #283042;
+                --text: #e7ecf5;
+                --muted: #93a0b6;
+                --soft: #b6c0d4;
+                --accent: #7c5cff;
+                --accent2: #ff5c93;
+                --green: #39d98a;
+                --amber: #ffc24b;
+                --cyan: #46d5e0;
+                --radius: 14px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                    Helvetica, Arial, sans-serif;
+                background:
+                    radial-gradient(
+                            1200px 600px at 50% -10%,
+                            #1a2030 0%,
+                            var(--bg) 55%
+                        )
+                        fixed,
+                    var(--bg);
+                color: var(--text);
+                line-height: 1.55;
+                -webkit-font-smoothing: antialiased;
+            }
+            a {
+                color: #a99bff;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .wrap {
+                max-width: 940px;
+                margin: 0 auto;
+                padding: 30px 20px 80px;
+            }
 
-  .brand{display:flex;align-items:center;gap:14px;margin-bottom:6px}
-  .die{width:44px;height:44px;flex:0 0 auto;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;box-shadow:0 8px 24px rgba(124,92,255,.35)}
-  h1{font-size:26px;margin:0;letter-spacing:.2px}
-  .sub{color:var(--muted);font-size:14px;margin-top:2px}
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 6px;
+            }
+            .die {
+                width: 44px;
+                height: 44px;
+                flex: 0 0 auto;
+                border-radius: 12px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                display: grid;
+                place-items: center;
+                box-shadow: 0 8px 24px rgba(124, 92, 255, 0.35);
+            }
+            h1 {
+                font-size: 26px;
+                margin: 0;
+                letter-spacing: 0.2px;
+            }
+            .sub {
+                color: var(--muted);
+                font-size: 14px;
+                margin-top: 2px;
+            }
 
-  h2{font-size:13px;letter-spacing:.9px;text-transform:uppercase;color:var(--accent);font-weight:700;margin:34px 2px 6px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-top:12px}
-  .card p{margin:11px 0;color:var(--soft);font-size:14.5px}
-  .card p:first-child{margin-top:0}
-  .card b{color:var(--text)}
-  .lead{font-size:16px;color:var(--text)}
-  ul{margin:11px 0;padding-left:20px} li{margin:7px 0;color:var(--soft);font-size:14px}
-  li b{color:var(--text)} code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;background:var(--card2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:#cdd6e8}
+            h2 {
+                font-size: 13px;
+                letter-spacing: 0.9px;
+                text-transform: uppercase;
+                color: var(--accent);
+                font-weight: 700;
+                margin: 34px 2px 6px;
+            }
+            .card {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                padding: 20px 22px;
+                margin-top: 12px;
+            }
+            .card p {
+                margin: 11px 0;
+                color: var(--soft);
+                font-size: 14.5px;
+            }
+            .card p:first-child {
+                margin-top: 0;
+            }
+            .card b {
+                color: var(--text);
+            }
+            .lead {
+                font-size: 16px;
+                color: var(--text);
+            }
+            ul {
+                margin: 11px 0;
+                padding-left: 20px;
+            }
+            li {
+                margin: 7px 0;
+                color: var(--soft);
+                font-size: 14px;
+            }
+            li b {
+                color: var(--text);
+            }
+            code {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+                font-size: 12.5px;
+                background: var(--card2);
+                border: 1px solid var(--line);
+                padding: 1px 6px;
+                border-radius: 5px;
+                color: #cdd6e8;
+            }
 
-  .callout{margin:14px 0 2px;padding:12px 15px;border-left:3px solid var(--accent);background:rgba(124,92,255,.08);border-radius:0 9px 9px 0;font-size:14px;color:var(--soft)}
-  .callout b{color:var(--text)}
-  .callout.green{border-left-color:var(--green);background:rgba(57,217,138,.08)}
-  .callout.amber{border-left-color:var(--amber);background:rgba(255,194,75,.08)}
+            .callout {
+                margin: 14px 0 2px;
+                padding: 12px 15px;
+                border-left: 3px solid var(--accent);
+                background: rgba(124, 92, 255, 0.08);
+                border-radius: 0 9px 9px 0;
+                font-size: 14px;
+                color: var(--soft);
+            }
+            .callout b {
+                color: var(--text);
+            }
+            .callout.green {
+                border-left-color: var(--green);
+                background: rgba(57, 217, 138, 0.08);
+            }
+            .callout.amber {
+                border-left-color: var(--amber);
+                background: rgba(255, 194, 75, 0.08);
+            }
 
-  /* two role cards */
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
-  .who{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
-  .who.teo{border-top:3px solid var(--accent)} .who.denis{border-top:3px solid var(--cyan)}
-  .who h3{margin:0 0 4px;font-size:18px}
-  .who .role{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
-  .who dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13.5px}
-  .who dt{color:var(--muted)} .who dd{margin:0;color:var(--soft)}
-  .combined{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
-  .combined b{color:var(--green)}
+            /* two role cards */
+            .grid2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+                margin-top: 12px;
+            }
+            @media (max-width: 640px) {
+                .grid2 {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .who {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                padding: 18px 20px;
+            }
+            .who.teo {
+                border-top: 3px solid var(--accent);
+            }
+            .who.denis {
+                border-top: 3px solid var(--cyan);
+            }
+            .who h3 {
+                margin: 0 0 4px;
+                font-size: 18px;
+            }
+            .who .role {
+                font-size: 12px;
+                color: var(--muted);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 700;
+            }
+            .who dl {
+                margin: 12px 0 0;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 6px 12px;
+                font-size: 13.5px;
+            }
+            .who dt {
+                color: var(--muted);
+            }
+            .who dd {
+                margin: 0;
+                color: var(--soft);
+            }
+            .combined {
+                text-align: center;
+                color: var(--muted);
+                font-size: 13px;
+                margin-top: 12px;
+            }
+            .combined b {
+                color: var(--green);
+            }
 
-  /* stages */
-  .stage{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;margin-top:12px;position:relative;padding-left:24px}
-  .stage::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:linear-gradient(180deg,var(--accent),var(--accent2))}
-  .stage h3{margin:0 0 2px;font-size:15.5px}
-  .stage .when{font-size:12px;color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+            /* stages */
+            .stage {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                padding: 16px 20px;
+                margin-top: 12px;
+                position: relative;
+                padding-left: 24px;
+            }
+            .stage::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                border-radius: 4px 0 0 4px;
+                background: linear-gradient(
+                    180deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+            }
+            .stage h3 {
+                margin: 0 0 2px;
+                font-size: 15.5px;
+            }
+            .stage .when {
+                font-size: 12px;
+                color: var(--cyan);
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+            }
 
-  /* principles */
-  ol.principles{counter-reset:p;list-style:none;padding:0;margin:12px 0 0}
-  ol.principles li{position:relative;padding:12px 14px 12px 48px;border:1px solid var(--line);border-radius:11px;background:var(--card2);margin:9px 0;color:var(--soft);font-size:14px}
-  ol.principles li::before{counter-increment:p;content:counter(p);position:absolute;left:12px;top:11px;width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
-  ol.principles li b{color:var(--text)}
+            /* principles */
+            ol.principles {
+                counter-reset: p;
+                list-style: none;
+                padding: 0;
+                margin: 12px 0 0;
+            }
+            ol.principles li {
+                position: relative;
+                padding: 12px 14px 12px 48px;
+                border: 1px solid var(--line);
+                border-radius: 11px;
+                background: var(--card2);
+                margin: 9px 0;
+                color: var(--soft);
+                font-size: 14px;
+            }
+            ol.principles li::before {
+                counter-increment: p;
+                content: counter(p);
+                position: absolute;
+                left: 12px;
+                top: 11px;
+                width: 24px;
+                height: 24px;
+                border-radius: 7px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent2)
+                );
+                color: #fff;
+                font-weight: 700;
+                font-size: 13px;
+                display: grid;
+                place-items: center;
+            }
+            ol.principles li b {
+                color: var(--text);
+            }
 
-  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px}
-  th,td{text-align:left;padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.5px}
-  td:first-child{white-space:nowrap}
-  .ph{font-weight:700;color:var(--text)}
-  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;border:1px solid var(--line)}
-  .tag.teo{color:#b9a8ff;background:rgba(124,92,255,.12);border-color:rgba(124,92,255,.3)}
-  .tag.denis{color:#9fe8ef;background:rgba(70,213,224,.12);border-color:rgba(70,213,224,.3)}
-  .tag.pair{color:#ffd98a;background:rgba(255,194,75,.12);border-color:rgba(255,194,75,.3)}
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+                font-size: 13.5px;
+            }
+            th,
+            td {
+                text-align: left;
+                padding: 10px 11px;
+                border-bottom: 1px solid var(--line);
+                vertical-align: top;
+            }
+            th {
+                color: var(--muted);
+                font-weight: 600;
+                font-size: 11.5px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            td:first-child {
+                white-space: nowrap;
+            }
+            .ph {
+                font-weight: 700;
+                color: var(--text);
+            }
+            .tag {
+                display: inline-block;
+                font-size: 11px;
+                font-weight: 700;
+                padding: 2px 8px;
+                border-radius: 99px;
+                border: 1px solid var(--line);
+            }
+            .tag.teo {
+                color: #b9a8ff;
+                background: rgba(124, 92, 255, 0.12);
+                border-color: rgba(124, 92, 255, 0.3);
+            }
+            .tag.denis {
+                color: #9fe8ef;
+                background: rgba(70, 213, 224, 0.12);
+                border-color: rgba(70, 213, 224, 0.3);
+            }
+            .tag.pair {
+                color: #ffd98a;
+                background: rgba(255, 194, 75, 0.12);
+                border-color: rgba(255, 194, 75, 0.3);
+            }
 
-  /* ticket type chips */
-  .types{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-  .ttype{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--card2);font-size:13px;color:var(--soft);flex:1 1 160px}
-  .ttype b{display:block;color:var(--text);font-size:13.5px;margin-bottom:2px}
-  .ttype.epic b{color:#c5a3ff} .ttype.story b{color:#8de0b4} .ttype.task b{color:#9fe8ef} .ttype.bug b{color:#ff9bbb} .ttype.chore b{color:#ffd98a}
+            /* ticket type chips */
+            .types {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 12px 0;
+            }
+            .ttype {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 8px 12px;
+                background: var(--card2);
+                font-size: 13px;
+                color: var(--soft);
+                flex: 1 1 160px;
+            }
+            .ttype b {
+                display: block;
+                color: var(--text);
+                font-size: 13.5px;
+                margin-bottom: 2px;
+            }
+            .ttype.epic b {
+                color: #c5a3ff;
+            }
+            .ttype.story b {
+                color: #8de0b4;
+            }
+            .ttype.task b {
+                color: #9fe8ef;
+            }
+            .ttype.bug b {
+                color: #ff9bbb;
+            }
+            .ttype.chore b {
+                color: #ffd98a;
+            }
 
-  /* board */
-  .board{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
-  @media(max-width:720px){.board{grid-template-columns:repeat(2,1fr)}}
-  .col{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 8px;text-align:center}
-  .col .name{font-size:11.5px;font-weight:700;color:var(--soft)}
-  .col .dot{width:8px;height:8px;border-radius:99px;margin:6px auto 0;background:var(--accent)}
-  .col.done .dot{background:var(--green)} .col.rev .dot{background:var(--amber)}
+            /* board */
+            .board {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 8px;
+                margin-top: 12px;
+            }
+            @media (max-width: 720px) {
+                .board {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            .col {
+                background: var(--card2);
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 10px 8px;
+                text-align: center;
+            }
+            .col .name {
+                font-size: 11.5px;
+                font-weight: 700;
+                color: var(--soft);
+            }
+            .col .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 99px;
+                margin: 6px auto 0;
+                background: var(--accent);
+            }
+            .col.done .dot {
+                background: var(--green);
+            }
+            .col.rev .dot {
+                background: var(--amber);
+            }
 
-  /* timeline */
-  .tl{margin-top:14px;border-left:2px solid var(--line);padding-left:18px}
-  .tl-item{position:relative;padding:6px 0 16px}
-  .tl-item::before{content:"";position:absolute;left:-25px;top:8px;width:12px;height:12px;border-radius:99px;background:var(--accent);border:2px solid var(--bg)}
-  .tl-item.final::before{background:var(--green)}
-  .tl-when{font-size:12px;color:var(--cyan);font-weight:700}
-  .tl-what{font-size:14.5px;color:var(--text);font-weight:600;margin-top:1px}
-  .tl-what .ver{color:var(--muted);font-weight:600;font-size:12.5px}
-  .tl-ph{font-size:12.5px;color:var(--muted)}
+            /* timeline */
+            .tl {
+                margin-top: 14px;
+                border-left: 2px solid var(--line);
+                padding-left: 18px;
+            }
+            .tl-item {
+                position: relative;
+                padding: 6px 0 16px;
+            }
+            .tl-item::before {
+                content: '';
+                position: absolute;
+                left: -25px;
+                top: 8px;
+                width: 12px;
+                height: 12px;
+                border-radius: 99px;
+                background: var(--accent);
+                border: 2px solid var(--bg);
+            }
+            .tl-item.final::before {
+                background: var(--green);
+            }
+            .tl-when {
+                font-size: 12px;
+                color: var(--cyan);
+                font-weight: 700;
+            }
+            .tl-what {
+                font-size: 14.5px;
+                color: var(--text);
+                font-weight: 600;
+                margin-top: 1px;
+            }
+            .tl-what .ver {
+                color: var(--muted);
+                font-weight: 600;
+                font-size: 12.5px;
+            }
+            .tl-ph {
+                font-size: 12.5px;
+                color: var(--muted);
+            }
 
-  footer{margin-top:34px;text-align:center;color:var(--muted);font-size:12px}
-  footer code{background:var(--card2);border:1px solid var(--line);padding:1px 6px;border-radius:5px}
-</style>
-</head>
-<body>
-<div class="wrap">
+            footer {
+                margin-top: 34px;
+                text-align: center;
+                color: var(--muted);
+                font-size: 12px;
+            }
+            footer code {
+                background: var(--card2);
+                border: 1px solid var(--line);
+                padding: 1px 6px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="brand">
+                <div class="die" aria-hidden="true">
+                    <svg
+                        width="23"
+                        height="23"
+                        viewBox="0 0 24 24"
+                        fill="white"
+                    >
+                        <circle cx="7" cy="7" r="2" />
+                        <circle cx="17" cy="7" r="2" />
+                        <circle cx="12" cy="12" r="2" />
+                        <circle cx="7" cy="17" r="2" />
+                        <circle cx="17" cy="17" r="2" />
+                    </svg>
+                </div>
+                <div>
+                    <h1>Gamenight — Team Playbook</h1>
+                    <div class="sub">
+                        How Teo &amp; Denis build it together · companion to the
+                        roadmap
+                    </div>
+                </div>
+            </div>
 
-  <div class="brand">
-    <div class="die" aria-hidden="true"><svg width="23" height="23" viewBox="0 0 24 24" fill="white"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
-    <div>
-      <h1>Gamenight — Team Playbook</h1>
-      <div class="sub">How Teo &amp; Denis build it together · companion to the roadmap</div>
-    </div>
-  </div>
+            <h2>The app, in plain language — read this first, Denis</h2>
+            <div class="card">
+                <p class="lead">
+                    <b
+                        >Gamenight is a free phone + web app for friend groups
+                        that have regular board-game nights.</b
+                    >
+                </p>
+                <p>
+                    You create a <b>party</b> — your fixed group of players.
+                    Then every time you get together you log a
+                    <b>game night</b>: the date, where you are, which games you
+                    played, and everyone's scores. The app works out who won and
+                    keeps score across the whole group <b>over time</b> —
+                    overall win rates, per-game win rates, and head-to-head ("am
+                    I actually better than you at Catan?"). It also has a
+                    searchable catalog of board games (real data from
+                    BoardGameGeek), a friends list, real-time chat, and push
+                    notifications for invites.
+                </p>
+                <p>
+                    Think of it as a
+                    <b>stats tracker + social hub for game nights</b> — it
+                    remembers every result so the group can finally settle who's
+                    the best.
+                </p>
+                <ul>
+                    <li>
+                        <b>Create a party</b> (a fixed roster) so scores stay
+                        comparable.
+                    </li>
+                    <li>
+                        <b>Log a game night</b>: date, place, games played, each
+                        player's score.
+                    </li>
+                    <li>
+                        <b>See who won</b> and win rates over time (overall, per
+                        game, head-to-head).
+                    </li>
+                    <li>
+                        <b>Search a catalog</b> of board games, or add your own.
+                    </li>
+                    <li>
+                        <b>Add friends</b>, chat in real time, get notified
+                        about invites.
+                    </li>
+                </ul>
+                <div class="callout">
+                    <b>Built with</b> (all new to you is fine):
+                    <b>Expo / React Native + TypeScript</b> (the app, phone +
+                    web from one codebase), <b>Supabase</b> (the backend —
+                    database, login, realtime), <b>GitHub</b> (code + tickets +
+                    automation), and <b>Docker</b> (runs the backend on our
+                    laptops). Everything has a free tier — total cost to build
+                    &amp; run: <b>$0</b>.
+                </div>
+            </div>
 
-  <h2>The app, in plain language — read this first, Denis</h2>
-  <div class="card">
-    <p class="lead"><b>Gamenight is a free phone + web app for friend groups that have regular board-game nights.</b></p>
-    <p>You create a <b>party</b> — your fixed group of players. Then every time you get together you log a <b>game night</b>: the date, where you are, which games you played, and everyone's scores. The app works out who won and keeps score across the whole group <b>over time</b> — overall win rates, per-game win rates, and head-to-head ("am I actually better than you at Catan?"). It also has a searchable catalog of board games (real data from BoardGameGeek), a friends list, real-time chat, and push notifications for invites.</p>
-    <p>Think of it as a <b>stats tracker + social hub for game nights</b> — it remembers every result so the group can finally settle who's the best.</p>
-    <ul>
-      <li><b>Create a party</b> (a fixed roster) so scores stay comparable.</li>
-      <li><b>Log a game night</b>: date, place, games played, each player's score.</li>
-      <li><b>See who won</b> and win rates over time (overall, per game, head-to-head).</li>
-      <li><b>Search a catalog</b> of board games, or add your own.</li>
-      <li><b>Add friends</b>, chat in real time, get notified about invites.</li>
-    </ul>
-    <div class="callout"><b>Built with</b> (all new to you is fine): <b>Expo / React Native + TypeScript</b> (the app, phone + web from one codebase), <b>Supabase</b> (the backend — database, login, realtime), <b>GitHub</b> (code + tickets + automation), and <b>Docker</b> (runs the backend on our laptops). Everything has a free tier — total cost to build &amp; run: <b>$0</b>.</div>
-  </div>
+            <h2>The two of us</h2>
+            <div class="grid2">
+                <div class="who teo">
+                    <div class="role">Lead / mentor</div>
+                    <h3>Teo</h3>
+                    <dl>
+                        <dt>Time</dt>
+                        <dd>~8 h/day · 5 days/week</dd>
+                        <dt>Start</dt>
+                        <dd>Some React Native experience</dd>
+                        <dt>Early focus</dt>
+                        <dd>Drives the hard parts; mentors</dd>
+                        <dt>End goal</dt>
+                        <dd>Full co-developer</dd>
+                    </dl>
+                </div>
+                <div class="who denis">
+                    <div class="role">Co-builder / process owner</div>
+                    <h3>Denis</h3>
+                    <dl>
+                        <dt>Time</dt>
+                        <dd>~4 h/day · 5 days/week</dd>
+                        <dt>Start</dt>
+                        <dd>New to programming</dd>
+                        <dt>Early focus</dt>
+                        <dd>Process, design, QA + learning</dd>
+                        <dt>End goal</dt>
+                        <dd>Full co-developer</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="combined">Combined: <b>~60 person-hours / week</b></div>
 
-  <h2>The two of us</h2>
-  <div class="grid2">
-    <div class="who teo">
-      <div class="role">Lead / mentor</div>
-      <h3>Teo</h3>
-      <dl>
-        <dt>Time</dt><dd>~8 h/day · 5 days/week</dd>
-        <dt>Start</dt><dd>Some React Native experience</dd>
-        <dt>Early focus</dt><dd>Drives the hard parts; mentors</dd>
-        <dt>End goal</dt><dd>Full co-developer</dd>
-      </dl>
-    </div>
-    <div class="who denis">
-      <div class="role">Co-builder / process owner</div>
-      <h3>Denis</h3>
-      <dl>
-        <dt>Time</dt><dd>~4 h/day · 5 days/week</dd>
-        <dt>Start</dt><dd>New to programming</dd>
-        <dt>Early focus</dt><dd>Process, design, QA + learning</dd>
-        <dt>End goal</dt><dd>Full co-developer</dd>
-      </dl>
-    </div>
-  </div>
-  <div class="combined">Combined: <b>~60 person-hours / week</b></div>
+            <h2>How we work — the important part</h2>
+            <div class="card">
+                <p>
+                    The goal is that
+                    <b>both of us can do everything by the end.</b> That doesn't
+                    happen by accident — we build it in with six habits:
+                </p>
+                <ol class="principles">
+                    <li>
+                        <b>Pair programming.</b> For anything new or hard, we
+                        work on one screen: one <i>drives</i> (types), the other
+                        <i>navigates</i> (thinks ahead, looks things up). Swap
+                        every ~30 min. Fastest way to move knowledge between two
+                        heads.
+                    </li>
+                    <li>
+                        <b>Whoever didn't build it, reviews it.</b> Every change
+                        goes through a Pull Request the other person reads and
+                        approves. You can't approve what you don't understand —
+                        so reviewing is forced learning.
+                    </li>
+                    <li>
+                        <b>Teach-back.</b> After each phase, whoever led it
+                        gives the other a 10–15 min walkthrough.
+                    </li>
+                    <li>
+                        <b>Rotate the scary stuff.</b> Teo leads the first hard
+                        thing (DB security, Phase 3); Denis leads a similar
+                        thing later (Phase 7) with support. Nobody "owns" a
+                        mystery area.
+                    </li>
+                    <li>
+                        <b>Everything is a ticket.</b> No work happens unless
+                        it's on the board. Denis owns the board.
+                    </li>
+                    <li>
+                        <b>Shared learning log.</b> A running doc where we both
+                        jot what we learned and the links that helped.
+                    </li>
+                </ol>
+            </div>
 
-  <h2>How we work — the important part</h2>
-  <div class="card">
-    <p>The goal is that <b>both of us can do everything by the end.</b> That doesn't happen by accident — we build it in with six habits:</p>
-    <ol class="principles">
-      <li><b>Pair programming.</b> For anything new or hard, we work on one screen: one <i>drives</i> (types), the other <i>navigates</i> (thinks ahead, looks things up). Swap every ~30 min. Fastest way to move knowledge between two heads.</li>
-      <li><b>Whoever didn't build it, reviews it.</b> Every change goes through a Pull Request the other person reads and approves. You can't approve what you don't understand — so reviewing is forced learning.</li>
-      <li><b>Teach-back.</b> After each phase, whoever led it gives the other a 10–15 min walkthrough.</li>
-      <li><b>Rotate the scary stuff.</b> Teo leads the first hard thing (DB security, Phase 3); Denis leads a similar thing later (Phase 7) with support. Nobody "owns" a mystery area.</li>
-      <li><b>Everything is a ticket.</b> No work happens unless it's on the board. Denis owns the board.</li>
-      <li><b>Shared learning log.</b> A running doc where we both jot what we learned and the links that helped.</li>
-    </ol>
-  </div>
+            <h2>Denis's ramp-up: zero to co-developer</h2>
+            <div class="card">
+                <p>
+                    You do <b>not</b> need to know how to code to be useful from
+                    day one. You start by owning the parts of a real team that
+                    <i>aren't</i> deep coding, learn fundamentals on the side,
+                    and pair every day until you're writing features yourself.
+                </p>
+            </div>
+            <div class="stage">
+                <div class="when">
+                    Weeks ~1–3 · Own the process, learn the basics
+                </div>
+                <h3>Stage 1</h3>
+                <ul>
+                    <li>
+                        <b>~1.5 h/day learning</b>: a beginner JavaScript /
+                        TypeScript + React course (freeCodeCamp, free) and Git
+                        basics.
+                    </li>
+                    <li>
+                        <b>Own the GitHub Project board</b>: create it, write
+                        the first user stories, keep it tidy.
+                    </li>
+                    <li>
+                        <b>Help with design</b>: wireframes in Figma (free) +
+                        choosing colors/spacing. Phase 0.5 is visual — a great
+                        first win.
+                    </li>
+                    <li>
+                        <b>Pair ~1–1.5 h/day</b> with Teo: watch, ask "why,"
+                        start driving simple bits.
+                    </li>
+                </ul>
+            </div>
+            <div class="stage">
+                <div class="when">Weeks ~4–10 · Training wheels</div>
+                <h3>Stage 2</h3>
+                <ul>
+                    <li>
+                        Take <b>"good first issues"</b> — small,
+                        clearly-described coding tasks Teo prepares (a form
+                        field, a list screen, a style fix, a small test).
+                    </li>
+                    <li>
+                        <b>Own QA</b>: test the app, write down what you tried,
+                        file bugs as tickets.
+                    </li>
+                    <li>
+                        <b>Own catalog content</b> (Phase 6): add games + define
+                        how each is scored — valuable, not-deep-code work.
+                    </li>
+                    <li>Keep running the board and sprint planning.</li>
+                </ul>
+            </div>
+            <div class="stage">
+                <div class="when">Weeks ~10+ · Co-developer</div>
+                <h3>Stage 3</h3>
+                <ul>
+                    <li>
+                        <b>Lead a whole feature solo.</b> Phase 7 (Friends) is
+                        your "graduation" — it reuses patterns you've already
+                        seen.
+                    </li>
+                    <li>
+                        <b>Review Teo's Pull Requests.</b> From here we rotate
+                        freely and genuinely both know the app.
+                    </li>
+                </ul>
+            </div>
 
-  <h2>Denis's ramp-up: zero to co-developer</h2>
-  <div class="card"><p>You do <b>not</b> need to know how to code to be useful from day one. You start by owning the parts of a real team that <i>aren't</i> deep coding, learn fundamentals on the side, and pair every day until you're writing features yourself.</p></div>
-  <div class="stage">
-    <div class="when">Weeks ~1–3 · Own the process, learn the basics</div>
-    <h3>Stage 1</h3>
-    <ul>
-      <li><b>~1.5 h/day learning</b>: a beginner JavaScript / TypeScript + React course (freeCodeCamp, free) and Git basics.</li>
-      <li><b>Own the GitHub Project board</b>: create it, write the first user stories, keep it tidy.</li>
-      <li><b>Help with design</b>: wireframes in Figma (free) + choosing colors/spacing. Phase 0.5 is visual — a great first win.</li>
-      <li><b>Pair ~1–1.5 h/day</b> with Teo: watch, ask "why," start driving simple bits.</li>
-    </ul>
-  </div>
-  <div class="stage">
-    <div class="when">Weeks ~4–10 · Training wheels</div>
-    <h3>Stage 2</h3>
-    <ul>
-      <li>Take <b>"good first issues"</b> — small, clearly-described coding tasks Teo prepares (a form field, a list screen, a style fix, a small test).</li>
-      <li><b>Own QA</b>: test the app, write down what you tried, file bugs as tickets.</li>
-      <li><b>Own catalog content</b> (Phase 6): add games + define how each is scored — valuable, not-deep-code work.</li>
-      <li>Keep running the board and sprint planning.</li>
-    </ul>
-  </div>
-  <div class="stage">
-    <div class="when">Weeks ~10+ · Co-developer</div>
-    <h3>Stage 3</h3>
-    <ul>
-      <li><b>Lead a whole feature solo.</b> Phase 7 (Friends) is your "graduation" — it reuses patterns you've already seen.</li>
-      <li><b>Review Teo's Pull Requests.</b> From here we rotate freely and genuinely both know the app.</li>
-    </ul>
-  </div>
+            <h2>Who does what, phase by phase</h2>
+            <div class="card" style="padding-top: 14px">
+                <p style="margin-top: 0">
+                    <span class="tag teo">Teo leads</span> &nbsp;<span
+                        class="tag denis"
+                        >Denis leads</span
+                    >
+                    &nbsp;<span class="tag pair">Pair</span> &nbsp;— and
+                    <b>both always review each other's PRs.</b>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Lead</th>
+                            <th>Denis's win (growth task)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ph">0 · Setup</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                Set up his own machine (Node, editor, Git)
+                                alongside
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">0.5 · Design system</td>
+                            <td><span class="tag denis">Denis</span></td>
+                            <td>
+                                Wireframes in Figma; pick colors + build simple
+                                components
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">0.7 · DevOps + board</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                <b>Owns</b> the Project board + writes the first
+                                backlog
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">1 · Backend schema</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                Sketch the data model in dbdiagram.io; learn SQL
+                                basics
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">2 · Authentication</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>Build the login / sign-up form UI</td>
+                        </tr>
+                        <tr>
+                            <td class="ph">3 · Parties + roster lock</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                Build "create party" form + list; write the lock
+                                test
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">4 · Game nights + scoring</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                Build the score-entry UI + leaderboard display
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">5 · Stats &amp; win rates</td>
+                            <td><span class="tag pair">Pair</span></td>
+                            <td>
+                                Build the stats screens; write seed-data tests
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">6 · Catalog (BGG)</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                <b>Owns</b> catalog content + builds
+                                search/filter UI
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">7 · Friends</td>
+                            <td><span class="tag denis">Denis</span></td>
+                            <td>
+                                <b>Graduation:</b> lead the whole feature solo;
+                                Teo reviews
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">8 · Realtime chat</td>
+                            <td><span class="tag pair">Pair</span></td>
+                            <td>New for both — rotate driving</td>
+                        </tr>
+                        <tr>
+                            <td class="ph">9 · Push notifications</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>Permission UI + deep-links + device testing</td>
+                        </tr>
+                        <tr>
+                            <td class="ph">10 · Testing + polish</td>
+                            <td><span class="tag denis">Denis</span></td>
+                            <td>
+                                <b>Leads QA:</b> test cases, Maestro flows, file
+                                bugs
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ph">11 · CI/CD</td>
+                            <td><span class="tag teo">Teo</span></td>
+                            <td>
+                                Pairs to learn the pipeline; owns README badges
+                                + changelog
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-  <h2>Who does what, phase by phase</h2>
-  <div class="card" style="padding-top:14px">
-    <p style="margin-top:0"><span class="tag teo">Teo leads</span> &nbsp;<span class="tag denis">Denis leads</span> &nbsp;<span class="tag pair">Pair</span> &nbsp;— and <b>both always review each other's PRs.</b></p>
-    <table>
-      <thead><tr><th>Phase</th><th>Lead</th><th>Denis's win (growth task)</th></tr></thead>
-      <tbody>
-        <tr><td class="ph">0 · Setup</td><td><span class="tag teo">Teo</span></td><td>Set up his own machine (Node, editor, Git) alongside</td></tr>
-        <tr><td class="ph">0.5 · Design system</td><td><span class="tag denis">Denis</span></td><td>Wireframes in Figma; pick colors + build simple components</td></tr>
-        <tr><td class="ph">0.7 · DevOps + board</td><td><span class="tag teo">Teo</span></td><td><b>Owns</b> the Project board + writes the first backlog</td></tr>
-        <tr><td class="ph">1 · Backend schema</td><td><span class="tag teo">Teo</span></td><td>Sketch the data model in dbdiagram.io; learn SQL basics</td></tr>
-        <tr><td class="ph">2 · Authentication</td><td><span class="tag teo">Teo</span></td><td>Build the login / sign-up form UI</td></tr>
-        <tr><td class="ph">3 · Parties + roster lock</td><td><span class="tag teo">Teo</span></td><td>Build "create party" form + list; write the lock test</td></tr>
-        <tr><td class="ph">4 · Game nights + scoring</td><td><span class="tag teo">Teo</span></td><td>Build the score-entry UI + leaderboard display</td></tr>
-        <tr><td class="ph">5 · Stats &amp; win rates</td><td><span class="tag pair">Pair</span></td><td>Build the stats screens; write seed-data tests</td></tr>
-        <tr><td class="ph">6 · Catalog (BGG)</td><td><span class="tag teo">Teo</span></td><td><b>Owns</b> catalog content + builds search/filter UI</td></tr>
-        <tr><td class="ph">7 · Friends</td><td><span class="tag denis">Denis</span></td><td><b>Graduation:</b> lead the whole feature solo; Teo reviews</td></tr>
-        <tr><td class="ph">8 · Realtime chat</td><td><span class="tag pair">Pair</span></td><td>New for both — rotate driving</td></tr>
-        <tr><td class="ph">9 · Push notifications</td><td><span class="tag teo">Teo</span></td><td>Permission UI + deep-links + device testing</td></tr>
-        <tr><td class="ph">10 · Testing + polish</td><td><span class="tag denis">Denis</span></td><td><b>Leads QA:</b> test cases, Maestro flows, file bugs</td></tr>
-        <tr><td class="ph">11 · CI/CD</td><td><span class="tag teo">Teo</span></td><td>Pairs to learn the pipeline; owns README badges + changelog</td></tr>
-      </tbody>
-    </table>
-  </div>
+            <h2>Tickets — how we track work (Agile-lite, free)</h2>
+            <div class="card">
+                <p style="margin-top: 0">
+                    <b>Tool:</b> GitHub Issues + GitHub Projects — built into
+                    the repo, free, and it talks to our pipeline.
+                    <b>Denis owns it.</b>
+                </p>
+                <p><b>Work-item types</b> (a "Type" field on every issue):</p>
+                <div class="types">
+                    <div class="ttype epic">
+                        <b>Epic</b>a whole phase — "Phase 4: Game nights"
+                    </div>
+                    <div class="ttype story">
+                        <b>Story</b>something a user can do — "As a host, I can
+                        record scores"
+                    </div>
+                    <div class="ttype task">
+                        <b>Task</b>a technical step — "Add game_results table +
+                        RLS"
+                    </div>
+                    <div class="ttype bug"><b>Bug</b>something broken</div>
+                    <div class="ttype chore">
+                        <b>Chore</b>tooling / DevOps / cleanup
+                    </div>
+                </div>
+                <p><b>The board</b> — work flows left to right:</p>
+                <div class="board">
+                    <div class="col">
+                        <div class="name">Backlog</div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="col">
+                        <div class="name">To Do</div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="col">
+                        <div class="name">In Progress</div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="col rev">
+                        <div class="name">In Review</div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="col done">
+                        <div class="name">Done</div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+                <p>
+                    <b>Every ticket has</b> a type, an assignee, a size (S / M /
+                    L), and <b>acceptance criteria</b> (a short "done"
+                    checklist).
+                </p>
+                <div class="callout green">
+                    <b>Definition of Done:</b> code written → tests pass in CI →
+                    the <i>other</i> person reviewed &amp; approved the PR →
+                    merged → (if a Story) demoed.
+                </div>
+                <p>
+                    <b>Sprints are one week.</b> <b>Monday</b> = planning (pull
+                    tickets into the sprint). <b>Friday</b> = quick demo +
+                    10-min retro. Denis runs both — the best PM training there
+                    is. Write <code>Closes #42</code> in a PR and GitHub moves
+                    the ticket to <b>Done</b> automatically on merge.
+                </p>
+            </div>
 
-  <h2>Tickets — how we track work (Agile-lite, free)</h2>
-  <div class="card">
-    <p style="margin-top:0"><b>Tool:</b> GitHub Issues + GitHub Projects — built into the repo, free, and it talks to our pipeline. <b>Denis owns it.</b></p>
-    <p><b>Work-item types</b> (a "Type" field on every issue):</p>
-    <div class="types">
-      <div class="ttype epic"><b>Epic</b>a whole phase — "Phase 4: Game nights"</div>
-      <div class="ttype story"><b>Story</b>something a user can do — "As a host, I can record scores"</div>
-      <div class="ttype task"><b>Task</b>a technical step — "Add game_results table + RLS"</div>
-      <div class="ttype bug"><b>Bug</b>something broken</div>
-      <div class="ttype chore"><b>Chore</b>tooling / DevOps / cleanup</div>
-    </div>
-    <p><b>The board</b> — work flows left to right:</p>
-    <div class="board">
-      <div class="col"><div class="name">Backlog</div><div class="dot"></div></div>
-      <div class="col"><div class="name">To Do</div><div class="dot"></div></div>
-      <div class="col"><div class="name">In Progress</div><div class="dot"></div></div>
-      <div class="col rev"><div class="name">In Review</div><div class="dot"></div></div>
-      <div class="col done"><div class="name">Done</div><div class="dot"></div></div>
-    </div>
-    <p><b>Every ticket has</b> a type, an assignee, a size (S / M / L), and <b>acceptance criteria</b> (a short "done" checklist).</p>
-    <div class="callout green"><b>Definition of Done:</b> code written → tests pass in CI → the <i>other</i> person reviewed &amp; approved the PR → merged → (if a Story) demoed.</div>
-    <p><b>Sprints are one week.</b> <b>Monday</b> = planning (pull tickets into the sprint). <b>Friday</b> = quick demo + 10-min retro. Denis runs both — the best PM training there is. Write <code>Closes #42</code> in a PR and GitHub moves the ticket to <b>Done</b> automatically on merge.</p>
-  </div>
+            <h2>Our daily &amp; weekly rhythm</h2>
+            <div class="card">
+                <p style="margin-top: 0">
+                    <b>Every day:</b> a 10-min standup (Denis runs it —
+                    <i>what I did / doing / blockers</i>), ~1–1.5 h pairing
+                    overlap, then solo on your own tickets.
+                </p>
+                <ul>
+                    <li>
+                        <b>Denis (~4 h):</b> ~1.5 h learning · ~1.5 h board +
+                        design + QA + pairing · ~1 h a good-first-issue.
+                    </li>
+                    <li>
+                        <b>Teo (~8 h):</b> ~5–6 h building · ~1 h reviewing
+                        Denis's PRs + prepping his next tickets · ~1 h
+                        pairing/teaching.
+                    </li>
+                </ul>
+                <p>
+                    <b>Every week:</b> Monday planning · Friday demo + retro.
+                    One sprint ≈ one phase (give or take).
+                </p>
+            </div>
 
-  <h2>Our daily &amp; weekly rhythm</h2>
-  <div class="card">
-    <p style="margin-top:0"><b>Every day:</b> a 10-min standup (Denis runs it — <i>what I did / doing / blockers</i>), ~1–1.5 h pairing overlap, then solo on your own tickets.</p>
-    <ul>
-      <li><b>Denis (~4 h):</b> ~1.5 h learning · ~1.5 h board + design + QA + pairing · ~1 h a good-first-issue.</li>
-      <li><b>Teo (~8 h):</b> ~5–6 h building · ~1 h reviewing Denis's PRs + prepping his next tickets · ~1 h pairing/teaching.</li>
-    </ul>
-    <p><b>Every week:</b> Monday planning · Friday demo + retro. One sprint ≈ one phase (give or take).</p>
-  </div>
+            <h2>When does it ship?</h2>
+            <div class="card">
+                <p style="margin-top: 0">
+                    At <b>5 days/week (~60 person-hours/week)</b>, building
+                    <i>while learning</i>. These are
+                    <b>ranges, not promises</b> — learning projects always
+                    surprise you, and the struggle on the design-decision parts
+                    is the point (and takes time).
+                </p>
+                <div class="tl">
+                    <div class="tl-item">
+                        <div class="tl-when">~3–4 weeks</div>
+                        <div class="tl-what">
+                            App runs + login works
+                            <span class="ver">v0.1.0</span>
+                        </div>
+                        <div class="tl-ph">Phases 0 → 2</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-when">~6–8 weeks</div>
+                        <div class="tl-what">
+                            Playable MVP: party + game night
+                            <span class="ver">v0.2.0</span>
+                        </div>
+                        <div class="tl-ph">Phases 3 → 4</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-when">~9–12 weeks</div>
+                        <div class="tl-what">
+                            Stats + catalog <span class="ver">v0.3.0</span>
+                        </div>
+                        <div class="tl-ph">Phases 5 → 6</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-when">~12–14 weeks</div>
+                        <div class="tl-what">
+                            Friends + chat <span class="ver">v0.4.0</span>
+                        </div>
+                        <div class="tl-ph">Phases 7 → 8</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-when">~15–18 weeks (~4 months)</div>
+                        <div class="tl-what">
+                            Polished release <span class="ver">v1.0.0</span>
+                        </div>
+                        <div class="tl-ph">Phases 9 → 10</div>
+                    </div>
+                    <div class="tl-item final">
+                        <div class="tl-when">~16–19 weeks (~4–4.5 months)</div>
+                        <div class="tl-what">
+                            Fully automated <span class="ver">v1.1.0</span>
+                        </div>
+                        <div class="tl-ph">Phase 11</div>
+                    </div>
+                </div>
+                <div class="callout green">
+                    <b>Bottom line:</b> something usable &amp; demo-able in your
+                    hands in <b>~6–8 weeks</b>, and a polished, automated
+                    <b>v1.0 release in roughly 4–5 months.</b>
+                </div>
+                <div class="callout amber">
+                    <b>Want a real release sooner?</b> Scope a leaner "v1": ship
+                    auth + parties + game nights + basic stats (<b>Phases 0–5</b
+                    >) and push chat, push notifications, and the full catalog
+                    to "after v1." A genuinely shippable app in about
+                    <b>2–2.5 months.</b>
+                </div>
+                <p>
+                    <b>Faster:</b> small tickets, pair on the scary stuff, don't
+                    gold-plate v1. &nbsp; <b>Slower:</b> skipping tests early,
+                    big unscoped tickets, long gaps between sessions.
+                </p>
+            </div>
 
-  <h2>When does it ship?</h2>
-  <div class="card">
-    <p style="margin-top:0">At <b>5 days/week (~60 person-hours/week)</b>, building <i>while learning</i>. These are <b>ranges, not promises</b> — learning projects always surprise you, and the struggle on the design-decision parts is the point (and takes time).</p>
-    <div class="tl">
-      <div class="tl-item"><div class="tl-when">~3–4 weeks</div><div class="tl-what">App runs + login works <span class="ver">v0.1.0</span></div><div class="tl-ph">Phases 0 → 2</div></div>
-      <div class="tl-item"><div class="tl-when">~6–8 weeks</div><div class="tl-what">Playable MVP: party + game night <span class="ver">v0.2.0</span></div><div class="tl-ph">Phases 3 → 4</div></div>
-      <div class="tl-item"><div class="tl-when">~9–12 weeks</div><div class="tl-what">Stats + catalog <span class="ver">v0.3.0</span></div><div class="tl-ph">Phases 5 → 6</div></div>
-      <div class="tl-item"><div class="tl-when">~12–14 weeks</div><div class="tl-what">Friends + chat <span class="ver">v0.4.0</span></div><div class="tl-ph">Phases 7 → 8</div></div>
-      <div class="tl-item"><div class="tl-when">~15–18 weeks (~4 months)</div><div class="tl-what">Polished release <span class="ver">v1.0.0</span></div><div class="tl-ph">Phases 9 → 10</div></div>
-      <div class="tl-item final"><div class="tl-when">~16–19 weeks (~4–4.5 months)</div><div class="tl-what">Fully automated <span class="ver">v1.1.0</span></div><div class="tl-ph">Phase 11</div></div>
-    </div>
-    <div class="callout green"><b>Bottom line:</b> something usable &amp; demo-able in your hands in <b>~6–8 weeks</b>, and a polished, automated <b>v1.0 release in roughly 4–5 months.</b></div>
-    <div class="callout amber"><b>Want a real release sooner?</b> Scope a leaner "v1": ship auth + parties + game nights + basic stats (<b>Phases 0–5</b>) and push chat, push notifications, and the full catalog to "after v1." A genuinely shippable app in about <b>2–2.5 months.</b></div>
-    <p><b>Faster:</b> small tickets, pair on the scary stuff, don't gold-plate v1. &nbsp; <b>Slower:</b> skipping tests early, big unscoped tickets, long gaps between sessions.</p>
-  </div>
+            <h2>Learning resources — bookmark these</h2>
+            <div class="card">
+                <p style="margin-top: 0">
+                    The main things to learn, grouped by topic. Each phase in
+                    your personal task list (<b
+                        >gamenight-roadmap-teo-tasks.html</b
+                    >
+                    / <b>gamenight-roadmap-denis.html</b>) also links the exact
+                    resources for <i>that phase's</i> work, so you learn
+                    just-in-time.
+                </p>
+                <p>
+                    <b>Fundamentals (great for Denis)</b><br /><a
+                        href="https://www.freecodecamp.org/learn/"
+                        target="_blank"
+                        rel="noopener"
+                        >freeCodeCamp</a
+                    >
+                    ·
+                    <a
+                        href="https://react.dev/learn"
+                        target="_blank"
+                        rel="noopener"
+                        >React — Learn</a
+                    >
+                    ·
+                    <a
+                        href="https://reactnative.dev/docs/getting-started"
+                        target="_blank"
+                        rel="noopener"
+                        >React Native docs</a
+                    >
+                    ·
+                    <a
+                        href="https://www.typescriptlang.org/docs/"
+                        target="_blank"
+                        rel="noopener"
+                        >TypeScript</a
+                    >
+                </p>
+                <p>
+                    <b>The app framework (Expo)</b><br /><a
+                        href="https://docs.expo.dev/tutorial/introduction/"
+                        target="_blank"
+                        rel="noopener"
+                        >Expo tutorial</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.expo.dev/router/introduction/"
+                        target="_blank"
+                        rel="noopener"
+                        >Expo Router</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.expo.dev/workflow/web/"
+                        target="_blank"
+                        rel="noopener"
+                        >Expo on web</a
+                    >
+                </p>
+                <p>
+                    <b>Backend &amp; database (Supabase / Postgres)</b><br /><a
+                        href="https://supabase.com/docs"
+                        target="_blank"
+                        rel="noopener"
+                        >Supabase docs</a
+                    >
+                    ·
+                    <a
+                        href="https://supabase.com/docs/guides/local-development"
+                        target="_blank"
+                        rel="noopener"
+                        >Local dev (CLI + Docker)</a
+                    >
+                    ·
+                    <a
+                        href="https://supabase.com/docs/guides/database/postgres/row-level-security"
+                        target="_blank"
+                        rel="noopener"
+                        >Row Level Security</a
+                    >
+                    ·
+                    <a
+                        href="https://supabase.com/docs/guides/database/postgres/triggers"
+                        target="_blank"
+                        rel="noopener"
+                        >Triggers</a
+                    >
+                    ·
+                    <a
+                        href="https://supabase.com/docs/guides/realtime"
+                        target="_blank"
+                        rel="noopener"
+                        >Realtime</a
+                    >
+                    ·
+                    <a
+                        href="https://supabase.com/docs/guides/functions"
+                        target="_blank"
+                        rel="noopener"
+                        >Edge Functions</a
+                    >
+                </p>
+                <p>
+                    <b>Tooling, tickets &amp; DevOps</b><br /><a
+                        href="https://docs.github.com/en/get-started"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub basics</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.github.com/en/issues/planning-and-tracking-with-projects"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub Projects (board)</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.github.com/en/actions"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub Actions</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.docker.com/get-started/"
+                        target="_blank"
+                        rel="noopener"
+                        >Docker</a
+                    >
+                    ·
+                    <a
+                        href="https://typicode.github.io/husky/"
+                        target="_blank"
+                        rel="noopener"
+                        >Husky</a
+                    >
+                    ·
+                    <a
+                        href="https://www.conventionalcommits.org/en/v1.0.0/"
+                        target="_blank"
+                        rel="noopener"
+                        >Conventional Commits</a
+                    >
+                </p>
+                <p>
+                    <b>Design</b><br /><a
+                        href="https://help.figma.com/hc/en-us"
+                        target="_blank"
+                        rel="noopener"
+                        >Figma — getting started</a
+                    >
+                </p>
+                <p>
+                    <b>Data fetching &amp; state</b><br /><a
+                        href="https://tanstack.com/query/latest"
+                        target="_blank"
+                        rel="noopener"
+                        >TanStack Query</a
+                    >
+                </p>
+                <p>
+                    <b>External data</b><br /><a
+                        href="https://boardgamegeek.com/wiki/page/BGG_XML_API2"
+                        target="_blank"
+                        rel="noopener"
+                        >BoardGameGeek XML API2</a
+                    >
+                </p>
+                <p>
+                    <b>Testing &amp; monitoring</b><br /><a
+                        href="https://docs.expo.dev/develop/unit-testing/"
+                        target="_blank"
+                        rel="noopener"
+                        >Jest in Expo</a
+                    >
+                    ·
+                    <a
+                        href="https://callstack.github.io/react-native-testing-library/"
+                        target="_blank"
+                        rel="noopener"
+                        >RN Testing Library</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.maestro.dev/"
+                        target="_blank"
+                        rel="noopener"
+                        >Maestro (E2E)</a
+                    >
+                    ·
+                    <a
+                        href="https://docs.sentry.io/platforms/react-native/"
+                        target="_blank"
+                        rel="noopener"
+                        >Sentry</a
+                    >
+                </p>
+            </div>
 
-  <h2>Learning resources — bookmark these</h2>
-  <div class="card">
-    <p style="margin-top:0">The main things to learn, grouped by topic. Each phase in your personal task list (<b>gamenight-roadmap-teo-tasks.html</b> / <b>gamenight-roadmap-denis.html</b>) also links the exact resources for <i>that phase's</i> work, so you learn just-in-time.</p>
-    <p><b>Fundamentals (great for Denis)</b><br><a href="https://www.freecodecamp.org/learn/" target="_blank" rel="noopener">freeCodeCamp</a> · <a href="https://react.dev/learn" target="_blank" rel="noopener">React — Learn</a> · <a href="https://reactnative.dev/docs/getting-started" target="_blank" rel="noopener">React Native docs</a> · <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">TypeScript</a></p>
-    <p><b>The app framework (Expo)</b><br><a href="https://docs.expo.dev/tutorial/introduction/" target="_blank" rel="noopener">Expo tutorial</a> · <a href="https://docs.expo.dev/router/introduction/" target="_blank" rel="noopener">Expo Router</a> · <a href="https://docs.expo.dev/workflow/web/" target="_blank" rel="noopener">Expo on web</a></p>
-    <p><b>Backend &amp; database (Supabase / Postgres)</b><br><a href="https://supabase.com/docs" target="_blank" rel="noopener">Supabase docs</a> · <a href="https://supabase.com/docs/guides/local-development" target="_blank" rel="noopener">Local dev (CLI + Docker)</a> · <a href="https://supabase.com/docs/guides/database/postgres/row-level-security" target="_blank" rel="noopener">Row Level Security</a> · <a href="https://supabase.com/docs/guides/database/postgres/triggers" target="_blank" rel="noopener">Triggers</a> · <a href="https://supabase.com/docs/guides/realtime" target="_blank" rel="noopener">Realtime</a> · <a href="https://supabase.com/docs/guides/functions" target="_blank" rel="noopener">Edge Functions</a></p>
-    <p><b>Tooling, tickets &amp; DevOps</b><br><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener">GitHub basics</a> · <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects" target="_blank" rel="noopener">GitHub Projects (board)</a> · <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">GitHub Actions</a> · <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Docker</a> · <a href="https://typicode.github.io/husky/" target="_blank" rel="noopener">Husky</a> · <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank" rel="noopener">Conventional Commits</a></p>
-    <p><b>Design</b><br><a href="https://help.figma.com/hc/en-us" target="_blank" rel="noopener">Figma — getting started</a></p>
-    <p><b>Data fetching &amp; state</b><br><a href="https://tanstack.com/query/latest" target="_blank" rel="noopener">TanStack Query</a></p>
-    <p><b>External data</b><br><a href="https://boardgamegeek.com/wiki/page/BGG_XML_API2" target="_blank" rel="noopener">BoardGameGeek XML API2</a></p>
-    <p><b>Testing &amp; monitoring</b><br><a href="https://docs.expo.dev/develop/unit-testing/" target="_blank" rel="noopener">Jest in Expo</a> · <a href="https://callstack.github.io/react-native-testing-library/" target="_blank" rel="noopener">RN Testing Library</a> · <a href="https://docs.maestro.dev/" target="_blank" rel="noopener">Maestro (E2E)</a> · <a href="https://docs.sentry.io/platforms/react-native/" target="_blank" rel="noopener">Sentry</a></p>
-  </div>
+            <h2>Is "both of us know how to do everything" possible?</h2>
+            <div class="card">
+                <p style="margin-top: 0">
+                    <b
+                        >Yes — and it's the most valuable thing you'll get out
+                        of this.</b
+                    >
+                    It just has to be deliberate. The pairing, the "whoever
+                    didn't build it reviews it" rule, the teach-backs, and
+                    rotating the scary stuff are <i>specifically</i> there so
+                    neither of us ends up the only person who understands a part
+                    of the app. By v1.0, Denis won't be "the non-programmer"
+                    anymore — he'll have written, reviewed, and explained code
+                    across every layer. That's the plan.
+                </p>
+            </div>
 
-  <h2>Is "both of us know how to do everything" possible?</h2>
-  <div class="card">
-    <p style="margin-top:0"><b>Yes — and it's the most valuable thing you'll get out of this.</b> It just has to be deliberate. The pairing, the "whoever didn't build it reviews it" rule, the teach-backs, and rotating the scary stuff are <i>specifically</i> there so neither of us ends up the only person who understands a part of the app. By v1.0, Denis won't be "the non-programmer" anymore — he'll have written, reviewed, and explained code across every layer. That's the plan.</p>
-  </div>
-
-  <footer>
-    Companion to <code>ROADMAP.md</code> · <code>gamenight-roadmap.html</code> · <code>TEAM.md</code>
-  </footer>
-</div>
-</body>
+            <footer>
+                Companion to <code>ROADMAP.md</code> ·
+                <code>gamenight-roadmap.html</code> · <code>TEAM.md</code>
+            </footer>
+        </div>
+    </body>
 </html>

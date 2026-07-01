@@ -1,8 +1,8 @@
 # Gamenight — Build Roadmap
 
-A phased, learn-by-doing plan for building **Gamenight**: an Expo (React Native + web) app where friends create *parties*, lock in a fixed player roster, run *game nights*, record scores, track win rates, browse a board-game catalog, chat, and manage friends.
+A phased, learn-by-doing plan for building **Gamenight**: an Expo (React Native + web) app where friends create _parties_, lock in a fixed player roster, run _game nights_, record scores, track win rates, browse a board-game catalog, chat, and manage friends.
 
-> **How this roadmap teaches.** It tells you *what* to build, in *what order*, *why*, and *when to commit and push* — but not *how*. Every phase starts with "Learn first" links so you discover the actual code yourself. The parts marked **Design decision** are the ones worth struggling with; that's where the real learning is. No code is included on purpose. Ask me for code only when you're genuinely stuck.
+> **How this roadmap teaches.** It tells you _what_ to build, in _what order_, _why_, and _when to commit and push_ — but not _how_. Every phase starts with "Learn first" links so you discover the actual code yourself. The parts marked **Design decision** are the ones worth struggling with; that's where the real learning is. No code is included on purpose. Ask me for code only when you're genuinely stuck.
 
 ---
 
@@ -10,7 +10,7 @@ A phased, learn-by-doing plan for building **Gamenight**: an Expo (React Native 
 
 - Work **top to bottom**. Each phase is a shippable slice that the next one builds on. Don't jump ahead.
 - Tick the checkboxes as you go — this is your progress tracker.
-- Read the **Learn first** links *before* writing anything in that phase.
+- Read the **Learn first** links _before_ writing anything in that phase.
 - The blockquoted **Commit:** lines tell you exactly when to commit and give you a ready-made message.
 - **Design decision** boxes are mini-assignments. Decide, write down your reasoning (a note in the repo is great), then build.
 - Treat **Best practices / gotchas** as the stuff that would otherwise cost you a wasted afternoon.
@@ -22,13 +22,13 @@ A phased, learn-by-doing plan for building **Gamenight**: an Expo (React Native 
 This is the routine you asked to be reminded of. Apply it the same way everywhere.
 
 - **Branch per phase.** Create a branch like `feat/phase-2-auth` off `main`, do the phase's work there, then open a Pull Request into `main` and merge it — even working solo. Reviewing your own PR is a great habit. Learn the flow: [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow).
-- **Commit small and often.** One *atomic* commit per logical change (roughly one checkbox). A commit should do one thing and still leave the app working.
+- **Commit small and often.** One _atomic_ commit per logical change (roughly one checkbox). A commit should do one thing and still leave the app working.
 - **Use Conventional Commits** for every message: `type(scope): short description` in the imperative mood. Types you'll use: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `style`, `perf`. Spec: [conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/) · why it matters: [How to write a Git commit message](https://cbea.ms/git-commit/).
 - **Push** at the **end of every work session** (so nothing lives only on your laptop) and **always at the end of a phase**.
 - **Tag releases** at the milestones marked below using semantic versioning (`v0.1.0`, `v0.2.0`, …). Learn tagging — just the one short chapter: [Pro Git: Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
-- **Never commit secrets.** Write your `.gitignore` *before* your first commit (it must ignore `node_modules`, `.env*`, build output, `.expo`). Expo + Node `.gitignore` reference: [github/gitignore](https://github.com/github/gitignore).
+- **Never commit secrets.** Write your `.gitignore` _before_ your first commit (it must ignore `node_modules`, `.env*`, build output, `.expo`). Expo + Node `.gitignore` reference: [github/gitignore](https://github.com/github/gitignore).
 
-If you forget everything else: *commit per logical change, push at the end of each session, tag at each milestone.*
+If you forget everything else: _commit per logical change, push at the end of each session, tag at each milestone._
 
 ---
 
@@ -44,7 +44,7 @@ Your constraint is "free." This whole stack has a real free tier. Here's the bud
 - **BoardGameGeek XML API2** — free. [Docs](https://boardgamegeek.com/wiki/page/BGG_XML_API2)
 - **GitHub** — free private repos.
 - **Web hosting** — free tiers from [EAS Hosting](https://docs.expo.dev/eas/hosting/introduction/), Vercel, Netlify, or Cloudflare Pages.
-- **CI/CD & DevOps tooling** — **GitHub Actions** (2,000 free Linux minutes/month on private repos, *unlimited* on public), **Dependabot** + secret scanning + CodeQL, and **Husky / lint-staged / commitlint** are all free. **Docker Desktop** (free for personal use) runs your local Supabase stack. [GitHub Actions billing](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions)
+- **CI/CD & DevOps tooling** — **GitHub Actions** (2,000 free Linux minutes/month on private repos, _unlimited_ on public), **Dependabot** + secret scanning + CodeQL, and **Husky / lint-staged / commitlint** are all free. **Docker Desktop** (free for personal use) runs your local Supabase stack. [GitHub Actions billing](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions)
 - **Error monitoring** — [Sentry](https://sentry.io/pricing/) free Developer tier: 5,000 errors/month. (See Phase 11.)
 
 **Design decision:** Stay on Supabase free tier and accept project-pausing during the build, or not? For a learning project, free tier is the right call — just know about the pause.
@@ -56,7 +56,7 @@ Your constraint is "free." This whole stack has a real free tier. Here's the bud
 You picked "some React Native experience," TypeScript, and lowest-cost backend. Given that:
 
 - **Expo (latest SDK) + Expo Router + TypeScript** — Expo Router gives you file-based routing that works on iOS, Android, **and web** from one codebase (your web-compatibility requirement). [Expo Router](https://docs.expo.dev/router/introduction/) · [Expo + TypeScript](https://docs.expo.dev/guides/typescript/) · use the newest SDK: [Expo changelog](https://expo.dev/changelog).
-- **Supabase** — Postgres + auth + realtime + storage + serverless functions on one free tier. Postgres (relational) is the right fit because almost everything you're tracking is *relationships and aggregates* (who played whom, win rates per game). [Supabase docs](https://supabase.com/docs).
+- **Supabase** — Postgres + auth + realtime + storage + serverless functions on one free tier. Postgres (relational) is the right fit because almost everything you're tracking is _relationships and aggregates_ (who played whom, win rates per game). [Supabase docs](https://supabase.com/docs).
 - **TanStack Query for server state + Zustand for local/UI state** — the 2026 standard split. Don't make one tool do both. [TanStack Query](https://tanstack.com/query/latest) · [TanStack Query in React Native](https://tanstack.com/query/latest/docs/framework/react/react-native) · [Zustand](https://zustand.docs.pmnd.rs/).
 
 **Design decision:** Confirm you're comfortable with this stack before Phase 0. If you'd rather swap Zustand for React Context, that's fine for a small app — decide and note why.
@@ -69,19 +69,19 @@ You don't need SQL yet — just understand the shapes. You'll likely need concep
 
 - **Profile** — one per user (display name, avatar), linked to the auth user.
 - **Friendship** — a link between two profiles with a status (pending / accepted). Powers the friends page and invites.
-- **Party** — created by a host; has just a **name** and a fixed roster of players. The *when / where / what* does NOT live here.
+- **Party** — created by a host; has just a **name** and a fixed roster of players. The _when / where / what_ does NOT live here.
 - **Party roster** — the players in a party. **This is your hardest design problem** (see below).
-- **Game night** — one evening inside a party (a party has many). Each game night carries its own **date/time**, **location** (free text *or* map coordinates), and the **games played** that night. Scheduling and game selection live here, not on the party.
+- **Game night** — one evening inside a party (a party has many). Each game night carries its own **date/time**, **location** (free text _or_ map coordinates), and the **games played** that night. Scheduling and game selection live here, not on the party.
 - **Game** — a catalog entry (BGG or custom) with type, player count, difficulty, and a **scoring schema** (see below) describing how that game is scored.
 - **Game result** — links a game night + a game + **structured** per-player data captured from the game's schema (points, bonuses, placement, money…) plus the computed winner.
 - **Scoring schema** — per game: a win-condition archetype + the fields to capture. Drives the dynamic score-entry screen. Sources: hand-curated, mechanic-based default, AI-generated, or user override. (See Phase 4 and Phase 6.)
 - **Message** — chat between friends (and maybe party group chats).
 
-**Decision (locked in) — the immutable roster (core to your whole app):** A party's player count and identities are *fixed once set* so scores stay comparable. You've chosen to **enforce this in the database** — the strongest option, because the rule holds no matter what touches the data (your app, a script, or a direct API call). The UI can hide the buttons, but the database is what actually guarantees it.
+**Decision (locked in) — the immutable roster (core to your whole app):** A party's player count and identities are _fixed once set_ so scores stay comparable. You've chosen to **enforce this in the database** — the strongest option, because the rule holds no matter what touches the data (your app, a script, or a direct API call). The UI can hide the buttons, but the database is what actually guarantees it.
 
 Implementation shape to aim for (work out the SQL yourself — that's the learning): give a party a `locked` state, then add a **Postgres trigger** (backed by matching RLS policies) that **rejects any insert or delete on roster rows, and any change to a player's identity, once the party is locked**.
 
-Think through *when* a party should lock. Recommended rule: lock the moment the first game night is created — that way you can still fix a typo before any scores exist, but the roster is frozen forever after real play begins. Write that rule down and decide what the UI shows once a party is locked.
+Think through _when_ a party should lock. Recommended rule: lock the moment the first game night is created — that way you can still fix a typo before any scores exist, but the roster is frozen forever after real play begins. Write that rule down and decide what the UI shows once a party is locked.
 
 Learn the tools you'll need: [Postgres triggers](https://supabase.com/docs/guides/database/postgres/triggers) · [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) · [Postgres constraints](https://www.postgresql.org/docs/current/ddl-constraints.html). Sketch the whole model visually first with the free [dbdiagram.io](https://dbdiagram.io).
 
@@ -95,7 +95,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 ## Phase 0 — Foundations & project setup
 
-**Goal:** A running Expo + TypeScript app (on a phone *and* in the browser), in a clean GitHub repo, with linting and formatting wired up. No features yet.
+**Goal:** A running Expo + TypeScript app (on a phone _and_ in the browser), in a clean GitHub repo, with linting and formatting wired up. No features yet.
 
 **Learn first:** [Expo "create your first app" tutorial](https://docs.expo.dev/tutorial/introduction/) · [Expo Router intro](https://docs.expo.dev/router/introduction/) · [React docs (if you want a refresher)](https://react.dev/learn) · [Running on web](https://docs.expo.dev/workflow/web/).
 
@@ -118,7 +118,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Push & tag:** push the branch, merge to `main`. No tag yet — there's nothing to release.
 
-**Best practices / gotchas:** Pick the folder structure now and stick to it. Get web working *now*; web bugs are far cheaper to catch early than after 8 phases of mobile-only assumptions.
+**Best practices / gotchas:** Pick the folder structure now and stick to it. Get web working _now_; web bugs are far cheaper to catch early than after 8 phases of mobile-only assumptions.
 
 **Pro practice (real-world):** Pin your toolchain — add an `.nvmrc` (or Volta) for the Node version and an `.editorconfig` — so your machine and CI build identically.
 
@@ -126,21 +126,21 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 ## Phase 0.5 — Design system & theming (light, dark & system)
 
-**Goal:** One reusable design system — colors, typography, spacing, and base components — supporting a light theme, a dark theme, and automatic following of the device theme. Build this *before* the feature screens so every later phase just reuses it instead of reinventing styles.
+**Goal:** One reusable design system — colors, typography, spacing, and base components — supporting a light theme, a dark theme, and automatic following of the device theme. Build this _before_ the feature screens so every later phase just reuses it instead of reinventing styles.
 
-**Learn first:** [Expo — color themes / dark mode](https://docs.expo.dev/develop/user-interface/color-themes/) · [React Native `useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [React Navigation theming](https://reactnavigation.org/docs/themes/) (Expo Router builds on this) · [Material's color-system thinking](https://m3.material.io/styles/color/system/overview) for *why* named tokens beat hard-coded colors.
+**Learn first:** [Expo — color themes / dark mode](https://docs.expo.dev/develop/user-interface/color-themes/) · [React Native `useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [React Navigation theming](https://reactnavigation.org/docs/themes/) (Expo Router builds on this) · [Material's color-system thinking](https://m3.material.io/styles/color/system/overview) for _why_ named tokens beat hard-coded colors.
 
 **Steps:**
 
-- [ ] Turn the design spec (see `DESIGN.md`) into **design tokens**: a light palette and a dark palette (background, surface, text, primary, etc.), a spacing scale, a type scale, and corner radii. Keep colors as *named tokens* — never a raw hex value inside a screen.
+- [ ] Turn the design spec (see `DESIGN.md`) into **design tokens**: a light palette and a dark palette (background, surface, text, primary, etc.), a spacing scale, a type scale, and corner radii. Keep colors as _named tokens_ — never a raw hex value inside a screen.
 
 > **Commit:** `feat(theme): add light and dark design tokens`
 
-- [ ] Build a **theme provider** that reads the device color scheme and exposes the active theme app-wide. Support three modes: light, dark, and *system*.
+- [ ] Build a **theme provider** that reads the device color scheme and exposes the active theme app-wide. Support three modes: light, dark, and _system_.
 
 > **Commit:** `feat(theme): add theme provider with system, light, and dark modes`
 
-- [ ] **Persist** the user's choice so it survives restarts; default to *system*.
+- [ ] **Persist** the user's choice so it survives restarts; default to _system_.
 
 > **Commit:** `feat(theme): persist user theme preference`
 
@@ -148,11 +148,11 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Commit:** `feat(ui): add themed base components and theme toggle`
 
-- [ ] Verify both themes on device and web, and that flipping the *device* theme updates the app live.
+- [ ] Verify both themes on device and web, and that flipping the _device_ theme updates the app live.
 
 > **Push & tag:** merge to `main`.
 
-**Best practices / gotchas:** Never hard-code a color in a screen — always reference a token, or retrofitting dark mode becomes a nightmare. Check **contrast** in *both* themes (don't just invert the palette). Test the system-follow path by switching your OS theme while the app is open. Set the status-bar style per theme.
+**Best practices / gotchas:** Never hard-code a color in a screen — always reference a token, or retrofitting dark mode becomes a nightmare. Check **contrast** in _both_ themes (don't just invert the palette). Test the system-follow path by switching your OS theme while the app is open. Set the status-bar style per theme.
 
 **Pro practice (real-world):** Treat the design system as testable — add a component-gallery screen (or Storybook for React Native) plus snapshot tests so styles can't silently drift.
 
@@ -172,7 +172,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Commit:** `chore(devops): run supabase locally via cli and docker`
 
-- [ ] Set up the **migrations workflow** so your database is versioned SQL files, not dashboard clicks. Learn the commands (`supabase migration new`, `supabase db diff`) and confirm a file lands in `supabase/migrations/`. *(You write the real tables here in Phase 1, after designing the model in dbdiagram.io — for now this is just the plumbing.)*
+- [ ] Set up the **migrations workflow** so your database is versioned SQL files, not dashboard clicks. Learn the commands (`supabase migration new`, `supabase db diff`) and confirm a file lands in `supabase/migrations/`. _(You write the real tables here in Phase 1, after designing the model in dbdiagram.io — for now this is just the plumbing.)_
 
 > **Commit:** `chore(db): set up versioned migrations workflow`
 
@@ -214,7 +214,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 **Steps:**
 
-- [ ] Create a free Supabase project. Save its URL and **publishable key** (not the secret key) for the app. *(Supabase is moving to `sb_publishable_…` / `sb_secret_…` keys — use the publishable one client-side.)*
+- [ ] Create a free Supabase project. Save its URL and **publishable key** (not the secret key) for the app. _(Supabase is moving to `sb_publishable_…` / `sb_secret_…` keys — use the publishable one client-side.)_
 - [ ] Turn your data-model sketch into real tables. Start with the essentials: profiles, parties, party roster, game nights, games, game results. Add friendships + messages later in their phases.
 
 > **Commit:** `feat(db): add core schema for profiles, parties, and game nights`
@@ -281,7 +281,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Commit:** `feat(party): add players to a new party`
 
-- [ ] **Enforce immutability with your database rule.** Add the `locked` state plus the Postgres trigger (and RLS) so roster rows can't be added, removed, or have a player's identity changed once the party locks. Prove it works: try to add a player via a direct API call and confirm the *database itself* rejects it — not just the UI.
+- [ ] **Enforce immutability with your database rule.** Add the `locked` state plus the Postgres trigger (and RLS) so roster rows can't be added, removed, or have a player's identity changed once the party locks. Prove it works: try to add a player via a direct API call and confirm the _database itself_ rejects it — not just the UI.
 
 > **Commit:** `feat(db): add trigger to lock party roster after creation`
 
@@ -291,9 +291,9 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Push & tag:** merge to `main`.
 
-**Best practices / gotchas:** This phase is the heart of *why the app exists* (comparable scores), so get immutability genuinely enforced, not just hidden in the UI. Store the planned time in UTC and format per device. Validate inputs (no empty party names, at least 2 players).
+**Best practices / gotchas:** This phase is the heart of _why the app exists_ (comparable scores), so get immutability genuinely enforced, not just hidden in the UI. Store the planned time in UTC and format per device. Validate inputs (no empty party names, at least 2 players).
 
-**Pro practice (real-world):** Make the lock trigger a *tested guarantee* — a CI test that fires a direct API insert and asserts the database itself rejects it.
+**Pro practice (real-world):** Make the lock trigger a _tested guarantee_ — a CI test that fires a direct API insert and asserts the database itself rejects it.
 
 ---
 
@@ -327,7 +327,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Push & tag:** merge to `main`, then **tag `v0.2.0`**.
 
-**Best practices / gotchas:** **Design decision:** define what a "win" means per archetype (most points? last standing? lowest score?) and what the *night* winner is (most game-wins, or most total points). Write it down — every win-rate stat in Phase 5 depends on it. Build the generic schema first so the flow works end-to-end, then layer the dynamic schema renderer on top. Only the host can enter scores (enforce in RLS).
+**Best practices / gotchas:** **Design decision:** define what a "win" means per archetype (most points? last standing? lowest score?) and what the _night_ winner is (most game-wins, or most total points). Write it down — every win-rate stat in Phase 5 depends on it. Build the generic schema first so the flow works end-to-end, then layer the dynamic schema renderer on top. Only the host can enter scores (enforce in RLS).
 
 **Pro practice (real-world):** Extract scoring/win logic into pure functions and unit-test them (your highest-risk code), and gate merges on those tests.
 
@@ -355,7 +355,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Push & tag:** merge to `main`.
 
-**Best practices / gotchas:** Put aggregation logic in **one place** (a database view or RPC) so every screen shows consistent numbers. Decide how to handle ties and games with missing scores *before* you compute, or your percentages will quietly lie. Cache stats with TanStack Query so screens feel instant.
+**Best practices / gotchas:** Put aggregation logic in **one place** (a database view or RPC) so every screen shows consistent numbers. Decide how to handle ties and games with missing scores _before_ you compute, or your percentages will quietly lie. Cache stats with TanStack Query so screens feel instant.
 
 **Pro practice (real-world):** Verify win-rate math against a committed seed dataset with known expected results, so a refactor can't quietly change the numbers.
 
@@ -433,7 +433,7 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 **Best practices / gotchas:** A friendship is one relationship between two people — store it once and query both directions, rather than duplicating rows. Lock down with RLS: you can only see friend data once the friendship is accepted.
 
-**Pro practice (real-world):** Write RLS policy tests that assert a non-friend *cannot* read friend data — treat security as automated tests, not hope.
+**Pro practice (real-world):** Write RLS policy tests that assert a non-friend _cannot_ read friend data — treat security as automated tests, not hope.
 
 ---
 
@@ -581,12 +581,12 @@ Group chats per party · photo uploads to Supabase Storage · offline support wi
 
 ## Quick reference — commit cadence
 
-| When | Do |
-|---|---|
+| When                                       | Do                                            |
+| ------------------------------------------ | --------------------------------------------- |
 | Finished one logical change (≈ a checkbox) | **Commit** with a Conventional Commit message |
-| End of a work session | **Push** your branch |
-| End of a phase | Open PR → merge to `main` → **push** |
-| Milestone phases (2, 4, 6, 8, 10) | Also **tag** `v0.1.0` … `v1.0.0` |
-| Before any merge to `main` | Run lint + tests; confirm web still works |
+| End of a work session                      | **Push** your branch                          |
+| End of a phase                             | Open PR → merge to `main` → **push**          |
+| Milestone phases (2, 4, 6, 8, 10)          | Also **tag** `v0.1.0` … `v1.0.0`              |
+| Before any merge to `main`                 | Run lint + tests; confirm web still works     |
 
 You've got this. Build one phase at a time, keep `main` always working, and let the commit history tell the story of what you learned.
