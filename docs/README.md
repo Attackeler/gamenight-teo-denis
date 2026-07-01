@@ -9,11 +9,11 @@ A free **mobile + web app** for friend groups to track board-game-night scores a
 ## Start here — open the files in this order
 
 1. **`README.md`** — you're reading it. The map of everything.
-2. **`gamenight-team.html`** — the **team playbook**: what the app is, who does what, how we use tickets, and the timeline. **Read this together first.** *(Plain-text version: `TEAM.md`.)*
-3. **`gamenight-roadmap.html`** — the **full build plan**: all 14 phases as clickable checkboxes with shared progress, "learn first" links, and the DevOps + free-tier reference. *(Plain-text version: `ROADMAP.md`.)*
+2. **`gamenight-team.html`** — the **team playbook**: what the app is, who does what, how we use tickets, and the timeline. **Read this together first.** _(Plain-text version: `TEAM.md`.)_
+3. **`gamenight-roadmap.html`** — the **full build plan**: all 14 phases as clickable checkboxes with shared progress, "learn first" links, and the DevOps + free-tier reference. _(Plain-text version: `ROADMAP.md`.)_
 4. **Your personal task list** — open the one with your name and keep it open while you work:
-   - **Teo →** `gamenight-roadmap-teo-tasks.html`
-   - **Denis →** `gamenight-roadmap-denis.html`
+    - **Teo →** `gamenight-roadmap-teo-tasks.html`
+    - **Denis →** `gamenight-roadmap-denis.html`
 
 So: **team playbook → shared roadmap → your own task list.**
 
@@ -33,24 +33,24 @@ The `.md` files (README, ROADMAP, TEAM, DESIGN) are plain text — open them in 
 
 ## Every file at a glance
 
-| File | What it's for | Who |
-|---|---|---|
-| `README.md` | This map | Both |
-| `gamenight-team.html` / `TEAM.md` | The plan: app description, roles, tickets, timeline | **Both — read first** |
-| `gamenight-roadmap.html` / `ROADMAP.md` | The full 14-phase build plan + shared progress | Both |
-| `gamenight-roadmap-teo-tasks.html` | Teo's explicit personal checklist | Teo |
-| `gamenight-roadmap-denis.html` | Denis's explicit personal checklist | Denis |
-| `DESIGN.md` | The app's design spec (used in Phase 0.5) | Both |
-| `scripts/` | SQL schema + BoardGameGeek import helpers | Teo (mostly) |
+| File                                    | What it's for                                       | Who                   |
+| --------------------------------------- | --------------------------------------------------- | --------------------- |
+| `README.md`                             | This map                                            | Both                  |
+| `gamenight-team.html` / `TEAM.md`       | The plan: app description, roles, tickets, timeline | **Both — read first** |
+| `gamenight-roadmap.html` / `ROADMAP.md` | The full 14-phase build plan + shared progress      | Both                  |
+| `gamenight-roadmap-teo-tasks.html`      | Teo's explicit personal checklist                   | Teo                   |
+| `gamenight-roadmap-denis.html`          | Denis's explicit personal checklist                 | Denis                 |
+| `DESIGN.md`                             | The app's design spec (used in Phase 0.5)           | Both                  |
+| `scripts/`                              | SQL schema + BoardGameGeek import helpers           | Teo (mostly)          |
 
 ---
 
 ## A typical day
 
-1. **10-min standup** (Denis runs it): *what I did / what I'm doing / any blockers.*
+1. **10-min standup** (Denis runs it): _what I did / what I'm doing / any blockers._
 2. Open **your personal task list** and pick your next unchecked task.
 3. **Pair** for ~1–1.5 h on anything new or hard (one types, one navigates — swap often).
-4. Every change → a **Pull Request** the other person reviews. *You can't approve what you don't understand* — that's how you both learn the whole app.
+4. Every change → a **Pull Request** the other person reviews. _You can't approve what you don't understand_ — that's how you both learn the whole app.
 5. Keep the **ticket board** (GitHub Projects) up to date — Denis owns it.
 
 Weekly: **Monday** plan the sprint · **Friday** demo + a 10-min retro.
@@ -71,4 +71,4 @@ Weekly: **Monday** plan the sprint · **Friday** demo + a 10-min retro.
 
 ---
 
-*The goal isn't just to ship the app — it's that **both of us can do everything** by the end. The pairing, reviews, and rotating roles in the playbook are how we get there.*
+_The goal isn't just to ship the app — it's that **both of us can do everything** by the end. The pairing, reviews, and rotating roles in the playbook are how we get there._

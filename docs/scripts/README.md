@@ -12,20 +12,20 @@ Imports the top ~5000 BGG games into your Supabase `games` table. **Cost: free.*
 
 1. **Create the table.** Open the Supabase SQL editor and run [`games_schema.sql`](games_schema.sql). It creates the `games` table, indexes, Row Level Security (read-only for signed-in users), and the `search_games_by_players` function.
 
-2. **Get the list of top games.** BGG offers a free CSV of every game with its rank: download `boardgames_ranks.csv` from <https://boardgamegeek.com/data_dumps/bg_ranks> (you just need a free BGG account). Put it next to the script. *(The script only needs the `id` and `rank` columns, so any source with those works.)*
+2. **Get the list of top games.** BGG offers a free CSV of every game with its rank: download `boardgames_ranks.csv` from <https://boardgamegeek.com/data_dumps/bg_ranks> (you just need a free BGG account). Put it next to the script. _(The script only needs the `id` and `rank` columns, so any source with those works.)_
 
 3. **Install dependencies.**
 
-   ```
-   pip install requests supabase
-   ```
+    ```
+    pip install requests supabase
+    ```
 
 4. **Set your Supabase credentials** (find them in Project Settings → API). Use the **service_role** key — it bypasses RLS to write, so keep it on your machine and never put it in the app.
 
-   ```
-   export SUPABASE_URL="https://YOURPROJECT.supabase.co"
-   export SUPABASE_SERVICE_KEY="your-service_role-key"
-   ```
+    ```
+    export SUPABASE_URL="https://YOURPROJECT.supabase.co"
+    export SUPABASE_SERVICE_KEY="your-service_role-key"
+    ```
 
 ## Run it
 
