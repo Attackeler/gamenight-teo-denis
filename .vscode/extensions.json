@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "anthropic.claude-code",
+    "streetsidesoftware.code-spell-checker",
+    "naumovs.color-highlight",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "expo.vscode-expo-tools",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "yzhang.markdown-all-in-one",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "redhat.vscode-yaml"
+  ]
+}
