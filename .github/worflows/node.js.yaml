@@ -1,0 +1,25 @@
+# This workflow has been made to ensure linting, prettier formatting, and TypeScript type checking are run on every push and pull request to the main branch.
+
+name: Node.js CI
+
+on:
+    push:
+        branches:
+            - 'main'
+    pull_request:
+
+jobs:
+    check-run:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js 26.x
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 26.x
+                  cache: 'npm'
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run prettier:check
+            - run: npm run ts-check
