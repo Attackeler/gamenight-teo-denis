@@ -172,9 +172,9 @@ Milestone tags: **v0.1.0** auth · **v0.2.0** parties + scoring · **v0.3.0** st
 
 > **Commit:** `chore(devops): run supabase locally via cli and docker`
 
-- [ ] Manage your **database schema as versioned migrations** (`supabase migration new`, `supabase db diff`) instead of clicking in the dashboard. Your schema becomes reviewable, diffable, replayable code — the single biggest "real project" upgrade.
+- [ ] Set up the **migrations workflow** so your database is versioned SQL files, not dashboard clicks. Learn the commands (`supabase migration new`, `supabase db diff`) and confirm a file lands in `supabase/migrations/`. *(You write the real tables here in Phase 1, after designing the model in dbdiagram.io — for now this is just the plumbing.)*
 
-> **Commit:** `chore(db): manage schema as versioned migrations`
+> **Commit:** `chore(db): set up versioned migrations workflow`
 
 - [ ] Set up **env management**: a git-ignored `.env` for local secrets, a committed `.env.example` documenting every required variable, and a clear split between `EXPO_PUBLIC_*` (safe, ships to the client) and server-only secrets. Never hard-code a key.
 

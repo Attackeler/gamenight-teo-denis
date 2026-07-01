@@ -161,7 +161,7 @@ const PHASES = [
   goal:"Stand up local backend, migrations, hooks, and CI.",
   steps:[
    ["Install Docker Desktop; run Supabase locally (supabase init / start).","Solo"],
-   ["Turn the schema plan into migration files; add db:reset / db:migrate scripts.","Solo"],
+   ["Set up the migrations workflow (supabase migration new / db diff) + the db:reset / db:migrate scripts. Just the plumbing — you write the real tables in Phase 1, after dbdiagram.io.","Solo"],
    ["Create .env + .env.example; document EXPO_PUBLIC_ vs server-only secrets.","Solo"],
    ["Set up Husky + lint-staged + commitlint.","Solo"],
    ["Write the GitHub Actions CI (lint + typecheck + test on PR); enable branch protection.","Solo"],
