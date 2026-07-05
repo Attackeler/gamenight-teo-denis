@@ -65,5 +65,9 @@
         "supabase": "^2.109.0",
         "typescript": "~5.9.2"
     },
+    "engines": {
+        "node": "26.2.0",
+        "npm": "11.16.0"
+    },
     "private": true
 }
