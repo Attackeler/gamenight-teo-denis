@@ -1,6 +1,6 @@
 # VS Code Extensions — What, When & Why
 
-A plain-language guide to the editor extensions we use on Gamenight — what each one does, **when** to install it, and a quick example. Written so it makes sense even if you've never coded before (👋 Denis).
+A plain-language guide to the editor extensions used on Gamenight — what each one does, **when** to install it, and a quick example.
 
 > **What's an "extension"?** VS Code is a code editor. Extensions are add-ons that give it extra powers — spotting mistakes, formatting your code, talking to GitHub, and so on. You install the ones you need; they're all free.
 
@@ -45,7 +45,7 @@ Legend:
 **What it does:** an automatic formatter. Every time you save, it tidies your file into one consistent style (indentation, quotes, spacing). You stop thinking about formatting entirely.
 **Example:** You paste in messy code with random spacing. Hit **Save** → it instantly snaps into clean, aligned code.
 **Set it up:** make Prettier the default formatter and turn on **Format on Save** (Settings → search "format on save").
-👶 Great for Denis — you never have to make code "look right" by hand.
+👶 You never have to make code "look right" by hand.
 
 ### Expo Tools — `expo.vscode-expo-tools`
 
@@ -57,7 +57,7 @@ Legend:
 
 **What it does:** TypeScript's error messages can be a wall of text. This turns them into short, readable, color-coded explanations.
 **Example:** Instead of a 12-line red blob, you see a clean _"Property 'name' is missing but required."_
-👶 Denis — this one will save your sanity.
+👶 This one will save your sanity.
 
 ### Error Lens — `usernamehw.errorlens` 👶
 
@@ -78,39 +78,39 @@ Legend:
 
 ---
 
-## 🟢 Git & teamwork (for our PR-per-phase workflow)
+## 🟢 Git (for the PR-per-phase workflow)
 
 ### GitLens — `eamodio.gitlens`
 
 **What it does:** supercharges git inside VS Code. Headline feature: next to each line it can show **who last changed it and when** ("blame").
 **Example:** A line looks odd. GitLens shows _"Teo, 2 days ago — commit: fix scoring."_ Now you know the context before touching it.
-**Why here:** helps us understand each other's changes.
+**Why here:** past-you counts as another developer — blame tells you what you were thinking.
 
 ### GitHub Pull Requests — `github.vscode-pull-request-github`
 
 **What it does:** create, review, and comment on Pull Requests **without leaving VS Code**.
-**Example:** Denis opens a PR; Teo sees it in the sidebar, reads the diff, leaves comments, and approves — all in the editor.
-**Why here:** we review every phase's PR, and this makes it painless. (Reviewing is how we both learn the whole app.)
+**Example:** open your phase PR in the sidebar, read the whole diff cold, then merge — all in the editor.
+**Why here:** the solo workflow still reviews every phase's PR (self-review catches real bugs), and this makes it painless.
 
 ---
 
 ## 🟡 Install when you reach the phase
 
-### DotENV — `mikestead.dotenv` · _Phase 0.7_
+### DotENV — `mikestead.dotenv` · _Phase 1_
 
 **What it does:** syntax highlighting for `.env` files (where your keys/config live). Makes them readable instead of flat gray text — and easier to spot a mistake.
 
-### SQLTools + PostgreSQL driver — `mtxr.sqltools` and `mtxr.sqltools-driver-pg` · _Phase 1_
+### SQLTools + PostgreSQL driver — `mtxr.sqltools` and `mtxr.sqltools-driver-pg` · _Phase 3_
 
 **What they do:** write SQL with autocomplete, and even run queries against your Supabase/Postgres database from inside VS Code.
 **Example:** writing a migration, you get table/column suggestions; you can run a quick `SELECT` to check your data without leaving the editor. (Install both — the first is the tool, the second teaches it to speak Postgres.)
 
-### Jest — `orta.vscode-jest` · _Phase 10_
+### Jest — `orta.vscode-jest` · _Phase 9_ (earlier if you test as you go — do)
 
 **What it does:** runs your tests automatically and shows a ✅/❌ right next to each test in the file.
 **Example:** You write a test for the win-rate math → a green check appears when it passes, a red ✗ with the reason when it fails.
 
-### YAML — `redhat.vscode-yaml` and GitHub Actions — `github.vscode-github-actions` · _Phase 11_
+### YAML — `redhat.vscode-yaml` and GitHub Actions — `github.vscode-github-actions` · _Phase 13_
 
 **What they do:** your CI pipeline is written in YAML (a format that's _very_ fussy about spaces). YAML adds validation + autocomplete; the GitHub Actions extension adds workflow-specific help and lets you watch your pipeline runs.
 **Example:** editing the pipeline, it warns you the moment an indent is off and autocompletes action names.
@@ -132,10 +132,10 @@ Legend:
 
 **What it does:** makes VS Code obey a shared `.editorconfig` file, so everyone's indentation and line-endings match regardless of personal settings. (We add that file in Phase 0's "pin your toolchain" pro tip.)
 
-### Color Highlight — `naumovs.color-highlight` 👶 · _handy in Phase 0.5_
+### Color Highlight — `naumovs.color-highlight` 👶 · _handy in Phase 2_
 
 **What it does:** shows a little colored square next to any color code.
-**Example:** `#7c5cff` gets a purple swatch beside it — perfect when Denis is building the design system and juggling colors.
+**Example:** `#7c5cff` gets a purple swatch beside it — perfect while building the design system and juggling colors.
 
 ---
 
@@ -143,14 +143,14 @@ Legend:
 
 - **TypeScript** — already built into VS Code.
 - **Bracket pair colorization** — built in now (enable in Settings if it's off).
-- **Tailwind CSS IntelliSense** — only useful with NativeWind, which we're **not** using. Our app styles with React Native's own `StyleSheet`.
+- **Tailwind CSS IntelliSense** — only useful with NativeWind, which this app does **not** use. Styling is React Native's own `StyleSheet`.
 
 ---
 
-## One-click setup for the whole team (recommended)
+## One-click setup
 
-We can drop a `.vscode/extensions.json` file into the repo listing all the "install now" extensions. Then whenever either of us opens the project, VS Code offers to install the whole set in one click — so Teo and Denis end up with an identical environment. Ask and it'll get generated.
+The repo's `.vscode/extensions.json` lists the "install now" extensions — when you open the project on a fresh machine, VS Code offers to install the whole set in one click.
 
 ---
 
-_Companion to `README.md`, `ROADMAP.md`, and the per-person task lists. If an extension ever feels noisy, you can disable it per-workspace — nothing here is permanent._
+_Companion to `README.md` and `ROADMAP.md`. If an extension ever feels noisy, disable it per-workspace — nothing here is permanent._
