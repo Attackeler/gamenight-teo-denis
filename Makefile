@@ -1,3 +1,4 @@
+.PHONY: install start-app check-files supabase-start supabase-stop
 install: 
 	npm install
 start-app: supabase-start
