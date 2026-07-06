@@ -89,7 +89,7 @@ Scaffolded Expo + TS + Expo Router (`d48c46e`), `.gitignore`, ESLint + Prettier,
 - [x] Git init, `.gitignore`, first commit, GitHub repo
 - [x] ESLint + Prettier + folder structure
 
-**Still open (carry-over):** pin the toolchain — add `.nvmrc` (or Volta) + `.editorconfig` so machine and CI build identically.
+**Still open (carry-over):** pin the toolchain — add `.nvmrc` (or Volta) + `.editorconfig` so machine and CI build identically. Learn: [EditorConfig](https://editorconfig.org/) · [`engines` in package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#engines) (pair with `engine-strict=true` in `.npmrc`).
 
 > **Commit:** `chore: pin node version and add editorconfig`
 
@@ -121,7 +121,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Goal:** One reusable design system — tokens, light/dark/system themes, base components — _before_ feature screens, so every later phase reuses instead of reinventing.
 
-**Learn first:** [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/) · [`useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [React Navigation theming](https://reactnavigation.org/docs/themes/) · [why tokens beat hex values](https://m3.material.io/styles/color/system/overview)
+**Learn first:** [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/) · [`useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [**React Context** (passing data deeply)](https://react.dev/learn/passing-data-deeply-with-context) + [`useContext`](https://react.dev/reference/react/useContext) — the theme provider is **your own context**, not React Navigation's · [React Navigation theming](https://reactnavigation.org/docs/themes/) (cosmetic, for headers/tab bars later — and never wrap `NavigationContainer` yourself; Expo Router owns it) · [why tokens beat hex values](https://m3.material.io/styles/color/system/overview) · [Expo fonts (`expo-font` + Google Fonts)](https://docs.expo.dev/develop/user-interface/fonts/) · for the base components: [StyleSheet](https://reactnative.dev/docs/stylesheet) · [Pressable](https://reactnative.dev/docs/pressable) · [safe areas](https://docs.expo.dev/develop/user-interface/safe-areas/) · [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/usage) (persisting the choice)
 
 - [ ] Turn `DESIGN.md` into **design tokens**: light + dark palettes, spacing scale, type scale, radii. Named tokens only — never a raw hex in a screen.
 
@@ -131,7 +131,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 > **Commit:** `feat(theme): add theme provider with system, light, and dark modes`
 
-- [ ] **Persist** the choice (default: system).
+- [ ] **Persist** the choice (default: system) — use [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/usage) (`@react-native-async-storage/async-storage`), the standard key-value store for non-secret preferences.
 
 > **Commit:** `feat(theme): persist user theme preference`
 
@@ -151,7 +151,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Goal:** Real schema as **migrations**, RLS on everything, app talking to Supabase securely.
 
-**Learn first:** [Supabase with Expo](https://docs.expo.dev/guides/using-supabase/) · [Expo quickstart](https://supabase.com/docs/guides/getting-started/quickstarts/expo-react-native) · [Tables & relationships](https://supabase.com/docs/guides/database/tables) · [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security)
+**Learn first:** [Supabase with Expo](https://docs.expo.dev/guides/using-supabase/) · [Expo quickstart](https://supabase.com/docs/guides/getting-started/quickstarts/expo-react-native) · [Tables & relationships](https://supabase.com/docs/guides/database/tables) · [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security) · [Migrations with the CLI](https://supabase.com/docs/guides/deployment/database-migrations) · [Generating TS types](https://supabase.com/docs/guides/api/rest/generating-types) · [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/) (session storage on device)
 
 - [ ] Create the free **hosted** Supabase project; save URL + **publishable key** (`sb_publishable_…`, never the secret one client-side).
 - [ ] Sketch the full model in dbdiagram.io, then write it as **migration files** (you have the workflow from Phase 1): profiles, parties, party roster, game nights, games, game results. Friendships + messages come in their own phases.
@@ -180,7 +180,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Goal:** Sign up / log in / log out; profile row auto-created; inner screens gated.
 
-**Learn first:** [Supabase Auth in RN](https://supabase.com/docs/guides/auth/quickstarts/react-native) · [full Expo tutorial](https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native) · [Expo Router protected routes](https://docs.expo.dev/router/advanced/authentication/)
+**Learn first:** [Supabase Auth in RN](https://supabase.com/docs/guides/auth/quickstarts/react-native) · [full Expo tutorial](https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native) · [Expo Router protected routes](https://docs.expo.dev/router/advanced/authentication/) · [Managing user data (the profile-on-signup trigger)](https://supabase.com/docs/guides/auth/managing-user-data)
 
 - [ ] Email + password sign-up, login, logout (using your Phase 2 components).
 
@@ -204,7 +204,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Goal:** Create a party (name + locked roster), list parties, view details.
 
-**Learn first:** revisit the roster decision above · [Triggers](https://supabase.com/docs/guides/database/postgres/triggers) · a form/validation lib (React Hook Form + Zod)
+**Learn first:** revisit the roster decision above · [Triggers](https://supabase.com/docs/guides/database/postgres/triggers) · [React Hook Form](https://react-hook-form.com/get-started) + [Zod](https://zod.dev/) (forms + validation) · [Insert/select data](https://supabase.com/docs/reference/javascript/insert)
 
 - [ ] "Create party" flow: **just a name** (when/where/games belong to game nights).
 
@@ -232,7 +232,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Goal:** Run a game night inside a party, record per-player scores, see who's winning.
 
-**Learn first:** [TanStack Query basics](https://tanstack.com/query/latest/docs/framework/react/overview) · [Supabase joins & nesting](https://supabase.com/docs/guides/database/joins-and-nesting)
+**Learn first:** [TanStack Query basics](https://tanstack.com/query/latest/docs/framework/react/overview) · [Mutations](https://tanstack.com/query/latest/docs/framework/react/guides/mutations) (writing data) · [Supabase joins & nesting](https://supabase.com/docs/guides/database/joins-and-nesting) · [Expo date/time picker](https://docs.expo.dev/versions/latest/sdk/date-time-picker/)
 
 - [ ] "New game night": date/time, location (free text for now), planned games.
 
@@ -290,7 +290,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Already in the repo:** `docs/scripts/games_schema.sql` (games table, indexes, RLS, `search_games_by_players`) and `docs/scripts/import_bgg_games.py` (top ~5000 BGG games importer). Fold the SQL into a proper **migration** and run the import.
 
-**Learn first:** [BGG XML API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2) — XML not JSON, rate-limited, search + thing endpoints.
+**Learn first:** [BGG XML API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2) — XML not JSON, rate-limited, search + thing endpoints · [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) (parse the XML) · [FlatList](https://reactnative.dev/docs/flatlist) (long scrolling lists) · [debouncing](https://developer.mozilla.org/en-US/docs/Glossary/Debounce) (the search box).
 
 - [ ] Convert `games_schema.sql` into a migration; run the BGG import into your table.
 
@@ -364,7 +364,7 @@ Same discipline, one phase per branch, tag each.
 
 ## Phase 11 — Realtime chat (was 8) → v1.2.0
 
-[Supabase Realtime](https://supabase.com/docs/guides/realtime) · [Postgres Changes](https://supabase.com/docs/guides/realtime/postgres-changes). Messages table + RLS → 1:1 conversation screen → realtime inserts. Unsubscribe on unmount (leaks hit limits); optimistic send. Group chats: later, decide then.
+[Supabase Realtime](https://supabase.com/docs/guides/realtime) · [Postgres Changes](https://supabase.com/docs/guides/realtime/postgres-changes) · [inverted FlatList](https://reactnative.dev/docs/flatlist#inverted) (chat scroll) · [KeyboardAvoidingView](https://reactnative.dev/docs/keyboardavoidingview) (input above keyboard). Messages table + RLS → 1:1 conversation screen → realtime inserts. Unsubscribe on unmount (leaks hit limits); optimistic send. Group chats: later, decide then.
 
 > **Commits:** `feat(chat): add messages schema and policies` · `feat(chat): add direct message conversation screen` · `feat(chat): stream new messages in realtime`
 
