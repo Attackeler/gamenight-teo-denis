@@ -99,3 +99,5 @@ export const icon = {
     size: 24,
     strokeWidth: 2
 } as const;
+
+export type Theme = typeof dark_theme | typeof light_theme;

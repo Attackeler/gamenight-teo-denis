@@ -3,6 +3,7 @@ import { useFonts } from '@expo-google-fonts/inter/useFonts';
 import { Inter_400Regular } from '@expo-google-fonts/inter/400Regular';
 import { Inter_600SemiBold } from '@expo-google-fonts/inter/600SemiBold';
 import { Inter_700Bold } from '@expo-google-fonts/inter/700Bold';
+import { ThemeProvider } from '../src/theme/ThemeProvider';
 
 export function useInterFonts() {
     const [fontsLoaded] = useFonts({
@@ -17,6 +18,12 @@ export default function RootLayout() {
     if (!fontsLoaded) {
         return null;
     } else {
-        return <Stack />;
+        return (
+            <ThemeProvider>
+                <Stack>
+                    <Stack.Screen name="index" />
+                </Stack>
+            </ThemeProvider>
+        );
     }
 }
