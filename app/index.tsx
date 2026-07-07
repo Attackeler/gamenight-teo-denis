@@ -1,11 +1,12 @@
 import { ThemeContext } from '@/src/theme/ThemeProvider';
 import { useContext } from 'react';
 import { Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Index() {
     const { theme, toggleTheme } = useContext(ThemeContext);
     return (
-        <View
+        <SafeAreaView
             style={{
                 flex: 1,
                 justifyContent: 'center',
@@ -18,6 +19,6 @@ export default function Index() {
                     Edit app/index.tsx to edit this screen.
                 </Text>
             </Pressable>
-        </View>
+        </SafeAreaView>
     );
 }
