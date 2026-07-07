@@ -121,7 +121,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 **Goal:** One reusable design system — tokens, light/dark/system themes, base components — _before_ feature screens, so every later phase reuses instead of reinventing.
 
-**Learn first:** [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/) · [`useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [**React Context** (passing data deeply)](https://react.dev/learn/passing-data-deeply-with-context) + [`useContext`](https://react.dev/reference/react/useContext) — the theme provider is **your own context**, not React Navigation's · [React Navigation theming](https://reactnavigation.org/docs/themes/) (cosmetic, for headers/tab bars later — and never wrap `NavigationContainer` yourself; Expo Router owns it) · [why tokens beat hex values](https://m3.material.io/styles/color/system/overview) · [Expo fonts (`expo-font` + Google Fonts)](https://docs.expo.dev/develop/user-interface/fonts/) · for the base components: [StyleSheet](https://reactnative.dev/docs/stylesheet) · [Pressable](https://reactnative.dev/docs/pressable) · [safe areas](https://docs.expo.dev/develop/user-interface/safe-areas/) · [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/usage) (persisting the choice)
+**Learn first:** [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/) · [`useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [**React Context** (passing data deeply)](https://react.dev/learn/passing-data-deeply-with-context) + [`useContext`](https://react.dev/reference/react/useContext) — the theme provider is **your own context**, not React Navigation's · [React Navigation theming](https://reactnavigation.org/docs/themes/) (cosmetic, for headers/tab bars later — and never wrap `NavigationContainer` yourself; Expo Router owns it) · [why tokens beat hex values](https://m3.material.io/styles/color/system/overview) · [Expo fonts (`expo-font` + Google Fonts)](https://docs.expo.dev/develop/user-interface/fonts/) · for the base components: [StyleSheet](https://reactnative.dev/docs/stylesheet) · [Pressable](https://reactnative.dev/docs/pressable) · [safe areas](https://docs.expo.dev/develop/user-interface/safe-areas/) · [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/) (persisting the choice)
 
 - [ ] Turn `DESIGN.md` into **design tokens**: light + dark palettes, spacing scale, type scale, radii. Named tokens only — never a raw hex in a screen.
 
@@ -131,7 +131,7 @@ Done in PR #3: local Supabase via CLI + Docker, migrations plumbing, `.env.examp
 
 > **Commit:** `feat(theme): add theme provider with system, light, and dark modes`
 
-- [ ] **Persist** the choice (default: system) — use [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/usage) (`@react-native-async-storage/async-storage`), the standard key-value store for non-secret preferences.
+- [ ] **Persist** the choice (default: system) — use [AsyncStorage (Expo docs)](https://docs.expo.dev/versions/latest/sdk/async-storage/), the standard key-value store for non-secret preferences. Install with `npx expo install @react-native-async-storage/async-storage` (never plain `npm install` — expo install pins the SDK-compatible version; 3.x breaks on SDK 54). Usage guide: [official docs](https://react-native-async-storage.github.io/2.0/Usage/).
 
 > **Commit:** `feat(theme): persist user theme preference`
 
