@@ -10,13 +10,14 @@ A free **mobile + web app** for friend groups to track board-game-night scores a
 
 **Both:**
 
-1. **`ROADMAP.md`** — the full two-person build plan: phase order, what's already done (audited from git history), who does what per phase (**Split** lines), teach-backs, learning links, ready-made commit messages, and the timeline.
-2. **`gamenight-roadmap.html`** — the same plan as a **clickable tracker**. Keep it open while you work; it's the sprint list.
-3. **`DESIGN.md`** — the design spec (feeds Phase 2, the design system).
-4. **`ONBOARDING.md`** — Dragos's on-ramp guide (Phase D in the roadmap).
-5. **`EXTENSIONS.md`** — recommended editor extensions, phase by phase.
-6. **`gamenight-mockups.html`** / **`gamenight-web.html`** — visual mockups.
-7. **`scripts/`** — SQL schema + BoardGameGeek import helpers (used in Phase 8; see its README).
+1. **`ROADMAP.md`** — the full two-person build plan: phase order, what's already done (audited from git history), who does what per phase (**Split** lines), teach-backs, learning links, ready-made commit messages, and the timeline. **The source of truth.**
+2. **`ROADMAP-TEO.md`** / **`ROADMAP-DRAGOS.md`** — personal task queues derived from it: your own tasks, review duties, and teach-backs per phase.
+3. **`gamenight-roadmap.html`** — the same plan as a **clickable tracker** with an **All / Teo / Dragos** filter. Keep it open while you work; it's the sprint list.
+4. **`DESIGN.md`** — the design spec (feeds Phase 2, the design system).
+5. **`ONBOARDING.md`** — Dragos's on-ramp guide (Phase D in the roadmap).
+6. **`EXTENSIONS.md`** — recommended editor extensions, phase by phase.
+7. **`gamenight-mockups.html`** / **`gamenight-web.html`** — visual mockups.
+8. **`scripts/`** — SQL schema + BoardGameGeek import helpers (used in Phase 8; see its README).
 
 ---
 
