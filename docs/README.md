@@ -1,27 +1,33 @@
 # Gamenight — docs
 
-A free **mobile + web app** for friend groups to track board-game-night scores and win rates — a solo learn-by-doing project by **Teo**.
+A free **mobile + web app** for friend groups to track board-game-night scores and win rates — a learn-by-doing project built by **Teo** (~40 h/week) and **Dragos** (~15 h/week). Shared goal, written into the roadmap: by `v1.0.0` **both** of us can explain every part of the app.
 
 ---
 
 ## Start here
 
-1. **`ROADMAP.md`** — the full solo build plan: phase order, what's already done (audited from git history), learning links, ready-made commit messages, and the timeline.
-2. **`gamenight-roadmap.html`** — the same plan as a **clickable tracker**. Keep it open while you work.
+**Dragos:** start with **`ONBOARDING.md`** — machine setup, a Python-to-JS/TS mental map, your 3-week learning path, and how we work. Then skim the rest of this list.
+
+**Both:**
+
+1. **`ROADMAP.md`** — the full two-person build plan: phase order, what's already done (audited from git history), who does what per phase (**Split** lines), teach-backs, learning links, ready-made commit messages, and the timeline.
+2. **`gamenight-roadmap.html`** — the same plan as a **clickable tracker**. Keep it open while you work; it's the sprint list.
 3. **`DESIGN.md`** — the design spec (feeds Phase 2, the design system).
-4. **`EXTENSIONS.md`** — recommended editor extensions, phase by phase.
-5. **`gamenight-mockups.html`** / **`gamenight-web.html`** — visual mockups.
-6. **`scripts/`** — SQL schema + BoardGameGeek import helpers (used in Phase 8; see its README).
+4. **`ONBOARDING.md`** — Dragos's on-ramp guide (Phase D in the roadmap).
+5. **`EXTENSIONS.md`** — recommended editor extensions, phase by phase.
+6. **`gamenight-mockups.html`** / **`gamenight-web.html`** — visual mockups.
+7. **`scripts/`** — SQL schema + BoardGameGeek import helpers (used in Phase 8; see its README).
 
 ---
 
-## The tracker — and how progress is saved now
+## The tracker — and how progress is saved
 
 **Double-click `gamenight-roadmap.html`** — it opens in your browser, nothing to install.
 
 - Click the **squares** to tick off tasks. Progress auto-saves in that browser (localStorage).
 - Everything already completed in the repo comes **pre-ticked**, so even a fresh browser starts from reality, not zero.
-- **Export progress** downloads a tiny `.json` backup; **Import progress** restores it. Use this if you switch browsers/computers, or if the browser ever clears local file data (the reason progress used to vanish between sessions).
+- Tasks wear a **T** / **D** / **T+D** chip — the suggested owner from the roadmap's Split lines (rebalance in the Friday sync, not mid-task).
+- **Export progress** downloads a tiny `.json` backup; **Import progress** restores it — use it to move ticks between browsers/computers (you each track your own copy).
 - **Expand / Collapse all** folds phases; **Reset** returns to the baked-in baseline.
 
 ---
@@ -31,7 +37,9 @@ A free **mobile + web app** for friend groups to track board-game-night scores a
 Track A (lean v1): `v0.1.0` auth → `v0.2.0` parties + scoring → `v0.3.0` stats + catalog → `v1.0.0` polished release.
 Track B (after v1): `v1.1.0` friends → `v1.2.0` chat → `v1.3.0` push → `v1.4.0` CI/CD.
 
-**Rough timeline at ~40 h/week:** playable MVP in ~6–8 weeks, polished `v1.0` in ~3 months. Full breakdown in `ROADMAP.md`.
+Phase D (Dragos's on-ramp) runs in parallel with Phase 2.
+
+**Rough timeline at ~40 + ~15 h/week:** playable MVP in ~6–8 weeks, polished `v1.0` in ~3 months. Full breakdown in `ROADMAP.md`.
 
 ---
 
@@ -41,6 +49,6 @@ Track B (after v1): `v1.1.0` friends → `v1.2.0` chat → `v1.3.0` push → `v1
 
 ---
 
-## Removed team files
+## Project history
 
-`TEAM.md`, `gamenight-team.html`, `gamenight-roadmap-denis.html`, and `gamenight-roadmap-teo-tasks.html` were deleted when the project went solo — anything still useful was folded into `ROADMAP.md`. They live on in git history.
+Started as a Teo + Denis team project (v1 roadmap), went solo when Denis left (v2), and became a team again when **Dragos joined in 2026-07** (v3, current). The old team files (`TEAM.md`, `gamenight-team.html`, the per-person trackers) were deleted in the solo rework — anything still useful was folded into `ROADMAP.md`. They live on in git history.

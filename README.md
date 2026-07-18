@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
+# Gamenight 🎲
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A free **mobile + web app** for friend groups to track board-game-night scores and win rates: create a _party_ with a fixed player roster, run _game nights_, record per-game scores, and settle who's actually the best at Catan.
 
-## Get started
+A learn-by-doing project by **Teo** and **Dragos**. One codebase (Expo / React Native + web), one free-tier backend (Supabase), total cost **$0**.
 
-1. Install dependencies
+## Status
 
-    ```bash
-    npm install
-    ```
+Pre-`v0.1.0`. Design system in progress (`feat/phase-2-design-system`); real database schema and auth are next. The living plan is [`docs/ROADMAP.md`](./docs/ROADMAP.md), tracked day-to-day in `docs/gamenight-roadmap.html`.
 
-2. Start the app
+## Stack
 
-    ```bash
-    npx expo start
-    ```
+**Expo SDK 54** (React Native + Expo Router, runs on iOS, Android, and web) · **TypeScript** · **Supabase** (Postgres, auth, realtime) · **GitHub Actions** CI · **Docker** (local backend only).
 
-In the output, you'll find options to open the app in a
+## Getting started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+New to the project (or to the stack)? The full walkthrough — including a Python-to-TypeScript on-ramp — is [`docs/ONBOARDING.md`](./docs/ONBOARDING.md). The short version:
 
 ```bash
-npm run reset-project
+# Requirements: Node 26.4 + npm 11 (enforced), Docker, git
+git clone https://github.com/Attackeler/gamenight-teo-denis.git
+cd gamenight-teo-denis
+npm install               # also installs git hooks
+
+npx supabase start        # local backend (Docker)
+cp .env.example .env.local   # then fill values from: npx supabase status
+
+npx expo start            # scan QR with Expo Go, or press "w" for web
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Common tasks are wrapped in the `Makefile`:
 
-## Learn more
+| Command               | What it does                                                |
+| --------------------- | ----------------------------------------------------------- |
+| `make install`        | `npm install`                                               |
+| `make start-app`      | Start Supabase + Expo (tunnel mode)                         |
+| `make check-files`    | Lint + Prettier check + TypeScript check (CI runs the same) |
+| `make supabase-start` | Start local Supabase + reset DB to migrations               |
+| `make supabase-stop`  | Stop the local backend                                      |
 
-To learn more about developing your project with Expo, look at the following resources:
+## How we work
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Branch per task → PR → **the other person reviews** (no self-merges) → squash of small [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) (enforced by commitlint). CI checks lint, formatting, and types on every PR. Details: [`docs/ROADMAP.md` → Two-person workflow](./docs/ROADMAP.md).
 
-## Join the community
+## Docs
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Everything lives in [`docs/`](./docs/README.md): design spec, roadmap + clickable tracker, onboarding, editor setup, mockups, and the Phase 8 import scripts.

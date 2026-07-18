@@ -89,8 +89,8 @@ Legend:
 ### GitHub Pull Requests — `github.vscode-pull-request-github`
 
 **What it does:** create, review, and comment on Pull Requests **without leaving VS Code**.
-**Example:** open your phase PR in the sidebar, read the whole diff cold, then merge — all in the editor.
-**Why here:** the solo workflow still reviews every phase's PR (self-review catches real bugs), and this makes it painless.
+**Example:** open the other person's PR in the sidebar, read the whole diff cold, comment inline, approve — all in the editor.
+**Why here:** every PR gets reviewed by the other person before merging (that's the workflow), and this makes it painless.
 
 ---
 
