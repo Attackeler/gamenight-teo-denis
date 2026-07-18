@@ -277,6 +277,12 @@
                 background: var(--trackb-soft);
                 color: var(--trackb);
             }
+            .toolbar button.active {
+                border-color: var(--primary);
+                background: var(--primary-soft);
+                color: var(--primary);
+                font-weight: 700;
+            }
         </style>
     </head>
     <body>
@@ -298,6 +304,9 @@
             </div>
 
             <div class="toolbar">
+                <button id="viewAll" class="viewbtn">All</button>
+                <button id="viewT" class="viewbtn">Teo</button>
+                <button id="viewD" class="viewbtn">Dragos</button>
                 <button id="expandAll">Expand all</button>
                 <button id="collapseAll">Collapse all</button>
                 <button id="exportBtn">⬇ Export progress</button>
@@ -1284,6 +1293,47 @@
                 [...loadSet(KEY), ...BASELINE].filter(id => ALL_IDS.has(id))
             );
             const collapsedSet = loadSet(CKEY);
+            // v3: per-person view — ALL, T (Teo) or D (Dragos).
+            const FKEY = 'gamenight-roadmap-view-v3';
+            let who = 'ALL';
+            try {
+                who = localStorage.getItem(FKEY) || 'ALL';
+            } catch (e) {
+                /* ignore */
+            }
+            if (who !== 'T' && who !== 'D') who = 'ALL';
+            function stepOwner(s) {
+                return OWNERS[s.id] || s.o || 'TD';
+            }
+            function visible(s) {
+                const o = stepOwner(s);
+                return who === 'ALL' || o === 'TD' || o === who;
+            }
+            function syncViewButtons() {
+                [
+                    ['viewAll', 'ALL'],
+                    ['viewT', 'T'],
+                    ['viewD', 'D']
+                ].forEach(pair => {
+                    document
+                        .getElementById(pair[0])
+                        .classList.toggle('active', who === pair[1]);
+                });
+            }
+            function setView(v) {
+                who = v;
+                try {
+                    localStorage.setItem(FKEY, v);
+                } catch (e) {
+                    /* ignore */
+                }
+                syncViewButtons();
+                render();
+            }
+            document.getElementById('viewAll').onclick = () => setView('ALL');
+            document.getElementById('viewT').onclick = () => setView('T');
+            document.getElementById('viewD').onclick = () => setView('D');
+            syncViewButtons();
 
             function save() {
                 try {
@@ -1344,8 +1394,10 @@
                                 ? '<h3 class="track-title">Track A — the lean v1 <small>(v0.1.0 → v1.0.0)</small></h3>'
                                 : '<h3 class="track-title">Track B — after v1.0.0 <small>(friends, chat, push, automation)</small></h3>';
                     }
-                    const total = p.steps.length;
-                    const done = p.steps.filter(s => doneSet.has(s.id)).length;
+                    const vis = p.steps.filter(visible);
+                    if (!vis.length) return;
+                    const total = vis.length;
+                    const done = vis.filter(s => doneSet.has(s.id)).length;
                     const collapsed = collapsedSet.has(p.n) ? ' collapsed' : '';
                     html +=
                         '<div class="phase' +
@@ -1382,7 +1434,7 @@
                                 .join(' · ') +
                             '</div>';
                     }
-                    p.steps.forEach(s => {
+                    vis.forEach(s => {
                         const isDone = doneSet.has(s.id);
                         html +=
                             '<div class="step' +
@@ -1417,12 +1469,24 @@
             }
 
             function updateProgress() {
-                const total = ALL_IDS.size;
-                const done = doneSet.size;
+                const ids = PHASES.flatMap(p =>
+                    p.steps.filter(visible).map(s => s.id)
+                );
+                const total = ids.length;
+                const done = ids.filter(id => doneSet.has(id)).length;
                 const pct = total ? Math.round((done / total) * 100) : 0;
                 document.getElementById('pct').textContent = pct + '%';
                 document.getElementById('counts').textContent =
-                    '· ' + done + ' of ' + total + ' tasks done';
+                    '· ' +
+                    done +
+                    ' of ' +
+                    total +
+                    ' tasks done' +
+                    (who === 'ALL'
+                        ? ''
+                        : who === 'T'
+                          ? ' — Teo’s view'
+                          : ' — Dragos’s view');
                 document.getElementById('barfill').style.width = pct + '%';
             }
 
