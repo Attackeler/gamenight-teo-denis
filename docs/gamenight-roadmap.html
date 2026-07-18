@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gamenight — Solo Roadmap Tracker</title>
+        <title>Gamenight — Two-Person Roadmap Tracker</title>
         <style>
             :root {
                 --bg: #f6f5fb;
@@ -251,15 +251,45 @@
             #importFile {
                 display: none;
             }
+            .badge.now {
+                background: var(--primary-soft);
+                color: var(--primary);
+            }
+            .who {
+                display: inline-block;
+                margin-left: 6px;
+                padding: 1px 7px;
+                border-radius: 999px;
+                font-size: 10.5px;
+                font-weight: 700;
+                vertical-align: 1px;
+                white-space: nowrap;
+            }
+            .who.t {
+                background: var(--primary-soft);
+                color: var(--primary);
+            }
+            .who.d {
+                background: var(--done-soft);
+                color: var(--done);
+            }
+            .who.td {
+                background: var(--trackb-soft);
+                color: var(--trackb);
+            }
         </style>
     </head>
     <body>
         <div class="wrap">
-            <h1>Gamenight — Solo Roadmap</h1>
+            <h1>Gamenight — Two-Person Roadmap</h1>
             <div class="sub">
-                One developer, ~40 h/week · lean v1 first (Track A), social +
-                automation after (Track B). Full details &amp; links:
-                <b>ROADMAP.md</b>.
+                Teo ~40 h/week + Dragos ~15 h/week · cross-review everything ·
+                lean v1 first (Track A), social + automation after (Track B).
+                Owner chips: <span class="who t">T</span> Teo ·
+                <span class="who d">D</span> Dragos ·
+                <span class="who td">T+D</span> together (suggestions —
+                rebalance in the Friday sync). Full details &amp; links:
+                <b>ROADMAP.md</b> · Dragos starts at <b>ONBOARDING.md</b>.
             </div>
 
             <div class="progress-card">
@@ -290,16 +320,73 @@
             <div id="phases"></div>
 
             <div class="footer">
-                Baseline audited from git on 2026-07-05 (repo
-                <code>Attackeler/gamenight-teo-denis</code>, Expo SDK 54). One
-                tick ≈ one Conventional Commit. Tags: v0.1.0 → v1.4.0.
+                Two-person plan v3 (Teo + Dragos) — baseline re-audited from git
+                on 2026-07-18 (repo <code>Attackeler/gamenight-teo-denis</code>,
+                Expo SDK 54). One tick ≈ one Conventional Commit. Tags: v0.1.0 →
+                v1.4.0.
             </div>
         </div>
 
         <script>
             'use strict';
-            // Steps marked done:true are the repo baseline (audited from git history).
+            // Steps marked done:true are the repo baseline (audited from git history, incl. feat/phase-2-design-system).
             const PHASES = [
+                {
+                    n: 'D',
+                    title: 'Dragos’s on-ramp (parallel with Phase 2)',
+                    badge: 'next',
+                    track: 'A',
+                    goal: 'From “a bit of Python” to shipping reviewed PRs — ~3 weeks at ~15 h/week, while Teo finishes Phase 2. Full guide, links, and checkpoints: docs/ONBOARDING.md. SQL/Supabase learning comes attached to Phase 3.',
+                    learn: [
+                        ['ONBOARDING.md — the full guide', 'ONBOARDING.md'],
+                        [
+                            'MDN — JavaScript first steps',
+                            'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting'
+                        ],
+                        [
+                            'TypeScript in 5 minutes',
+                            'https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html'
+                        ],
+                        ['React quick start', 'https://react.dev/learn'],
+                        [
+                            'React Native basics',
+                            'https://reactnative.dev/docs/getting-started'
+                        ],
+                        [
+                            'Expo Router',
+                            'https://docs.expo.dev/router/introduction/'
+                        ],
+                        [
+                            'GitHub Flow',
+                            'https://docs.github.com/en/get-started/using-github/github-flow'
+                        ],
+                        ['SQLBolt (before Phase 3)', 'https://sqlbolt.com/']
+                    ],
+                    steps: [
+                        {
+                            id: 'pd-setup',
+                            t: 'Machine setup end-to-end: Node 26 + npm 11, VS Code + extensions, Docker, clone, npm install, .env.local, local Supabase up, app on phone AND in browser (ONBOARDING §3)'
+                        },
+                        {
+                            id: 'pd-js',
+                            t: 'Week 1 — JavaScript coming from Python (arrow fns, destructuring, map/filter, async/await) + git basics; practice PR opened and merged'
+                        },
+                        {
+                            id: 'pd-ts',
+                            t: 'Week 2 — TypeScript + React; checkpoint: explain src/theme/ThemeProvider.tsx to Teo line by line'
+                        },
+                        {
+                            id: 'pd-rn',
+                            t: 'Week 3 — React Native + Expo Router; checkpoint: how a file in app/ becomes a screen, what _layout.tsx does'
+                        },
+                        {
+                            id: 'pd-firstpr',
+                            t: 'First real PR: themed Input component from DESIGN.md tokens + gallery entry; iterate on Teo’s review until merged',
+                            c: 'feat(ui): add themed input component'
+                        }
+                    ],
+                    tips: 'Type every example out; never paste code you don’t understand. Blocked >30 min after honestly trying? Write down what you tried and ask Teo — asking with notes is a skill.'
+                },
                 {
                     n: '0',
                     title: 'Foundations & project setup',
@@ -354,7 +441,8 @@
                         {
                             id: 'p0-pin',
                             t: 'Pin the toolchain: .nvmrc (or Volta) + .editorconfig',
-                            c: 'chore: pin node version and add editorconfig'
+                            c: 'chore: pin node version and add editorconfig',
+                            done: true
                         }
                     ],
                     tips: 'Web bugs are far cheaper caught early than after 8 phases of mobile-only assumptions.'
@@ -364,7 +452,7 @@
                     title: 'DevOps foundations (was 0.7)',
                     badge: 'partial',
                     track: 'A',
-                    goal: 'Local backend parity, versioned migrations, secrets hygiene, automated checks. Done in PR #3 except the leftovers below.',
+                    goal: 'Local backend parity, versioned migrations, secrets hygiene, automated checks. Done across PRs #3–#9 except the two-person leftovers below.',
                     learn: [
                         [
                             'Supabase local dev',
@@ -424,18 +512,24 @@
                             done: true
                         },
                         {
+                            id: 'p1-collab',
+                            t: 'NEW — add Dragos as a GitHub collaborator on the repo'
+                        },
+                        {
                             id: 'p1-protect',
-                            t: 'LEFTOVER — branch protection on main requiring the CI check'
+                            t: 'LEFTOVER — branch protection on main: require the CI check + one approving review (makes cross-review structural)'
                         },
                         {
                             id: 'p1-templates',
                             t: 'LEFTOVER — issue + PR templates (bug / feature / chore); GitHub Issues replace the old team board',
-                            c: 'chore(devops): add issue and pr templates'
+                            c: 'chore(devops): add issue and pr templates',
+                            done: true
                         },
                         {
                             id: 'p1-dummy',
                             t: 'LEFTOVER — delete the two dummy migrations before Phase 3',
-                            c: 'chore(db): remove dummy migrations'
+                            c: 'chore(db): remove dummy migrations',
+                            done: true
                         }
                     ],
                     tips: 'Docker is for the backend and CI, not the app itself. Goal: local = CI = prod.'
@@ -443,7 +537,7 @@
                 {
                     n: '2',
                     title: 'Design system & theming (was 0.5)',
-                    badge: 'next',
+                    badge: 'now',
                     track: 'A',
                     goal: 'Tokens + light/dark/system themes + base components, BEFORE any feature screens.',
                     learn: [
@@ -493,22 +587,30 @@
                         {
                             id: 'p2-tokens',
                             t: 'DESIGN.md → design tokens: light + dark palettes, spacing, type scale, radii (never a raw hex in a screen)',
-                            c: 'feat(theme): add light and dark design tokens'
+                            c: 'feat(theme): add light and dark design tokens',
+                            done: true
                         },
                         {
                             id: 'p2-provider',
                             t: 'Theme provider reading device scheme; modes light / dark / system',
-                            c: 'feat(theme): add theme provider with system, light, and dark modes'
+                            c: 'feat(theme): add theme provider with system, light, and dark modes',
+                            done: true
                         },
                         {
                             id: 'p2-persist',
                             t: 'Persist theme choice with AsyncStorage (default: system)',
-                            c: 'feat(theme): persist user theme preference'
+                            c: 'feat(theme): persist user theme preference',
+                            done: true
                         },
                         {
                             id: 'p2-components',
                             t: 'Base components: Screen, Text, Button, Card, Input + theme toggle',
                             c: 'feat(ui): add themed base components and theme toggle'
+                        },
+                        {
+                            id: 'p2-gallery',
+                            t: 'Component gallery screen — every base component in both themes on one page, so styles can’t silently drift',
+                            c: 'feat(ui): add component gallery screen'
                         },
                         {
                             id: 'p2-verify',
@@ -1070,8 +1172,98 @@
                 }
             ];
 
-            const KEY = 'gamenight-solo-roadmap-progress-v2';
-            const CKEY = 'gamenight-solo-roadmap-collapsed-v2';
+            // v3: suggested owner per task — T = Teo, D = Dragos, TD = together.
+            // Suggestions from ROADMAP.md Split lines; rebalance in the Friday sync.
+            const OWNERS = {
+                'pd-setup': 'D',
+                'pd-js': 'D',
+                'pd-ts': 'D',
+                'pd-rn': 'D',
+                'pd-firstpr': 'D',
+                'p1-collab': 'T',
+                'p1-protect': 'T',
+                'p2-tokens': 'T',
+                'p2-provider': 'T',
+                'p2-persist': 'T',
+                'p2-components': 'TD',
+                'p2-gallery': 'D',
+                'p2-verify': 'TD',
+                'p3-project': 'T',
+                'p3-schema': 'TD',
+                'p3-rls': 'TD',
+                'p3-client': 'T',
+                'p3-types': 'D',
+                'p4-auth': 'D',
+                'p4-profile': 'T',
+                'p4-guard': 'T',
+                'p4-verify': 'TD',
+                'p5-create': 'D',
+                'p5-players': 'D',
+                'p5-lock': 'T',
+                'p5-list': 'D',
+                'p6-night': 'D',
+                'p6-game': 'D',
+                'p6-generic': 'D',
+                'p6-schema': 'T',
+                'p6-board': 'D',
+                'p7-global': 'D',
+                'p7-breakdown': 'TD',
+                'p7-h2h': 'TD',
+                'p8-import': 'D',
+                'p8-search': 'T',
+                'p8-custom': 'D',
+                'p8-filters': 'D',
+                'p8-picker': 'TD',
+                'p8-archetypes': 'T',
+                'p8-llm': 'T',
+                'p9-unit': 'TD',
+                'p9-e2e': 'T',
+                'p9-polish': 'D',
+                'p9-ship': 'T',
+                'p10-req': 'TD',
+                'p10-list': 'D',
+                'p10-profile': 'D',
+                'p10-invite': 'D',
+                'p11-schema': 'D',
+                'p11-screen': 'D',
+                'p11-realtime': 'T',
+                'p12-devbuild': 'T',
+                'p12-tokens': 'D',
+                'p12-edge': 'T',
+                'p12-deeplink': 'D',
+                'p13-dbci': 'TD',
+                'p13-webcd': 'T',
+                'p13-eas': 'D',
+                'p13-dbdeploy': 'T',
+                'p13-security': 'D',
+                'p13-sentry': 'T',
+                'p13-badges': 'D'
+            };
+            // v3: every build phase ends with a teach-back (details in ROADMAP.md).
+            const TEACH = {
+                2: 'Dragos walks through token file → provider → useContext → styled component, without notes',
+                3: 'Dragos explains RLS + one of Teo’s policies; Teo explains the migration → local → hosted flow',
+                4: 'Dragos explains the session lifecycle; Teo explains the signup trigger',
+                5: 'Dragos explains why the roster lock lives in Postgres and what the trigger rejects; Teo explains one of Dragos’s form-validation choices',
+                6: 'Each explains the other’s half — archetype→inputs→winner vs the night flow and its queries',
+                7: 'Dragos explains one aggregate query line by line; Teo explains views/RPCs vs app-side math',
+                8: 'Dragos explains caching + rate limits; Teo explains the player-count SQL rule + import pipeline',
+                9: 'Release dry-run: Dragos ships solo, narrating every step; Teo only watches',
+                10: 'The store-once, query-both-directions friendship model',
+                11: 'Subscribe/unsubscribe lifecycle + optimistic send',
+                12: 'Why push sending lives server-side only',
+                13: 'Each explains a pipeline the other wrote, end to end'
+            };
+            PHASES.forEach(p => {
+                if (TEACH[p.n])
+                    p.steps.push({
+                        id: 'p' + p.n + '-teach',
+                        t: 'Teach-back — ' + TEACH[p.n],
+                        o: 'TD'
+                    });
+            });
+            const KEY = 'gamenight-roadmap-progress-v3';
+            const CKEY = 'gamenight-roadmap-collapsed-v3';
             const BASELINE = new Set(
                 PHASES.flatMap(p => p.steps.filter(s => s.done).map(s => s.id))
             );
@@ -1125,6 +1317,8 @@
                     return '<span class="badge done">DONE</span>';
                 if (p.badge === 'partial')
                     return '<span class="badge partial">LEFTOVERS</span>';
+                if (p.badge === 'now')
+                    return '<span class="badge now">IN PROGRESS</span>';
                 if (p.badge === 'next')
                     return '<span class="badge next">START HERE</span>';
                 if (p.badge === 'trackb')
@@ -1200,6 +1394,15 @@
                             '</div><div><span class="txt">' +
                             esc(s.t) +
                             '</span>' +
+                            (OWNERS[s.id] || s.o
+                                ? '<span class="who ' +
+                                  (OWNERS[s.id] || s.o).toLowerCase() +
+                                  '">' +
+                                  ((OWNERS[s.id] || s.o) === 'TD'
+                                      ? 'T+D'
+                                      : OWNERS[s.id] || s.o) +
+                                  '</span>'
+                                : '') +
                             (s.c
                                 ? '<span class="commit">' + esc(s.c) + '</span>'
                                 : '') +
@@ -1259,7 +1462,7 @@
                         JSON.stringify(
                             {
                                 app: 'gamenight-roadmap',
-                                version: 2,
+                                version: 3,
                                 exported: new Date().toISOString(),
                                 done: [...doneSet]
                             },
