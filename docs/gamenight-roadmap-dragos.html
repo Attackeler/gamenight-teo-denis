@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gamenight — Two-Person Roadmap Tracker</title>
+        <title>Gamenight — Dragos’s Roadmap Tracker</title>
         <style>
             :root {
                 --bg: #f6f5fb;
@@ -287,18 +287,13 @@
     </head>
     <body>
         <div class="wrap">
-            <h1>Gamenight — Two-Person Roadmap</h1>
+            <h1>Gamenight — Dragos’s Roadmap</h1>
             <div class="sub">
-                Teo ~40 h/week + Dragos ~15 h/week · cross-review everything ·
-                lean v1 first (Track A), social + automation after (Track B).
-                Owner chips: <span class="who t">T</span> Teo ·
-                <span class="who d">D</span> Dragos ·
-                <span class="who td">T+D</span> together (suggestions —
-                rebalance in the Friday sync). Full details &amp; links:
-                <b>ROADMAP.md</b> · Dragos starts at <b>ONBOARDING.md</b>.
-                Personal copies: <b>gamenight-roadmap-teo.html</b> ·
-                <b>gamenight-roadmap-dragos.html</b> (ticks sync in the same
-                browser).
+                Dragos — your tasks, reviews, and shared (T+D) items at ~15
+                h/week. Start here: <b>ONBOARDING.md</b>, then Phase D below.
+                Everything and the filter: <b>gamenight-roadmap.html</b> (ticks
+                sync in the same browser). Task queue in words:
+                <b>ROADMAP-DRAGOS.md</b> · source of truth: <b>ROADMAP.md</b>.
             </div>
 
             <div class="progress-card">
@@ -307,9 +302,6 @@
             </div>
 
             <div class="toolbar">
-                <button id="viewAll" class="viewbtn">All</button>
-                <button id="viewT" class="viewbtn">Teo</button>
-                <button id="viewD" class="viewbtn">Dragos</button>
                 <button id="expandAll">Expand all</button>
                 <button id="collapseAll">Collapse all</button>
                 <button id="exportBtn">⬇ Export progress</button>
@@ -332,10 +324,10 @@
             <div id="phases"></div>
 
             <div class="footer">
-                Two-person plan v3 (Teo + Dragos) — baseline re-audited from git
-                on 2026-07-18 (repo <code>Attackeler/gamenight-teo-denis</code>,
-                Expo SDK 54). One tick ≈ one Conventional Commit. Tags: v0.1.0 →
-                v1.4.0.
+                Dragos’s view of the two-person plan v3 — baseline re-audited
+                from git on 2026-07-18 (repo
+                <code>Attackeler/gamenight-teo-denis</code>, Expo SDK 54). One
+                tick ≈ one Conventional Commit. Tags: v0.1.0 → v1.4.0.
             </div>
         </div>
 
@@ -365,14 +357,8 @@
             );
             const collapsedSet = loadSet(CKEY);
             // v3: per-person view — ALL, T (Teo) or D (Dragos).
-            const FKEY = 'gamenight-roadmap-view-v3';
-            let who = 'ALL';
-            try {
-                who = localStorage.getItem(FKEY) || 'ALL';
-            } catch (e) {
-                /* ignore */
-            }
-            if (who !== 'T' && who !== 'D') who = 'ALL';
+            // Dragos's personal view — the shared tracker (gamenight-roadmap.html) has the All/Teo/Dragos filter.
+            const who = 'D';
             function stepOwner(s) {
                 return OWNERS[s.id] || s.o || 'TD';
             }
@@ -380,31 +366,6 @@
                 const o = stepOwner(s);
                 return who === 'ALL' || o === 'TD' || o === who;
             }
-            function syncViewButtons() {
-                [
-                    ['viewAll', 'ALL'],
-                    ['viewT', 'T'],
-                    ['viewD', 'D']
-                ].forEach(pair => {
-                    document
-                        .getElementById(pair[0])
-                        .classList.toggle('active', who === pair[1]);
-                });
-            }
-            function setView(v) {
-                who = v;
-                try {
-                    localStorage.setItem(FKEY, v);
-                } catch (e) {
-                    /* ignore */
-                }
-                syncViewButtons();
-                render();
-            }
-            document.getElementById('viewAll').onclick = () => setView('ALL');
-            document.getElementById('viewT').onclick = () => setView('T');
-            document.getElementById('viewD').onclick = () => setView('D');
-            syncViewButtons();
 
             function save() {
                 try {

@@ -1,6 +1,6 @@
 # Gamenight — Dragos's roadmap
 
-Welcome aboard. This is your personal task queue at ~15 h/week — a **derived view** of [`ROADMAP.md`](./ROADMAP.md), which stays the source of truth for _why_, learn-first links, design decisions, and gotchas. If the two disagree, `ROADMAP.md` wins. Day-to-day ticking: `gamenight-roadmap.html` → **Dragos** filter.
+Welcome aboard. This is your personal task queue at ~15 h/week — a **derived view** of [`ROADMAP.md`](./ROADMAP.md), which stays the source of truth for _why_, learn-first links, design decisions, and gotchas. If the two disagree, `ROADMAP.md` wins. Day-to-day ticking: **`gamenight-roadmap-dragos.html`** — your personal tracker (the shared `gamenight-roadmap.html` shows everything; ticks sync between them in the same browser).
 
 **Read first, in order:** [`ONBOARDING.md`](./ONBOARDING.md) (your guide: setup, Python→JS map, learning path) → `ROADMAP.md` intro + "Two-person workflow" → this file.
 

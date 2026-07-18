@@ -1,6 +1,6 @@
 # Gamenight — Teo's roadmap
 
-Your personal task queue at ~40 h/week. This is a **derived view** of [`ROADMAP.md`](./ROADMAP.md) — that file is the source of truth for _why_, learn-first links, design decisions, and gotchas. If the two ever disagree, `ROADMAP.md` wins; when you re-plan, update both in the same PR. Day-to-day ticking: `gamenight-roadmap.html` → **Teo** filter.
+Your personal task queue at ~40 h/week. This is a **derived view** of [`ROADMAP.md`](./ROADMAP.md) — that file is the source of truth for _why_, learn-first links, design decisions, and gotchas. If the two ever disagree, `ROADMAP.md` wins; when you re-plan, update both in the same PR. Day-to-day ticking: **`gamenight-roadmap-teo.html`** — your personal tracker (the shared `gamenight-roadmap.html` shows everything; ticks sync between them in the same browser).
 
 **How to use it:** find the current phase, take the top unticked item, branch, build, PR, tag Dragos for review. Full commit messages live in `ROADMAP.md` — only the queue lives here.
 
