@@ -2,7 +2,7 @@
 
 A free **mobile + web app** for friend groups to track board-game-night scores and win rates: create a _party_ with a fixed player roster, run _game nights_, record per-game scores, and settle who's actually the best at Catan.
 
-A learn-by-doing project by **Teo** and **Dragos**. One codebase (Expo / React Native + web), one free-tier backend (Supabase), total cost **$0**.
+A learn-by-doing project by **Teo**, **Dragos**, and **Marcian**, built so that any of us can do any kind of task in it. One codebase (Expo / React Native + web), one free-tier backend (Supabase), total cost **$0**.
 
 ## Status
 
@@ -14,7 +14,7 @@ Pre-`v0.1.0`. Design system in progress (`feat/phase-2-design-system`); real dat
 
 ## Getting started
 
-New to the project (or to the stack)? The full walkthrough — including a Python-to-TypeScript on-ramp — is [`docs/ONBOARDING.md`](./docs/ONBOARDING.md). The short version:
+New to the project (or to programming)? The full walkthrough — setup plus two learning paths — is [`docs/ONBOARDING.md`](./docs/ONBOARDING.md). The short version:
 
 ```bash
 # Requirements: Node 26.4 + npm 11 (enforced), Docker, git
@@ -40,8 +40,8 @@ Common tasks are wrapped in the `Makefile`:
 
 ## How we work
 
-Branch per task → PR → **the other person reviews** (no self-merges) → squash of small [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) (enforced by commitlint). CI checks lint, formatting, and types on every PR. Details: [`docs/ROADMAP.md` → Two-person workflow](./docs/ROADMAP.md).
+Branch per task → PR → **someone who didn't write it reviews** (no self-merges) → merge. Small [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), enforced by commitlint; CI checks lint, formatting, and types on every PR. The first time anyone does a new kind of task, they write a **recipe** in [`docs/playbook/`](./docs/playbook/README.md); the others then **replicate** it from the recipe. Details: [`docs/ROADMAP.md` → Team workflow](./docs/ROADMAP.md#team-workflow-read-once-apply-every-phase).
 
 ## Docs
 
-Everything lives in [`docs/`](./docs/README.md): design spec, roadmap + clickable tracker, onboarding, editor setup, mockups, and the Phase 8 import scripts.
+Everything lives in [`docs/`](./docs/README.md): design spec, roadmap + clickable tracker, onboarding, the playbook, editor setup, mockups, and the Phase 8 import scripts.

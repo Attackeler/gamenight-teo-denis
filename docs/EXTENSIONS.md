@@ -38,7 +38,7 @@ Legend:
 
 **What it does:** ESLint is a "linter" — it reads your code and flags mistakes and sloppy patterns (unused variables, forgotten `await`, etc.) as you type, with a squiggly underline.
 **Example:** You write `const total = 5;` but never use `total`. ESLint underlines it: _"'total' is assigned a value but never used."_ You delete it → cleaner code.
-**Why here:** keeps both our code consistent, so code reviews are about _logic_, not style nitpicks.
+**Why here:** keeps everyone's code consistent, so code reviews are about _logic_, not style nitpicks.
 
 ### Prettier – Code formatter — `esbenp.prettier-vscode`
 
@@ -89,8 +89,8 @@ Legend:
 ### GitHub Pull Requests — `github.vscode-pull-request-github`
 
 **What it does:** create, review, and comment on Pull Requests **without leaving VS Code**.
-**Example:** open the other person's PR in the sidebar, read the whole diff cold, comment inline, approve — all in the editor.
-**Why here:** every PR gets reviewed by the other person before merging (that's the workflow), and this makes it painless.
+**Example:** open a teammate's PR in the sidebar, read the whole diff cold, comment inline, approve — all in the editor.
+**Why here:** every PR gets reviewed by someone who didn't write it before merging (that's the workflow), plus Marcian's shadow reviews, and this makes it painless.
 
 ---
 
