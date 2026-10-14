@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gamenight — Two-Person Roadmap Tracker</title>
+        <title>Gamenight — Team Roadmap</title>
         <style>
             :root {
                 --bg: #f6f5fb;
@@ -17,6 +17,8 @@
                 --done-soft: #e2f7ee;
                 --warn: #b8860b;
                 --warn-soft: #fdf3d7;
+                --marcian: #c2410c;
+                --marcian-soft: #fdebe1;
                 --trackb: #0e7490;
                 --trackb-soft: #e0f4f9;
             }
@@ -33,6 +35,8 @@
                     --done-soft: #17362b;
                     --warn: #e0b53f;
                     --warn-soft: #3a3420;
+                    --marcian: #fb923c;
+                    --marcian-soft: #3b2418;
                     --trackb: #4cc3e0;
                     --trackb-soft: #10333d;
                 }
@@ -53,7 +57,7 @@
                 line-height: 1.5;
             }
             .wrap {
-                max-width: 880px;
+                max-width: 900px;
                 margin: 0 auto;
                 padding: 28px 16px 80px;
             }
@@ -84,17 +88,28 @@
             .toolbar button:hover {
                 border-color: var(--primary);
             }
+            .toolbar button.active {
+                border-color: var(--primary);
+                background: var(--primary-soft);
+                color: var(--primary);
+                font-weight: 700;
+            }
+            .toolbar .sep {
+                width: 1px;
+                background: var(--line);
+                margin: 0 4px;
+            }
             .savenote {
                 font-size: 12px;
                 color: var(--muted);
                 margin-bottom: 18px;
             }
-            .progress-card {
+            .card {
                 background: var(--surface);
                 border: 1px solid var(--line);
                 border-radius: 12px;
                 padding: 14px 16px;
-                margin-bottom: 6px;
+                margin-bottom: 14px;
             }
             .bar {
                 height: 10px;
@@ -108,6 +123,23 @@
                 background: linear-gradient(90deg, var(--primary), var(--done));
                 width: 0;
                 transition: width 0.25s;
+            }
+            .people {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                margin-top: 12px;
+            }
+            .people .bar {
+                height: 6px;
+                margin-top: 4px;
+            }
+            .person-line {
+                font-size: 12.5px;
+                color: var(--muted);
+            }
+            .person-line b {
+                color: var(--text);
             }
             .track-title {
                 margin: 30px 0 10px;
@@ -152,6 +184,7 @@
                 background: var(--warn-soft);
                 color: var(--warn);
             }
+            .badge.now,
             .badge.next {
                 background: var(--primary-soft);
                 color: var(--primary);
@@ -243,19 +276,7 @@
                 padding-left: 10px;
                 margin-top: 10px;
             }
-            .footer {
-                font-size: 12px;
-                color: var(--muted);
-                margin-top: 30px;
-            }
-            #importFile {
-                display: none;
-            }
-            .badge.now {
-                background: var(--primary-soft);
-                color: var(--primary);
-            }
-            .who {
+            .chip {
                 display: inline-block;
                 margin-left: 6px;
                 padding: 1px 7px;
@@ -265,51 +286,136 @@
                 vertical-align: 1px;
                 white-space: nowrap;
             }
-            .who.t {
+            .chip.t {
                 background: var(--primary-soft);
                 color: var(--primary);
             }
-            .who.d {
+            .chip.d {
                 background: var(--done-soft);
                 color: var(--done);
             }
-            .who.td {
+            .chip.m {
+                background: var(--marcian-soft);
+                color: var(--marcian);
+            }
+            .chip.all {
                 background: var(--trackb-soft);
                 color: var(--trackb);
             }
-            .toolbar button.active {
-                border-color: var(--primary);
+            .chip.kind {
+                background: var(--line);
+                color: var(--muted);
+                font-weight: 600;
+            }
+            .footer {
+                font-size: 12px;
+                color: var(--muted);
+                margin-top: 30px;
+            }
+            #importFile {
+                display: none;
+            }
+            .matrix-wrap {
+                overflow-x: auto;
+            }
+            table.matrix {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 13px;
+                margin-top: 8px;
+            }
+            .matrix th,
+            .matrix td {
+                padding: 5px 6px;
+                border-bottom: 1px solid var(--line);
+                text-align: left;
+            }
+            .matrix th.p,
+            .matrix td.p {
+                text-align: center;
+                width: 74px;
+            }
+            .matrix .by {
+                color: var(--muted);
+                font-size: 11.5px;
+                white-space: nowrap;
+            }
+            .matrix a {
+                color: var(--primary);
+            }
+            .lvl {
+                width: 34px;
+                height: 26px;
+                border-radius: 6px;
+                border: 1px solid var(--line);
+                background: var(--surface);
+                color: var(--muted);
+                font-weight: 700;
+                font-size: 12px;
+                cursor: pointer;
+            }
+            .lvl.U {
+                background: var(--warn-soft);
+                color: var(--warn);
+                border-color: transparent;
+            }
+            .lvl.R {
                 background: var(--primary-soft);
                 color: var(--primary);
-                font-weight: 700;
+                border-color: transparent;
+            }
+            .lvl.O {
+                background: var(--done-soft);
+                color: var(--done);
+                border-color: transparent;
+            }
+            .matrix tfoot td {
+                font-size: 12px;
+                color: var(--muted);
+                border-bottom: none;
+            }
+            .legend {
+                font-size: 12px;
+                color: var(--muted);
+            }
+            @media (max-width: 560px) {
+                .people {
+                    grid-template-columns: 1fr;
+                }
+                .matrix .by {
+                    display: none;
+                }
             }
         </style>
     </head>
     <body>
         <div class="wrap">
-            <h1>Gamenight — Two-Person Roadmap</h1>
+            <h1>Gamenight — Team Roadmap</h1>
             <div class="sub">
-                Teo ~40 h/week + Dragos ~15 h/week · cross-review everything ·
-                lean v1 first (Track A), social + automation after (Track B).
-                Owner chips: <span class="who t">T</span> Teo ·
-                <span class="who d">D</span> Dragos ·
-                <span class="who td">T+D</span> together (suggestions —
-                rebalance in the Friday sync). Full details &amp; links:
-                <b>ROADMAP.md</b> · Dragos starts at <b>ONBOARDING.md</b>.
-                Personal copies: <b>gamenight-roadmap-teo.html</b> ·
-                <b>gamenight-roadmap-dragos.html</b> (ticks sync in the same
-                browser).
+                Teo ~40 h/week · Dragos ~15 h/week · Marcian ~5–10 h/week. The
+                goal: <b>anyone can do any kind of task</b> — first time →
+                recipe (📖), then the others replicate it (🔁). Owner chips:
+                <span class="chip t">T</span> Teo ·
+                <span class="chip d">D</span> Dragos ·
+                <span class="chip m">M</span> Marcian ·
+                <span class="chip all">All</span> everyone (suggestions —
+                rebalance in the weekly sync). Details &amp; links:
+                <b>ROADMAP.md</b> · new here? <b>ONBOARDING.md</b> · recipes:
+                <b>playbook/</b>.
             </div>
 
-            <div class="progress-card">
+            <div class="card">
                 <b id="pct">0%</b> <span class="count" id="counts"></span>
                 <div class="bar"><div id="barfill"></div></div>
+                <div class="people" id="people"></div>
             </div>
 
             <div class="toolbar">
-                <button id="viewAll" class="viewbtn">All</button>
-                <button id="viewT" class="viewbtn">Teo</button>
-                <button id="viewD" class="viewbtn">Dragos</button>
+                <button class="viewbtn" data-view="ALL">All</button>
+                <button class="viewbtn" data-view="T">Teo</button>
+                <button class="viewbtn" data-view="D">Dragos</button>
+                <button class="viewbtn" data-view="M">Marcian</button>
+                <span class="sep"></span>
                 <button id="expandAll">Expand all</button>
                 <button id="collapseAll">Collapse all</button>
                 <button id="exportBtn">⬇ Export progress</button>
@@ -322,28 +428,69 @@
                 <button id="resetBtn">Reset to repo baseline</button>
             </div>
             <div class="savenote">
-                Progress saves automatically in this browser,
-                <i>and</i> everything already done in the repo is pre-ticked in
-                the file itself. If the browser ever wipes local data again,
-                keep an occasional <b>Export</b> backup and <b>Import</b> it to
-                restore.
+                Progress saves automatically in this browser; everything already
+                done in the repo is pre-ticked in the file itself. Bookmark your
+                own view: <code>gamenight-roadmap.html#teo</code> ·
+                <code>#dragos</code> · <code>#marcian</code>. Moving to another
+                browser or computer? <b>Export</b>, then <b>Import</b> there.
+            </div>
+
+            <div class="phase" id="matrixCard" data-phase="skills">
+                <div class="phase-head">
+                    <span class="chev">▾</span>
+                    <h2>Skills matrix — who can do which kind of task</h2>
+                    <span class="count" id="matrixCount"></span>
+                </div>
+                <div class="phase-body">
+                    <div class="goal">
+                        One row per kind of work (= one recipe in
+                        <code>docs/playbook/</code>). Click a cell to cycle:
+                        <b>–</b> → <b>U</b> understand it (can explain a real
+                        example) → <b>R</b> replicated it from the recipe →
+                        <b>O</b> own it (can do it without the recipe and teach
+                        it). Update it together in the weekly sync. Targets:
+                        every cell at least <b>U</b> by v1.0.0, <b>R</b> by
+                        v1.4.0.
+                    </div>
+                    <div class="matrix-wrap">
+                        <table class="matrix" id="matrix"></table>
+                    </div>
+                </div>
             </div>
 
             <div id="phases"></div>
 
             <div class="footer">
-                Two-person plan v3 (Teo + Dragos) — baseline re-audited from git
-                on 2026-07-18 (repo <code>Attackeler/gamenight-teo-denis</code>,
-                Expo SDK 54). One tick ≈ one Conventional Commit. Tags: v0.1.0 →
-                v1.4.0.
+                Team plan v4 (Teo + Dragos + Marcian) — baseline re-audited from
+                git on 2026-10-15 (repo
+                <code>Attackeler/gamenight-teo-denis</code>, Expo SDK 54). Task
+                data lives in <code>gamenight-roadmap-data.js</code>. One tick ≈
+                one Conventional Commit. Tags: v0.1.0 → v1.4.0.
             </div>
         </div>
 
         <script src="gamenight-roadmap-data.js"></script>
         <script>
             'use strict';
-            const KEY = 'gamenight-roadmap-progress-v3';
-            const CKEY = 'gamenight-roadmap-collapsed-v3';
+            const KEY = 'gamenight-roadmap-progress-v4';
+            const OLD_KEY = 'gamenight-roadmap-progress-v3';
+            const CKEY = 'gamenight-roadmap-collapsed-v4';
+            const VKEY = 'gamenight-roadmap-view-v4';
+            const SKEY = 'gamenight-skills-v4';
+            const LEVELS = ['', 'U', 'R', 'O'];
+            const KINDS = {
+                recipe: '📖 recipe',
+                replica: '🔁 replica',
+                together: '👥 together',
+                teach: '🧠 teach-back'
+            };
+            const VIEW_HASH = {
+                ALL: 'all',
+                T: 'teo',
+                D: 'dragos',
+                M: 'marcian'
+            };
+
             const BASELINE = new Set(
                 PHASES.flatMap(p => p.steps.filter(s => s.done).map(s => s.id))
             );
@@ -351,86 +498,73 @@
                 PHASES.flatMap(p => p.steps.map(s => s.id))
             );
 
-            function loadSet(k) {
+            function read(k, fallback) {
                 try {
-                    return new Set(JSON.parse(localStorage.getItem(k) || '[]'));
+                    const raw = localStorage.getItem(k);
+                    return raw === null ? fallback : JSON.parse(raw);
                 } catch (e) {
-                    return new Set();
+                    return fallback;
                 }
             }
-            // Saved progress merges with the baked-in baseline, so repo-done
-            // items stay ticked even if the browser lost its storage.
-            let doneSet = new Set(
-                [...loadSet(KEY), ...BASELINE].filter(id => ALL_IDS.has(id))
-            );
-            const collapsedSet = loadSet(CKEY);
-            // v3: per-person view — ALL, T (Teo) or D (Dragos).
-            const FKEY = 'gamenight-roadmap-view-v3';
-            let who = 'ALL';
-            try {
-                who = localStorage.getItem(FKEY) || 'ALL';
-            } catch (e) {
-                /* ignore */
-            }
-            if (who !== 'T' && who !== 'D') who = 'ALL';
-            function stepOwner(s) {
-                return OWNERS[s.id] || s.o || 'TD';
-            }
-            function visible(s) {
-                const o = stepOwner(s);
-                return who === 'ALL' || o === 'TD' || o === who;
-            }
-            function syncViewButtons() {
-                [
-                    ['viewAll', 'ALL'],
-                    ['viewT', 'T'],
-                    ['viewD', 'D']
-                ].forEach(pair => {
-                    document
-                        .getElementById(pair[0])
-                        .classList.toggle('active', who === pair[1]);
-                });
-            }
-            function setView(v) {
-                who = v;
+            function write(k, v) {
                 try {
-                    localStorage.setItem(FKEY, v);
-                } catch (e) {
-                    /* ignore */
-                }
-                syncViewButtons();
-                render();
-            }
-            document.getElementById('viewAll').onclick = () => setView('ALL');
-            document.getElementById('viewT').onclick = () => setView('T');
-            document.getElementById('viewD').onclick = () => setView('D');
-            syncViewButtons();
-
-            function save() {
-                try {
-                    localStorage.setItem(KEY, JSON.stringify([...doneSet]));
+                    localStorage.setItem(k, JSON.stringify(v));
                 } catch (e) {
                     /* storage unavailable — export still works */
                 }
             }
-            function saveCollapsed() {
-                try {
-                    localStorage.setItem(
-                        CKEY,
-                        JSON.stringify([...collapsedSet])
-                    );
-                } catch (e) {
-                    /* ignore */
-                }
+
+            // Saved progress merges with the baked-in baseline, so repo-done
+            // items stay ticked even if the browser lost its storage.
+            // First run of v4: carry over ticks from the v3 tracker where ids still exist.
+            const saved = read(KEY, null) || read(OLD_KEY, []);
+            let doneSet = new Set(
+                [...saved, ...BASELINE].filter(id => ALL_IDS.has(id))
+            );
+            // First visit: the skills matrix starts folded so the phases stay in view.
+            const collapsedSet = new Set(read(CKEY, ['skills']));
+            let skills = read(SKEY, {});
+
+            function viewFromHash() {
+                const h = (location.hash || '').replace('#', '').toLowerCase();
+                const hit = Object.keys(VIEW_HASH).find(
+                    k => VIEW_HASH[k] === h
+                );
+                return hit || null;
+            }
+            let who = viewFromHash() || read(VKEY, 'ALL');
+            if (!VIEW_HASH[who]) who = 'ALL';
+
+            function ownerOf(s) {
+                return s.o || 'ALL';
+            }
+            function isFor(s, person) {
+                const o = ownerOf(s);
+                return o === 'ALL' || o.indexOf(person) !== -1;
+            }
+            function visible(s) {
+                return who === 'ALL' || isFor(s, who);
+            }
+            function kindsOf(s) {
+                if (!s.k) return [];
+                return Array.isArray(s.k) ? s.k : [s.k];
+            }
+
+            function skillLevel(skillId, person) {
+                const mine = skills[skillId] && skills[skillId][person];
+                if (mine !== undefined) return mine;
+                const base = SKILL_BASELINE[skillId];
+                return (base && base[person]) || '';
             }
 
             const CHECK =
                 '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
             function esc(s) {
-                return s
+                return String(s)
                     .replace(/&/g, '&amp;')
                     .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;');
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
             }
 
             function badgeHtml(p) {
@@ -453,7 +587,35 @@
                 return '';
             }
 
-            function render() {
+            function ownerChips(s) {
+                const o = ownerOf(s);
+                if (o === 'ALL') return '<span class="chip all">All</span>';
+                return o
+                    .split('')
+                    .map(
+                        c =>
+                            '<span class="chip ' +
+                            c.toLowerCase() +
+                            '" title="' +
+                            esc(PEOPLE[c] || c) +
+                            '">' +
+                            c +
+                            '</span>'
+                    )
+                    .join('');
+            }
+
+            function kindChips(s) {
+                return kindsOf(s)
+                    .map(k =>
+                        KINDS[k]
+                            ? '<span class="chip kind">' + KINDS[k] + '</span>'
+                            : ''
+                    )
+                    .join('');
+            }
+
+            function renderPhases() {
                 const root = document.getElementById('phases');
                 let html = '';
                 let currentTrack = '';
@@ -467,18 +629,16 @@
                     }
                     const vis = p.steps.filter(visible);
                     if (!vis.length) return;
-                    const total = vis.length;
                     const done = vis.filter(s => doneSet.has(s.id)).length;
                     const collapsed = collapsedSet.has(p.n) ? ' collapsed' : '';
                     html +=
                         '<div class="phase' +
                         collapsed +
                         '" data-phase="' +
-                        p.n +
-                        '">';
-                    html +=
+                        esc(p.n) +
+                        '">' +
                         '<div class="phase-head"><span class="chev">▾</span><h2>Phase ' +
-                        p.n +
+                        esc(p.n) +
                         ' — ' +
                         esc(p.title) +
                         '</h2>' +
@@ -486,18 +646,19 @@
                         '<span class="count">' +
                         done +
                         '/' +
-                        total +
-                        '</span></div>';
-                    html += '<div class="phase-body">';
-                    html += '<div class="goal">' + esc(p.goal) + '</div>';
-                    if (p.learn.length) {
+                        vis.length +
+                        '</span></div><div class="phase-body">' +
+                        '<div class="goal">' +
+                        esc(p.goal) +
+                        '</div>';
+                    if (p.learn && p.learn.length) {
                         html +=
                             '<div class="learn"><b>Learn first:</b> ' +
                             p.learn
                                 .map(
                                     l =>
                                         '<a href="' +
-                                        l[1] +
+                                        esc(l[1]) +
                                         '" target="_blank" rel="noopener">' +
                                         esc(l[0]) +
                                         '</a>'
@@ -511,21 +672,14 @@
                             '<div class="step' +
                             (isDone ? ' done' : '') +
                             '" data-id="' +
-                            s.id +
+                            esc(s.id) +
                             '"><div class="box">' +
                             (isDone ? CHECK : '') +
                             '</div><div><span class="txt">' +
                             esc(s.t) +
                             '</span>' +
-                            (OWNERS[s.id] || s.o
-                                ? '<span class="who ' +
-                                  (OWNERS[s.id] || s.o).toLowerCase() +
-                                  '">' +
-                                  ((OWNERS[s.id] || s.o) === 'TD'
-                                      ? 'T+D'
-                                      : OWNERS[s.id] || s.o) +
-                                  '</span>'
-                                : '') +
+                            ownerChips(s) +
+                            kindChips(s) +
                             (s.c
                                 ? '<span class="commit">' + esc(s.c) + '</span>'
                                 : '') +
@@ -536,59 +690,206 @@
                     html += '</div></div>';
                 });
                 root.innerHTML = html;
-                updateProgress();
             }
 
-            function updateProgress() {
+            function renderMatrix() {
+                const people = Object.keys(PEOPLE);
+                let html =
+                    '<thead><tr><th>Kind of work</th><th class="by">Recipe by · phase</th>' +
+                    people
+                        .map(
+                            c =>
+                                '<th class="p"><span class="chip ' +
+                                c.toLowerCase() +
+                                '">' +
+                                esc(PEOPLE[c]) +
+                                '</span></th>'
+                        )
+                        .join('') +
+                    '</tr></thead><tbody>';
+                SKILLS.forEach(sk => {
+                    const name = sk.recipe
+                        ? '<a href="' +
+                          esc(sk.recipe) +
+                          '" target="_blank" rel="noopener">' +
+                          esc(sk.name) +
+                          '</a>'
+                        : esc(sk.name);
+                    html +=
+                        '<tr><td>' +
+                        name +
+                        '</td><td class="by">' +
+                        esc(sk.by) +
+                        '</td>' +
+                        people
+                            .map(c => {
+                                const lv = skillLevel(sk.id, c);
+                                return (
+                                    '<td class="p"><button class="lvl ' +
+                                    lv +
+                                    '" data-skill="' +
+                                    esc(sk.id) +
+                                    '" data-person="' +
+                                    c +
+                                    '" title="' +
+                                    esc(PEOPLE[c] + ' — ' + sk.name) +
+                                    '">' +
+                                    (lv || '–') +
+                                    '</button></td>'
+                                );
+                            })
+                            .join('') +
+                        '</tr>';
+                });
+                html += '</tbody><tfoot><tr><td></td><td class="by"></td>';
+                let rTotal = 0;
+                people.forEach(c => {
+                    const u = SKILLS.filter(sk => skillLevel(sk.id, c)).length;
+                    const r = SKILLS.filter(
+                        sk => ['R', 'O'].indexOf(skillLevel(sk.id, c)) !== -1
+                    ).length;
+                    rTotal += r;
+                    html += '<td class="p">' + u + ' U+<br />' + r + ' R+</td>';
+                });
+                html += '</tr></tfoot>';
+                document.getElementById('matrix').innerHTML = html;
+                document.getElementById('matrixCount').textContent =
+                    rTotal + '/' + SKILLS.length * people.length + ' at R+';
+                document
+                    .getElementById('matrixCard')
+                    .classList.toggle('collapsed', collapsedSet.has('skills'));
+            }
+
+            function pctFor(filterFn) {
                 const ids = PHASES.flatMap(p =>
-                    p.steps.filter(visible).map(s => s.id)
+                    p.steps.filter(filterFn).map(s => s.id)
                 );
-                const total = ids.length;
                 const done = ids.filter(id => doneSet.has(id)).length;
-                const pct = total ? Math.round((done / total) * 100) : 0;
-                document.getElementById('pct').textContent = pct + '%';
+                return {
+                    done: done,
+                    total: ids.length,
+                    pct: ids.length ? Math.round((done / ids.length) * 100) : 0
+                };
+            }
+
+            function renderProgress() {
+                const r = pctFor(visible);
+                document.getElementById('pct').textContent = r.pct + '%';
                 document.getElementById('counts').textContent =
                     '· ' +
-                    done +
+                    r.done +
                     ' of ' +
-                    total +
+                    r.total +
                     ' tasks done' +
                     (who === 'ALL'
-                        ? ''
-                        : who === 'T'
-                          ? ' — Teo’s view'
-                          : ' — Dragos’s view');
-                document.getElementById('barfill').style.width = pct + '%';
+                        ? ' — whole team'
+                        : ' — ' + PEOPLE[who] + '’s view');
+                document.getElementById('barfill').style.width = r.pct + '%';
+                document.getElementById('people').innerHTML = Object.keys(
+                    PEOPLE
+                )
+                    .map(c => {
+                        const pr = pctFor(s => isFor(s, c));
+                        return (
+                            '<div class="person-line"><b>' +
+                            esc(PEOPLE[c]) +
+                            '</b> ' +
+                            pr.done +
+                            '/' +
+                            pr.total +
+                            ' (' +
+                            pr.pct +
+                            '%)<div class="bar"><div style="width:' +
+                            pr.pct +
+                            '%"></div></div></div>'
+                        );
+                    })
+                    .join('');
             }
+
+            function syncViewButtons() {
+                document.querySelectorAll('.viewbtn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.view === who);
+                });
+            }
+
+            function render() {
+                syncViewButtons();
+                renderMatrix();
+                renderPhases();
+                renderProgress();
+            }
+
+            function setView(v) {
+                who = v;
+                write(VKEY, v);
+                try {
+                    history.replaceState(null, '', '#' + VIEW_HASH[v]);
+                } catch (e) {
+                    /* file:// in some browsers — the stored view still works */
+                }
+                render();
+            }
+            document.querySelectorAll('.viewbtn').forEach(b => {
+                b.onclick = () => setView(b.dataset.view);
+            });
+            window.addEventListener('hashchange', () => {
+                const v = viewFromHash();
+                if (v && v !== who) setView(v);
+            });
 
             document.getElementById('phases').addEventListener('click', e => {
                 const step = e.target.closest('.step');
                 if (step) {
+                    if (e.target.closest('a')) return;
                     const id = step.dataset.id;
                     if (doneSet.has(id)) doneSet.delete(id);
                     else doneSet.add(id);
-                    save();
+                    write(KEY, [...doneSet]);
                     render();
                     return;
                 }
                 const head = e.target.closest('.phase-head');
-                if (head) {
-                    const n = head.parentElement.dataset.phase;
-                    if (collapsedSet.has(n)) collapsedSet.delete(n);
-                    else collapsedSet.add(n);
-                    saveCollapsed();
-                    render();
-                }
+                if (head) toggleCollapsed(head.parentElement.dataset.phase);
             });
+
+            document
+                .getElementById('matrixCard')
+                .addEventListener('click', e => {
+                    const btn = e.target.closest('.lvl');
+                    if (btn) {
+                        const sk = btn.dataset.skill;
+                        const c = btn.dataset.person;
+                        const cur = skillLevel(sk, c);
+                        const next =
+                            LEVELS[(LEVELS.indexOf(cur) + 1) % LEVELS.length];
+                        skills[sk] = Object.assign({}, skills[sk]);
+                        skills[sk][c] = next;
+                        write(SKEY, skills);
+                        render();
+                        return;
+                    }
+                    if (e.target.closest('a')) return;
+                    if (e.target.closest('.phase-head'))
+                        toggleCollapsed('skills');
+                });
+
+            function toggleCollapsed(n) {
+                if (collapsedSet.has(n)) collapsedSet.delete(n);
+                else collapsedSet.add(n);
+                write(CKEY, [...collapsedSet]);
+                render();
+            }
 
             document.getElementById('expandAll').onclick = () => {
                 collapsedSet.clear();
-                saveCollapsed();
+                write(CKEY, []);
                 render();
             };
             document.getElementById('collapseAll').onclick = () => {
                 PHASES.forEach(p => collapsedSet.add(p.n));
-                saveCollapsed();
+                collapsedSet.add('skills');
+                write(CKEY, [...collapsedSet]);
                 render();
             };
             document.getElementById('exportBtn').onclick = () => {
@@ -597,9 +898,10 @@
                         JSON.stringify(
                             {
                                 app: 'gamenight-roadmap',
-                                version: 3,
+                                version: 4,
                                 exported: new Date().toISOString(),
-                                done: [...doneSet]
+                                done: [...doneSet],
+                                skills: skills
                             },
                             null,
                             2
@@ -634,7 +936,10 @@
                                     ALL_IDS.has(id)
                                 )
                             );
-                            save();
+                            if (data.skills && typeof data.skills === 'object')
+                                skills = data.skills;
+                            write(KEY, [...doneSet]);
+                            write(SKEY, skills);
                             render();
                         } catch (err) {
                             alert(
@@ -648,11 +953,13 @@
             document.getElementById('resetBtn').onclick = () => {
                 if (
                     confirm(
-                        'Reset progress to the repo baseline (done phases stay ticked)?'
+                        'Reset task ticks and the skills matrix to the repo baseline?'
                     )
                 ) {
                     doneSet = new Set(BASELINE);
-                    save();
+                    skills = {};
+                    write(KEY, [...doneSet]);
+                    write(SKEY, skills);
                     render();
                 }
             };
