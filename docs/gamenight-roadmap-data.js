@@ -1,7 +1,7 @@
 /* eslint-disable */
 'use strict';
 // Gamenight roadmap — task data for gamenight-roadmap.html (team plan v4).
-// Edit tasks HERE and mirror the change in ROADMAP.md (+ the personal ROADMAP-*.md files).
+// Edit tasks HERE and mirror the change in docs/TASKS.md (who + baby steps) and ROADMAP.md (what + why).
 // The HTML file is only a view.
 //
 // Step fields:
@@ -10,7 +10,7 @@
 //   o    — owner: 'T' Teo · 'D' Dragos · 'M' Marcian · combos like 'TD' / 'TM' · 'ALL' everyone
 //   k    — kind (optional): 'recipe' 📖 · 'replica' 🔁 · 'together' 👥 · 'teach' 🧠 — string or array
 //   c    — ready-made Conventional Commit message (optional)
-//   done — true = already done in the repo (baseline, audited from git on 2026-10-15)
+//   done — true = already done in the repo (baseline, audited from git on 2026-11-02)
 
 const PEOPLE = { T: 'Teo', D: 'Dragos', M: 'Marcian' };
 
@@ -39,19 +39,24 @@ const PHASES = [
         steps: [
             {
                 id: 'po-sync',
-                t: 'Pick a weekly sync slot (~45 min) that works for all three + a team chat channel',
+                t: 'Pick a weekly sync slot (~45 min) that works for all three + create the team chat',
                 o: 'ALL'
             },
             {
+                id: 'po-docs',
+                t: 'Push docs/team-roadmap, open the PR, get it reviewed and merged — the new docs land on main',
+                o: 'T'
+            },
+            {
                 id: 'po-localenv',
-                t: 'Recipe: local dev environment — written from every setup problem Dragos and Marcian actually hit',
-                o: 'T',
+                t: 'Recipe: local dev environment (docs/playbook/local-env.md) — Dragos + Marcian write down every setup problem they hit and its fix',
+                o: 'DM',
                 k: 'recipe',
                 c: 'docs(playbook): add local environment recipe'
             },
             {
                 id: 'pd-setup',
-                t: 'Machine setup end-to-end (ONBOARDING §2): app on your phone AND in the browser, make check-files green',
+                t: 'Machine setup end-to-end (docs/SETUP.md): app on your phone AND in the browser, make check-files green',
                 o: 'D'
             },
             {
@@ -78,7 +83,7 @@ const PHASES = [
             },
             {
                 id: 'pm-setup',
-                t: 'Machine setup on a call with Teo (~2–3 h): terminal basics, git, VS Code, Node, Docker — app on your phone AND in the browser',
+                t: 'Machine setup on a call with Teo (docs/SETUP.md, ~2–3 h): app on your phone AND in the browser, make check-files green',
                 o: 'M',
                 k: 'together'
             },
@@ -228,14 +233,26 @@ const PHASES = [
             },
             {
                 id: 'p1-protect',
-                t: 'Branch protection on main: require the CI check AND one approving review',
+                t: 'Branch protection: main is already protected — check it requires the CI check AND one approving review',
                 o: 'T'
             },
             {
                 id: 'p1-hooks',
-                t: 'Fix the git hooks + npm scripts: pre-commit rewrites commit-msg and never runs lint-staged; the format and reset-project scripts are broken',
+                t: 'Fix .husky/pre-commit: run lint-staged, and stop it rewriting .husky/commit-msg on every commit',
                 o: 'T',
-                c: 'fix(devops): run lint-staged in pre-commit and fix npm scripts'
+                c: 'fix(devops): run lint-staged in pre-commit'
+            },
+            {
+                id: 'p1-pyc',
+                t: 'Stop tracking docs/scripts/__pycache__ and git-ignore __pycache__/',
+                o: 'D',
+                c: 'chore: stop tracking python bytecode'
+            },
+            {
+                id: 'p1-scripts',
+                t: 'Fix package.json scripts: format → "npm run prettier:fix"; remove the dead reset-project script',
+                o: 'M',
+                c: 'fix(devops): fix format script and remove reset-project'
             }
         ],
         tips: 'The stray supabase/snippets SQL file is Dragos’s practice PR (Phase O). Branch protection is what turns “someone else reviews” from a promise into a rule.'
@@ -341,7 +358,7 @@ const PHASES = [
             {
                 id: 'p2-toggle',
                 t: 'Theme toggle as a segmented control (System / Light / Dark) + themed header and status bar',
-                o: 'T',
+                o: 'D',
                 c: 'feat(ui): add theme toggle and themed navigation chrome'
             },
             {
@@ -352,9 +369,16 @@ const PHASES = [
                 c: 'feat(ui): add avatar component'
             },
             {
+                id: 'p2-chip',
+                t: 'Chip / pill (DESIGN.md §5) from the base-component recipe',
+                o: 'M',
+                k: 'replica',
+                c: 'feat(ui): add chip component'
+            },
+            {
                 id: 'p2-verify',
-                t: 'Verify both themes on a phone AND on web; flipping the OS theme updates live',
-                o: 'ALL'
+                t: 'Run the both-themes checklist on a phone AND on web (flipping the OS theme updates live); open one issue per problem found',
+                o: 'M'
             },
             {
                 id: 'p2-teach',
@@ -406,9 +430,14 @@ const PHASES = [
             },
             {
                 id: 'p3-sketch',
-                t: 'Sketch the full data model in dbdiagram.io (~1.5 h call, driver rotates); commit the diagram',
+                t: 'Sketch the full data model in dbdiagram.io (~1.5 h call, driver rotates)',
                 o: 'ALL',
-                k: 'together',
+                k: 'together'
+            },
+            {
+                id: 'p3-diagram',
+                t: 'Export the data-model diagram from the session and commit it to docs/',
+                o: 'M',
                 c: 'docs: add data model diagram'
             },
             {
@@ -427,8 +456,9 @@ const PHASES = [
             },
             {
                 id: 'p3-nights',
-                t: 'game_nights, games, game_results tables + RLS',
-                o: 'T',
+                t: 'game_nights, games, game_results tables + RLS, from the table recipe',
+                o: 'D',
+                k: 'replica',
                 c: 'feat(db): add game night and result tables with rls'
             },
             {
@@ -450,6 +480,13 @@ const PHASES = [
                 o: 'M',
                 k: 'replica',
                 c: 'feat(db): add avatar color to profiles'
+            },
+            {
+                id: 'p3-script',
+                t: 'Add an npm script db:types that regenerates the types, from the db-types recipe',
+                o: 'M',
+                k: 'replica',
+                c: 'chore(db): add db:types script'
             },
             {
                 id: 'p3-teach',
@@ -485,9 +522,15 @@ const PHASES = [
         steps: [
             {
                 id: 'p4-guard',
-                t: 'Auth-state provider + route guards; session restore without a login-screen flash',
+                t: 'Route guards: logged-out users only see auth screens; session restore without a login-screen flash',
                 o: 'T',
                 c: 'feat(auth): guard app routes by session state'
+            },
+            {
+                id: 'p4-session',
+                t: 'Auth-state provider: holds the Supabase session and exposes it through context',
+                o: 'T',
+                c: 'feat(auth): add auth session provider'
             },
             {
                 id: 'p4-trigger',
@@ -498,22 +541,41 @@ const PHASES = [
             },
             {
                 id: 'p4-screens',
-                t: 'Sign-up + login screens (DESIGN.md §7) with React Hook Form + Zod + the form recipe',
+                t: 'Sign-up screen (DESIGN.md §7) with React Hook Form + Zod + the form recipe',
                 o: 'D',
                 k: 'recipe',
-                c: 'feat(auth): add email/password sign up and login'
+                c: 'feat(auth): add email/password sign up'
+            },
+            {
+                id: 'p4-login',
+                t: 'Login screen from the form recipe',
+                o: 'D',
+                k: 'replica',
+                c: 'feat(auth): add login screen'
+            },
+            {
+                id: 'p4-errors',
+                t: 'Show auth errors (wrong password, email taken, offline) on both screens',
+                o: 'D',
+                c: 'feat(auth): show auth error messages'
             },
             {
                 id: 'p4-settings',
-                t: 'Settings screen — theme toggle + log out — from the new-screen recipe',
+                t: 'Settings screen with the theme toggle, from the new-screen recipe',
                 o: 'M',
                 k: 'replica',
-                c: 'feat(settings): add settings screen with theme and logout'
+                c: 'feat(settings): add settings screen'
+            },
+            {
+                id: 'p4-logout',
+                t: 'Log out button on the Settings screen',
+                o: 'M',
+                c: 'feat(settings): add log out button'
             },
             {
                 id: 'p4-verify',
-                t: 'Verify on a phone AND web; the session survives an app restart',
-                o: 'ALL'
+                t: 'Run the auth checklist on a phone AND web: sign up, log in, restart the app (still logged in), log out; open one issue per problem',
+                o: 'M'
             },
             {
                 id: 'p4-teach',
@@ -597,7 +659,7 @@ const PHASES = [
             {
                 id: 'p5-detail',
                 t: 'Party detail screen from the load-data recipe',
-                o: 'D',
+                o: 'M',
                 k: 'replica',
                 c: 'feat(party): show party details'
             },
@@ -630,22 +692,27 @@ const PHASES = [
         steps: [
             {
                 id: 'p6-rules',
-                t: 'Scoring rules session: win per archetype, night winner, ties, missing scores → docs/SCORING.md',
+                t: 'Scoring rules session: win per archetype, night winner, ties, missing scores',
                 o: 'ALL',
-                k: 'together',
+                k: 'together'
+            },
+            {
+                id: 'p6-scoringdoc',
+                t: 'Write the session’s decisions into docs/SCORING.md',
+                o: 'M',
                 c: 'docs: define scoring and win rules'
             },
             {
                 id: 'p6-night',
                 t: 'New game night form (date/time, location, planned games) from the form recipe',
-                o: 'D',
+                o: 'M',
                 k: 'replica',
                 c: 'feat(gamenight): create a game night within a party'
             },
             {
                 id: 'p6-game',
                 t: 'Add a played game to the night (typed name for now) from the form recipe',
-                o: 'M',
+                o: 'D',
                 k: 'replica',
                 c: 'feat(gamenight): add a played game to a night'
             },
@@ -662,6 +729,13 @@ const PHASES = [
                 o: 'D',
                 k: 'replica',
                 c: 'feat(scoring): record per-player scores for a game'
+            },
+            {
+                id: 'p6-generic-test',
+                t: 'Unit tests for Dragos’s generic winner function (both-touch), from the unit-test recipe',
+                o: 'T',
+                k: 'replica',
+                c: 'test(scoring): cover generic winner function'
             },
             {
                 id: 'p6-schema',
@@ -753,7 +827,7 @@ const PHASES = [
             {
                 id: 'p7-breakdown',
                 t: 'Per-game and per-party win rates from the SQL view recipe',
-                o: 'T',
+                o: 'D',
                 k: 'replica',
                 c: 'feat(stats): add per-game and per-party win rates'
             },
@@ -765,10 +839,17 @@ const PHASES = [
             },
             {
                 id: 'p7-screens',
-                t: 'Stats screens from the load-data recipe',
+                t: 'Overall stats screen from the load-data recipe',
                 o: 'D',
                 k: 'replica',
-                c: 'feat(stats): add stats screens'
+                c: 'feat(stats): add overall stats screen'
+            },
+            {
+                id: 'p7-party-screen',
+                t: 'Per-party stats screen from the load-data recipe',
+                o: 'T',
+                k: 'replica',
+                c: 'feat(stats): add per-party stats screen'
             },
             {
                 id: 'p7-verify',
@@ -841,14 +922,20 @@ const PHASES = [
                 c: 'feat(catalog): add custom user-created games'
             },
             {
+                id: 'p8-detail',
+                t: 'Game detail screen (players, play time, scoring archetype)',
+                o: 'M',
+                c: 'feat(catalog): add game detail screen'
+            },
+            {
                 id: 'p8-picker',
                 t: 'Wire the catalog into the game picker',
-                o: 'TD',
+                o: 'D',
                 c: 'feat(catalog): select catalog games when scoring'
             },
             {
                 id: 'p8-archetypes',
-                t: 'Game detail + scoring schemas: ~10 archetypes + mechanic-based default classifier',
+                t: 'Scoring schemas: ~10 win-condition archetypes + mechanic-based default classifier',
                 o: 'T',
                 c: 'feat(catalog): add scoring archetypes and mechanic-based defaults'
             },
@@ -937,6 +1024,12 @@ const PHASES = [
                 c: 'chore: configure builds and web deploy'
             },
             {
+                id: 'p9-a11y',
+                t: 'Accessibility pass on screens you didn’t write: labels, contrast, tap targets',
+                o: 'T',
+                c: 'fix(a11y): add labels and fix contrast'
+            },
+            {
                 id: 'p9-dry-d',
                 t: 'Release dry-run, solo, from the release recipe — nobody helps',
                 o: 'D',
@@ -977,10 +1070,17 @@ const PHASES = [
         steps: [
             {
                 id: 'p10-schema',
-                t: 'Friendships schema + RLS + a database test proving a non-friend can’t see data',
+                t: 'Friendships schema + RLS (store once, query both directions), from the table recipe',
                 o: 'D',
                 k: 'replica',
                 c: 'feat(db): add friendships with rls'
+            },
+            {
+                id: 'p10-test',
+                t: 'Database test proving a non-friend can’t see a friend’s data, from the db-test recipe',
+                o: 'M',
+                k: 'replica',
+                c: 'test(db): prove non-friends cannot see data'
             },
             {
                 id: 'p10-req',
@@ -990,10 +1090,16 @@ const PHASES = [
             },
             {
                 id: 'p10-list',
-                t: 'Friends list + friend profile with head-to-head, from the load-data recipe',
+                t: 'Friends list from the load-data recipe',
                 o: 'M',
                 k: 'replica',
-                c: 'feat(friends): add friends list and profile'
+                c: 'feat(friends): add friends list'
+            },
+            {
+                id: 'p10-profile',
+                t: 'Friend profile with head-to-head stats',
+                o: 'D',
+                c: 'feat(friends): add friend profile with head-to-head'
             },
             {
                 id: 'p10-invite',
@@ -1036,6 +1142,12 @@ const PHASES = [
                 c: 'feat(chat): add messages schema and policies'
             },
             {
+                id: 'p11-inbox',
+                t: 'Conversations list screen',
+                o: 'M',
+                c: 'feat(chat): add conversations list'
+            },
+            {
                 id: 'p11-screen',
                 t: 'Direct-message conversation screen',
                 o: 'D',
@@ -1047,6 +1159,12 @@ const PHASES = [
                 o: 'T',
                 k: 'recipe',
                 c: 'feat(chat): stream new messages in realtime'
+            },
+            {
+                id: 'p11-unread',
+                t: 'Unread counts on the conversations list',
+                o: 'T',
+                c: 'feat(chat): show unread counts'
             },
             {
                 id: 'p11-live',
@@ -1090,6 +1208,12 @@ const PHASES = [
                 t: 'Register and store push tokens',
                 o: 'M',
                 c: 'feat(notifications): register and store push tokens'
+            },
+            {
+                id: 'p12-prefs',
+                t: 'Notifications on/off toggle in Settings',
+                o: 'M',
+                c: 'feat(notifications): add notification preferences'
             },
             {
                 id: 'p12-edge',
@@ -1211,7 +1335,7 @@ const SKILLS = [
     {
         id: 'local-env',
         name: 'Run & fix the local dev environment',
-        by: 'Teo · O'
+        by: 'Dragos + Marcian · O'
     },
     { id: 'base-component', name: 'Base component', by: 'Teo · 2' },
     { id: 'new-screen', name: 'New screen / route', by: 'Dragos · 2' },
@@ -1242,7 +1366,7 @@ const SKILLS = [
     { id: 'ci-workflow', name: 'CI workflow', by: 'Teo + Marcian · 13' }
 ];
 
-// Matrix baseline from the repo history (2026-10-15). Saved clicks in the browser override it.
+// Matrix baseline from the repo history (2026-11-02). Saved clicks in the browser override it.
 const SKILL_BASELINE = {
     'git-pr-flow': { T: 'O' },
     'local-env': { T: 'O' },

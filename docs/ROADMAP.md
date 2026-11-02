@@ -10,7 +10,9 @@ A phased, learn-by-doing plan for building **Gamenight** as a team of three: an 
 | **Dragos**  | ~15 h/week   | A bit of Python (less Java); **new to JavaScript, TypeScript, React, git workflows**   | Phase O, Dragos path        |
 | **Marcian** | ~5–10 h/week | **Beginner** — little or no coding yet. Learns programming itself through this project | Phase O, Marcian path       |
 
-> **This is v4 of the roadmap** — reworked when **Marcian joined** (2026-10). v3 was the Teo + Dragos plan (written 2026-07, never merged — the project paused from 2026-07-18 until now), v2 the solo plan, v1 the original Teo + Denis plan. Older versions live in git history. Progress below reflects the **actual git history as of 2026-10-15**. The clickable tracker is `gamenight-roadmap.html`.
+> **This file is the _what_ and the _why_.** **Who does what**, split **equally** into baby steps, lives in [`TASKS.md`](./TASKS.md). **Where we are right now** is in [`STATUS.md`](./STATUS.md). New machine? [`SETUP.md`](./SETUP.md).
+>
+> **Version history:** v5 (2026-11-02) split the work equally and moved ownership to `TASKS.md`. v4 (2026-10) was reworked when **Marcian joined**. v3 was the Teo + Dragos plan (2026-07, never merged; the project paused 2026-07-18 → 2026-10). v2 was the solo plan, v1 the original Teo + Denis plan. Older versions live in git history.
 
 > **How this roadmap teaches.** It tells you _what_ to build, in _what order_, _why_, and _when to commit_ — not _how_. Every phase starts with **Learn first** links. The _how_ lives in the **playbook** (`docs/playbook/`), written by the team as you go — see below.
 
@@ -36,17 +38,9 @@ Not "everyone has seen everything". Everyone has _done_ every kind of work at le
 
 ---
 
-## Where the project actually stands (audited from git, 2026-10-15)
+## Where the project stands
 
-| Evidence                                                                                                                                        | Status                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| `d48c46e` scaffold, `.gitignore`, ESLint + Prettier, TS strict, Node pinned                                                                     | Phase 0 **done**                                             |
-| PRs #3–#9 merged: local Supabase (CLI + Docker), migrations plumbing, `.env.example`, Husky + commitlint, CI, Makefile, templates, dummies gone | Phase 1 **done** — small leftovers below                     |
-| `feat/phase-2-design-system` (pushed 2026-07-07, no PR): tokens, Inter fonts, theme provider (system/light/dark), persisted preference          | Phase 2 **in progress** (Teo)                                |
-| `AppText`, `Button`, `Card` started 2026-07-17 — **uncommitted, only on Teo's machine**                                                         | Phase 2 — commit it first                                    |
-| `docs/two-person-roadmap` (v3) never merged                                                                                                     | Superseded by this PR (`docs/team-roadmap`)                  |
-| `supabase/migrations/` empty · no tests · no git tags                                                                                           | Schema = Phase 3 · tests = Phase 6 · first tag after Phase 4 |
-| `docs/scripts/` has `games_schema.sql` + BGG import script                                                                                      | Phase 8 **pre-work done**                                    |
+**Phase 0 and 1 are done** (PRs #1–#9). **Phase 2 is in progress** on `feat/phase-2-design-system`, and **Phases 3+ haven't started**. `docs/scripts/` already holds the Phase 8 pre-work (`games_schema.sql` + the BGG import script). The full, dated picture (branches, what's uncommitted, known bugs) is in **[`STATUS.md`](./STATUS.md)**.
 
 **Versions pinned in the repo:** Expo SDK 54 (`~54.0.34`), Expo Router 6, React Native 0.81.5, React 19.1, TypeScript 5.9, Node 26.4 (`engines` + `engine-strict`). Repo: `Attackeler/gamenight-teo-denis` on GitHub.
 
@@ -57,11 +51,11 @@ Not "everyone has seen everything". Everyone has _done_ every kind of work at le
 ## How to use this document
 
 - Work **top to bottom**. Each phase is a shippable slice. Don't jump ahead.
-- **Phase O runs in parallel** with Teo finishing Phase 2. Dragos and Marcian start there, not at Phase 2.
-- Tick progress in the tracker (`gamenight-roadmap.html` — click your name for your own view). Your personal queue is `ROADMAP-TEO.md` / `ROADMAP-DRAGOS.md` / `ROADMAP-MARCIAN.md`; **this file wins** if they ever disagree.
+- **Phase O (learning) runs alongside** the tasks. Dragos and Marcian learn from `ONBOARDING.md` while doing their equal share of `TASKS.md`.
+- Tick progress in the tracker (`gamenight-roadmap.html`; click your name for your own view). **Who owns a task: `TASKS.md` wins. What the task is and why: this file wins.**
 - Read the **Learn first** links _before_ writing anything in that phase.
 - Blockquoted **Commit:** lines give you a ready-made Conventional Commit message.
-- Owner chips: **T** Teo · **D** Dragos · **M** Marcian · **All** everyone. Markers: **📖** writes a recipe · **🔁** replica (follows a recipe) · **👥** together session · **🧠** teach-back. Owners are suggestions sized to 40 / 15 / ~7 h a week — rebalance in the weekly sync, never mid-task.
+- Markers: **📖** writes a recipe · **🔁** replica (follows a recipe) · **👥** together session · **🧠** teach-back. Owners aren't listed here; they're in `TASKS.md` and the tracker (equal split, swapped only in the weekly sync, never mid-task).
 
 ---
 
@@ -78,7 +72,7 @@ Not "everyone has seen everything". Everyone has _done_ every kind of work at le
 - **Conventional Commits** (enforced by commitlint) · **commit small** (≈ one checkbox) · **push every session** — unpushed work doesn't exist (the July WIP sat on one disk for three months; don't repeat that). [Spec](https://www.conventionalcommits.org/en/v1.0.0/)
 - **GitHub Issues are the shared brain.** Every bug, idea, question, and "the recipe didn't cover this" gets an issue.
 - **Weekly sync (~45 min, a fixed slot that works for Marcian):** each person demos what shipped · due teach-backs · update the skills matrix · split next week's tasks. Three people holding a third of a thread each is how team projects die; the sync is the cure.
-- **Sizing:** Dragos ≈ one meaty task or two small ones a week; Marcian ≈ one small task per one–two weeks, _including_ the learning. Prefer self-contained, UI-first tasks early; grow scope as checkpoints pass.
+- **Sizing: equal split.** Everyone has the same number of tasks per step, each broken into baby steps of 1–2 hours. Teo's extra hours go to reviews, pairing and unblocking, not to taking other people's tasks. A step finishes when the slowest column finishes, so a column that keeps lagging gets pairing, not extra pressure.
 - **Blocked > 30 min after honestly trying?** Write down what you tried → ask in the team chat. Asking with notes is a skill, not a weakness.
 - **Before every merge:** CI green · approved by someone else · web still runs · no secrets in the diff · recipe added or updated if it was a first-of-its-kind task.
 
@@ -91,7 +85,7 @@ The tracker has the live version (click a cell to cycle **–** → **U** → **
 | Kind of work                                 | Recipe written by · phase | Replicas (who · phase)    |
 | -------------------------------------------- | ------------------------- | ------------------------- |
 | Branch → commit → PR → review → merge        | already written           | D, M · Phase O            |
-| Run & fix the local dev environment          | T · Phase O               | D, M · Phase O            |
+| Run & fix the local dev environment          | D + M · Phase O           | T (checks it) · Phase O   |
 | Base component                               | T · Phase 2               | D (`Input`), M (`Avatar`) |
 | New screen / route                           | D · Phase 2               | M (Settings, P4)          |
 | Table + migration + RLS                      | T · Phase 3               | D (P3), M (P3, P11)       |
@@ -145,33 +139,33 @@ Learn: [Triggers](https://supabase.com/docs/guides/database/postgres/triggers) �
 - **Dragos path** (~3 weeks at ~15 h/week): JavaScript from Python → TypeScript + React → React Native. First real PR: `Input` (Phase 2).
 - **Marcian path** (~8–10 weeks at 5–10 h/week): programming itself, in JavaScript → git → React → React Native. First real PR: `Avatar` (Phase 2, lands whenever he gets there — it doesn't block the Phase 2 merge).
 
-**Teo's part:** be reachable during setup week, write the local-environment recipe from the problems they actually hit, and run the first weekly sync.
+**Teo's part:** be on the setup calls ([`SETUP.md`](./SETUP.md)), review the local-environment recipe, and run the first weekly sync. His own Step 0 tasks are in `TASKS.md`.
 
-- [ ] Pick a **weekly sync slot** that works for all three (~45 min) and a team chat channel. **All**
-- [ ] 📖 Write the **local dev environment** recipe while helping Dragos and Marcian set up — every problem they hit goes in, with its fix. **T**
+- [ ] Pick a **weekly sync slot** that works for all three (~45 min) and a team chat channel.
+- [ ] 📖 **Dragos + Marcian** write the **local dev environment** recipe from the setup problems they actually hit, each with its fix.
 
 > **Commit:** `docs(playbook): add local environment recipe`
 
 **Dragos:**
 
-- [ ] **Machine setup** end-to-end (ONBOARDING §3) — app on your phone **and** in the browser, `make check-files` green. **D**
-- [ ] **Week 1 — JavaScript, coming from Python** + git. Checkpoint: the top-scorer function without looking up syntax · 🔁 practice PR following the git recipe: remove the stray `supabase/snippets/` SQL file (Phase 1 leftover). **D**
+- [ ] **Machine setup** end-to-end ([`SETUP.md`](./SETUP.md)) — app on your phone **and** in the browser, `make check-files` green.
+- [ ] **Week 1 — JavaScript, coming from Python** + git. Checkpoint: the top-scorer function without looking up syntax · 🔁 practice PR following the git recipe: remove the stray `supabase/snippets/` SQL file (Phase 1 leftover).
 
 > **Commit:** `chore(db): remove stray sql snippet`
 
-- [ ] **Week 2 — TypeScript + React.** Checkpoint: explain `src/theme/ThemeProvider.tsx` to Teo line by line. **D**
-- [ ] **Week 3 — React Native + Expo Router.** Checkpoint: how a file in `app/` becomes a screen, what `_layout.tsx` does. **D**
+- [ ] **Week 2 — TypeScript + React.** Checkpoint: explain `src/theme/ThemeProvider.tsx` to Teo line by line.
+- [ ] **Week 3 — React Native + Expo Router.** Checkpoint: how a file in `app/` becomes a screen, what `_layout.tsx` does.
 
 **Marcian:**
 
-- [ ] 👥 **Machine setup on a call with Teo** (~2–3 h): terminal basics, git, VS Code, Node, Docker, clone, app on your phone **and** in the browser. **M**
-- [ ] **Weeks 1–4 — programming basics in JavaScript:** values and variables, `if`, loops, functions, arrays, objects. Checkpoint: write the top-scorer function (array of `{ name, score }` → the winner's name) and explain each line. **M**
-- [ ] **Weeks 4–5 — git:** Learn Git Branching, then 🔁 your practice PR following the git recipe: fill in your favorite board game in the team table in `docs/README.md`. **M**
+- [ ] 👥 **Machine setup on a call with Teo** (~2–3 h): terminal basics, git, VS Code, Node, Docker, clone, app on your phone **and** in the browser.
+- [ ] **Weeks 1–4 — programming basics in JavaScript:** values and variables, `if`, loops, functions, arrays, objects. Checkpoint: write the top-scorer function (array of `{ name, score }` → the winner's name) and explain each line.
+- [ ] **Week 1–2 — practice PR** on a call: 🔁 follow the git recipe to fill in your favorite board game in the team table in `docs/README.md`. **Weeks 4–5:** Learn Git Branching, so the flow makes sense.
 
 > **Commit:** `docs: add my favorite game to the team table`
 
-- [ ] **First shadow review:** read one of Teo's or Dragos's PRs and leave at least one question in the thread. (Then one per week.) **M**
-- [ ] **Weeks 5–8 — React + React Native.** Checkpoint: trace one color from `src/theme/tokens.ts` all the way to the screen, and explain it to Dragos. **M**
+- [ ] **First shadow review:** read one of Teo's or Dragos's PRs and leave at least one question in the thread. (Then one per week.)
+- [ ] **Weeks 5–8 — React + React Native.** Checkpoint: trace one color from `src/theme/tokens.ts` all the way to the screen, and explain it to Dragos.
 
 **Gotchas:** don't read tutorials for weeks — the checkpoints are deliberately small. Type every example out; never paste code you don't understand. When `npm install` or Docker fights you, that pain _is_ the DevOps learning — and it goes in the recipe.
 
@@ -211,13 +205,21 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Leftovers (small — they make the team workflow structural):**
 
-- [ ] **Add Dragos and Marcian as repo collaborators** (GitHub → Settings → Collaborators). **T**
-- [ ] Turn on **branch protection** for `main`: require the CI check **and one approving review** — cross-review enforced by the platform, not by willpower. [Docs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) **T**
-- [ ] **Fix the git hooks and npm scripts:** `.husky/pre-commit` rewrites `.husky/commit-msg` on every commit and never runs lint-staged (so `.lintstagedrc.ts` is dead config); the `format` script calls `prettier:fix` as if it were a command; `reset-project` points at a deleted `scripts/` folder. **T**
+- [ ] **Add Dragos and Marcian as repo collaborators** (GitHub → Settings → Collaborators).
+- [ ] **Branch protection** for `main`: it's already protected. Check that it requires the CI check **and one approving review**, so cross-review is enforced by the platform, not by willpower. [Docs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+- [ ] **Fix the pre-commit hook:** `.husky/pre-commit` rewrites `.husky/commit-msg` on every commit and never runs lint-staged (so `.lintstagedrc.ts` is dead config).
 
-> **Commit:** `fix(devops): run lint-staged in pre-commit and fix npm scripts`
+> **Commit:** `fix(devops): run lint-staged in pre-commit`
 
-- [ ] Remove the stray `supabase/snippets/Untitled query 554.sql` and git-ignore `supabase/snippets/` — **Dragos's practice PR** (Phase O). **D**
+- [ ] **Fix two npm scripts:** `format` calls `prettier:fix` as if it were a command; `reset-project` points at a deleted `scripts/` folder.
+
+> **Commit:** `fix(devops): fix format script and remove reset-project`
+
+- [ ] **Stop tracking Python bytecode:** `docs/scripts/__pycache__/` is committed; untrack it and git-ignore `__pycache__/`.
+
+> **Commit:** `chore: stop tracking python bytecode`
+
+- [ ] Remove the stray `supabase/snippets/Untitled query 554.sql` and git-ignore `supabase/snippets/` — **Dragos's practice PR** (Phase O).
 
 ---
 
@@ -225,44 +227,44 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** One reusable design system — tokens, light/dark/system themes, base components — _before_ feature screens, so every later phase reuses instead of reinventing. And the first two recipes: **base component** and **new screen**.
 
-**Split:** Teo commits his July WIP, fixes the provider, finishes the base components, and writes the **base component** recipe. Dragos replicates it (`Input`, his first real PR) and builds the component gallery — the first new screen — writing the **new screen** recipe. Marcian replicates the component recipe with `Avatar` when his on-ramp gets there.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/) · [`useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [**React Context**](https://react.dev/learn/passing-data-deeply-with-context) + [`useContext`](https://react.dev/reference/react/useContext) — the theme provider is **our own context**, not React Navigation's · [React Navigation theming](https://reactnavigation.org/docs/themes/) (headers/tab bars — never wrap `NavigationContainer` yourself; Expo Router owns it) · [why tokens beat hex values](https://m3.material.io/styles/color/system/overview) · [Expo fonts](https://docs.expo.dev/develop/user-interface/fonts/) · [StyleSheet](https://reactnative.dev/docs/stylesheet) · [Pressable](https://reactnative.dev/docs/pressable) · [safe areas](https://docs.expo.dev/develop/user-interface/safe-areas/) · [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/) · [Splash screen](https://docs.expo.dev/versions/latest/sdk/splash-screen/) (hold it while fonts + theme load)
 
-- [x] Design tokens from `DESIGN.md`: light + dark palettes, spacing, type scale, radii; Inter fonts loaded. _(on `feat/phase-2-design-system`)_ **T**
-- [x] Theme provider reading the device scheme; modes: light / dark / system. _(on the branch)_ **T**
-- [x] Persist the choice via AsyncStorage. _(on the branch)_ **T**
-- [ ] **Commit and push the July base-component WIP** — it only exists on Teo's disk. **T**
-- [ ] **Fix the theme provider** before anyone builds on it: first launch (storage empty → `null`) must mean **system**, not light; toggling must work from the theme _actually shown_; all three modes selectable (System / Light / Dark — `DESIGN.md` §5); no wrong-theme flash on startup. **T**
+- [x] Design tokens from `DESIGN.md`: light + dark palettes, spacing, type scale, radii; Inter fonts loaded. _(on `feat/phase-2-design-system`)_
+- [x] Theme provider reading the device scheme; modes: light / dark / system. _(on the branch)_
+- [x] Persist the choice via AsyncStorage. _(on the branch)_
+- [ ] **Commit and push the July base-component WIP** — it only exists on Teo's disk.
+- [ ] **Fix the theme provider** before anyone builds on it: first launch (storage empty → `null`) must mean **system**, not light; toggling must work from the theme _actually shown_; all three modes selectable (System / Light / Dark — `DESIGN.md` §5); no wrong-theme flash on startup.
 
 > **Commit:** `fix(theme): default to system mode and support three-way selection`
 
-- [ ] **Base components from tokens** — `Screen`, `AppText`, `Button` (primary / tinted / plain), `Card` — generic (props + children, nothing hardcoded), typed props (no `any`), tokens only. **T**
+- [ ] **Base components from tokens** — `Screen`, `AppText`, `Button` (primary / tinted / plain), `Card` — generic (props + children, nothing hardcoded), typed props (no `any`), tokens only.
 
 > **Commit:** `feat(ui): add themed base components`
 
-- [ ] 📖 **Recipe: base component** — how to add one, from token lookup to gallery entry. **T**
+- [ ] 📖 **Recipe: base component** — how to add one, from token lookup to gallery entry.
 
 > **Commit:** `docs(playbook): add base component recipe`
 
-- [ ] 🔁 **`Input`** from the base-component recipe (`DESIGN.md` §5: `surfaceAlt`, radius 12, height 48, `accent` focus ring) — Dragos's first real PR. **D**
+- [ ] 🔁 **`Input`** from the base-component recipe (`DESIGN.md` §5: `surfaceAlt`, radius 12, height 48, `accent` focus ring) — Dragos's first real PR.
 
 > **Commit:** `feat(ui): add themed input component`
 
-- [ ] 📖 **Component gallery screen** — every base component, both themes, one screen — **plus the new-screen recipe**. **D**
+- [ ] 📖 **Component gallery screen** — every base component, both themes, one screen — **plus the new-screen recipe**.
 
 > **Commit:** `feat(ui): add component gallery screen`
 
-- [ ] **Theme toggle** as a segmented control (System / Light / Dark) on the gallery; themed navigation header + status bar. **T**
+- [ ] **Theme toggle** as a segmented control (System / Light / Dark) on the gallery; themed navigation header + status bar.
 
 > **Commit:** `feat(ui): add theme toggle and themed navigation chrome`
 
-- [ ] 🔁 **`Avatar`** from the base-component recipe — initials in a circle using the `avatar` tokens — Marcian's first real PR (can land after the Phase 2 merge). **M**
+- [ ] 🔁 **`Avatar`** from the base-component recipe — initials in a circle using the `avatar` tokens — Marcian's first real PR (can land after the Phase 2 merge).
 
 > **Commit:** `feat(ui): add avatar component`
 
-- [ ] Verify both themes on a phone **and** on web; flipping the OS theme updates live. **All**
-- [ ] 🧠 **Teach-back:** Dragos walks the full path _token → provider → `useContext` → styled component_ without notes; Marcian traces one color from `tokens.ts` to the screen. **All**
+- [ ] Verify both themes on a phone **and** on web; flipping the OS theme updates live.
+- [ ] 🧠 **Teach-back:** Dragos walks the full path _token → provider → `useContext` → styled component_ without notes; Marcian traces one color from `tokens.ts` to the screen.
 
 > **Push & merge** to `main`.
 
@@ -274,42 +276,42 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** Real schema as **migrations**, RLS on everything, app talking to Supabase securely. Recipes: **table + migration + RLS** and **regenerate types**.
 
-**Split:** 👥 design the model **all three together** — it's the shape of the whole app, and the best hour Marcian can spend on understanding it. Teo writes the first tables + the recipe; Dragos replicates with `profiles` and writes the types recipe; Marcian replicates both with one column.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **SQL first:** Dragos — [SQLBolt](https://sqlbolt.com/) lessons 1–12 (~4 h). Marcian — SQLBolt lessons 1–6 before his task.
 
 **Learn first:** [Supabase with Expo](https://docs.expo.dev/guides/using-supabase/) · [Expo quickstart](https://supabase.com/docs/guides/getting-started/quickstarts/expo-react-native) · [Tables & relationships](https://supabase.com/docs/guides/database/tables) · [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security) · [Migrations with the CLI](https://supabase.com/docs/guides/deployment/database-migrations) · [Generating TS types](https://supabase.com/docs/guides/api/rest/generating-types) · [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/)
 
-- [ ] Create the free **hosted** Supabase project; save URL + **publishable key** (`sb_publishable_…`, never the secret one client-side); share them through a password manager, not chat. **T**
-- [ ] 👥 **Sketch the full model** in dbdiagram.io (~1.5 h call, driver rotates); commit the exported diagram to `docs/`. **All**
+- [ ] Create the free **hosted** Supabase project; save URL + **publishable key** (`sb_publishable_…`, never the secret one client-side); share them through a password manager, not chat.
+- [ ] 👥 **Sketch the full model** in dbdiagram.io (~1.5 h call, driver rotates); commit the exported diagram to `docs/`.
 
 > **Commit:** `docs: add data model diagram`
 
-- [ ] 📖 **`parties` + `party_members`** tables with RLS — **plus the table-migration-RLS recipe**. **T**
+- [ ] 📖 **`parties` + `party_members`** tables with RLS — **plus the table-migration-RLS recipe**.
 
 > **Commit:** `feat(db): add parties and roster tables with rls`
 
-- [ ] 🔁 **`profiles`** table + RLS from the recipe. **D**
+- [ ] 🔁 **`profiles`** table + RLS from the recipe.
 
 > **Commit:** `feat(db): add profiles table with rls`
 
-- [ ] **`game_nights`, `games`, `game_results`** + RLS. **T**
+- [ ] **`game_nights`, `games`, `game_results`** + RLS.
 
 > **Commit:** `feat(db): add game night and result tables with rls`
 
-- [ ] Supabase client via `EXPO_PUBLIC_*` env vars + secure session storage on device; add a short "how the app talks to Supabase" note to the playbook. **T**
+- [ ] Supabase client via `EXPO_PUBLIC_*` env vars + secure session storage on device; add a short "how the app talks to Supabase" note to the playbook.
 
 > **Commit:** `feat(api): add supabase client with secure session storage`
 
-- [ ] 📖 **Generate TypeScript types** from the schema — **plus the regenerate-types recipe**. **D**
+- [ ] 📖 **Generate TypeScript types** from the schema — **plus the regenerate-types recipe**.
 
 > **Commit:** `chore(db): generate typescript types from schema`
 
-- [ ] 🔁 **Add `profiles.avatar_color`** (it feeds his `Avatar`) with a migration, then regenerate types — both from the recipes. **M**
+- [ ] 🔁 **Add `profiles.avatar_color`** (it feeds his `Avatar`) with a migration, then regenerate types — both from the recipes.
 
 > **Commit:** `feat(db): add avatar color to profiles`
 
-- [ ] 🧠 **Teach-back:** Dragos — what RLS is + one of Teo's policies; Marcian — what a migration is, using his own; Teo — the migration → local → hosted flow. **All**
+- [ ] 🧠 **Teach-back:** Dragos — what RLS is + one of Teo's policies; Marcian — what a migration is, using his own; Teo — the migration → local → hosted flow.
 
 > **Push & merge** to `main`.
 
@@ -321,29 +323,29 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** Sign up / log in / log out; profile row auto-created; inner screens gated. Recipes: **form** and **database trigger**.
 
-**Split:** Teo — auth-state provider + route guards + the signup trigger (recipe). Dragos — sign-up and login screens (recipe: form). Marcian — Settings screen from the new-screen recipe.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** [Supabase Auth in RN](https://supabase.com/docs/guides/auth/quickstarts/react-native) · [full Expo tutorial](https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native) · [Expo Router protected routes](https://docs.expo.dev/router/advanced/authentication/) · [Managing user data](https://supabase.com/docs/guides/auth/managing-user-data) · [React Hook Form](https://react-hook-form.com/get-started) + [Zod](https://zod.dev/)
 
-- [ ] Auth-state provider + **route guards**; handle the session-restore loading state (no login-screen flash). **T**
+- [ ] Auth-state provider + **route guards**; handle the session-restore loading state (no login-screen flash).
 
 > **Commit:** `feat(auth): guard app routes by session state`
 
-- [ ] 📖 **Profile row on signup** via a **database trigger** — **plus the trigger recipe**. **T**
+- [ ] 📖 **Profile row on signup** via a **database trigger** — **plus the trigger recipe**.
 
 > **Commit:** `feat(auth): create profile on sign up`
 
-- [ ] 📖 **Sign-up + login screens** (`DESIGN.md` §7) with React Hook Form + Zod — **plus the form recipe**. **D**
+- [ ] 📖 **Sign-up + login screens** (`DESIGN.md` §7) with React Hook Form + Zod — **plus the form recipe**.
 
 > **Commit:** `feat(auth): add email/password sign up and login`
 
-- [ ] 🔁 **Settings screen** — theme toggle + log out — from the new-screen recipe. **M**
+- [ ] 🔁 **Settings screen** — theme toggle + log out — from the new-screen recipe.
 
 > **Commit:** `feat(settings): add settings screen with theme and logout`
 
-- [ ] Verify on a phone **and** web; the session survives an app restart. **All**
-- [ ] 🧠 **Teach-back:** Dragos — the session lifecycle (login → storage → restart → restore → guard); Marcian — what happens, step by step, when you press Log out; Teo — the signup trigger. **All**
-- [ ] **Bus-factor check:** three random files, each explained by someone who didn't write it. **All**
+- [ ] Verify on a phone **and** web; the session survives an app restart.
+- [ ] 🧠 **Teach-back:** Dragos — the session lifecycle (login → storage → restart → restore → guard); Marcian — what happens, step by step, when you press Log out; Teo — the signup trigger.
+- [ ] **Bus-factor check:** three random files, each explained by someone who didn't write it.
 
 > **Push, merge, tag `v0.1.0`** — first milestone. 🎉
 
@@ -353,36 +355,36 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** Create a party (name + locked roster), list parties, view details. Recipes: **load & show data** and **database test**.
 
-**Split:** 👥 design the lock together first. **Dragos writes the lock trigger** from Teo's trigger recipe; **Teo proves it** with a database test that runs in CI (recipe). Teo builds the parties list (recipe: load data); Dragos replicates it with the detail screen; Marcian builds the create-party form from Dragos's form recipe.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** revisit the roster decision above · [Triggers](https://supabase.com/docs/guides/database/postgres/triggers) · [TanStack Query overview](https://tanstack.com/query/latest/docs/framework/react/overview) · [Mutations](https://tanstack.com/query/latest/docs/framework/react/guides/mutations) · [Insert/select data](https://supabase.com/docs/reference/javascript/insert) · [Testing your database (pgTAP)](https://supabase.com/docs/guides/database/testing)
 
-- [ ] 👥 **Roster-lock design session** (~1.5 h): when does it lock, what exactly is rejected, what does the UI show? Write the answers in the PR description of the lock. **All**
-- [ ] 📖 **"My parties" list** with TanStack Query — **plus the load-data recipe**. **T**
+- [ ] 👥 **Roster-lock design session** (~1.5 h): when does it lock, what exactly is rejected, what does the UI show? Write the answers in the PR description of the lock.
+- [ ] 📖 **"My parties" list** with TanStack Query — **plus the load-data recipe**.
 
 > **Commit:** `feat(party): list my parties`
 
-- [ ] 🔁 **Create-party form** — just a name (when/where/games belong to game nights) — from the form recipe. **M**
+- [ ] 🔁 **Create-party form** — just a name (when/where/games belong to game nights) — from the form recipe.
 
 > **Commit:** `feat(party): add create-party form`
 
-- [ ] Add players at creation (pick from existing users; ≥ 2 players). **D**
+- [ ] Add players at creation (pick from existing users; ≥ 2 players).
 
 > **Commit:** `feat(party): add players to a new party`
 
-- [ ] 🔁 **Roster lock in the database** — `locked` + trigger + RLS — from the trigger recipe. **D**
+- [ ] 🔁 **Roster lock in the database** — `locked` + trigger + RLS — from the trigger recipe.
 
 > **Commit:** `feat(db): lock party roster with a trigger`
 
-- [ ] 📖 **Prove the lock:** a direct API insert into a locked roster is rejected **by Postgres**; run it in CI — **plus the database-test recipe**. **T**
+- [ ] 📖 **Prove the lock:** a direct API insert into a locked roster is rejected **by Postgres**; run it in CI — **plus the database-test recipe**.
 
 > **Commit:** `test(db): prove the roster lock rejects changes`
 
-- [ ] 🔁 **Party detail screen** from the load-data recipe. **D**
+- [ ] 🔁 **Party detail screen** from the load-data recipe.
 
 > **Commit:** `feat(party): show party details`
 
-- [ ] 🧠 **Teach-back:** Marcian — why the lock lives in the database, not the app; Dragos — his trigger, line by line; Teo — how TanStack Query caches and refreshes the list. **All**
+- [ ] 🧠 **Teach-back:** Marcian — why the lock lives in the database, not the app; Dragos — his trigger, line by line; Teo — how TanStack Query caches and refreshes the list.
 
 > **Push & merge.**
 
@@ -394,44 +396,44 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** Run a game night inside a party, record per-player scores, see who's winning. Recipe: **pure function + unit test**.
 
-**Split:** 👥 decide the scoring rules together. Teo sets up Jest (recipe) and builds the schema-driven engine; Dragos builds the night flow, generic entry, and leaderboard; Marcian adds the played-game step and writes the tests for Teo's archetype functions (both-touch).
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** [Jest in Expo](https://docs.expo.dev/develop/unit-testing/) · [Supabase joins & nesting](https://supabase.com/docs/guides/database/joins-and-nesting) · [Expo date/time picker](https://docs.expo.dev/versions/latest/sdk/date-time-picker/)
 
-- [ ] 👥 **Scoring rules session:** define "win" per archetype and what the _night_ winner means (most game-wins vs most points); ties; missing scores. Write it down in `docs/SCORING.md` — every Phase 7 stat depends on it. **All**
+- [ ] 👥 **Scoring rules session:** define "win" per archetype and what the _night_ winner means (most game-wins vs most points); ties; missing scores. Write it down in `docs/SCORING.md` — every Phase 7 stat depends on it.
 
 > **Commit:** `docs: define scoring and win rules`
 
-- [ ] 🔁 **"New game night"** form: date/time, location (free text), planned games — from the form recipe. **D**
+- [ ] 🔁 **"New game night"** form: date/time, location (free text), planned games — from the form recipe.
 
 > **Commit:** `feat(gamenight): create a game night within a party`
 
-- [ ] 🔁 **Add a played game** to the night (typed name for now; the catalog picker lands in Phase 8) — from the form recipe. **M**
+- [ ] 🔁 **Add a played game** to the night (typed name for now; the catalog picker lands in Phase 8) — from the form recipe.
 
 > **Commit:** `feat(gamenight): add a played game to a night`
 
-- [ ] 📖 **Set up Jest**, add `test` to CI, cover the first pure function — **plus the unit-test recipe**. **T**
+- [ ] 📖 **Set up Jest**, add `test` to CI, cover the first pure function — **plus the unit-test recipe**.
 
 > **Commit:** `test: set up jest and run tests in ci`
 
-- [ ] 🔁 **Generic score entry** (one number per player) + winner as a **tested pure function** — whole flow end-to-end before going schema-driven. **D**
+- [ ] 🔁 **Generic score entry** (one number per player) + winner as a **tested pure function** — whole flow end-to-end before going schema-driven.
 
 > **Commit:** `feat(scoring): record per-player scores for a game`
 
-- [ ] **Schema-driven entry:** render inputs from the game's scoring schema; compute the winner per archetype; store structured results. **T**
+- [ ] **Schema-driven entry:** render inputs from the game's scoring schema; compute the winner per archetype; store structured results.
 
 > **Commit:** `feat(scoring): render score entry from the game's schema`
 
-- [ ] 🔁 **Unit tests for Teo's archetype winner functions** — from the unit-test recipe (both-touch). **M**
+- [ ] 🔁 **Unit tests for Teo's archetype winner functions** — from the unit-test recipe (both-touch).
 
 > **Commit:** `test(scoring): cover archetype winner rules`
 
-- [ ] 🔁 **Live game-night leaderboard** from the load-data recipe. **D**
+- [ ] 🔁 **Live game-night leaderboard** from the load-data recipe.
 
 > **Commit:** `feat(scoring): show game-night leaderboard`
 
-- [ ] 🧠 **Teach-back:** Marcian — the night flow (Dragos's); Dragos — archetype → rendered inputs → winner (Teo's); Teo — the leaderboard query (Dragos's). **All**
-- [ ] **Bus-factor check.** **All**
+- [ ] 🧠 **Teach-back:** Marcian — the night flow (Dragos's); Dragos — archetype → rendered inputs → winner (Teo's); Teo — the leaderboard query (Dragos's).
+- [ ] **Bus-factor check.**
 
 > **Push, merge, tag `v0.2.0`** — playable MVP. 🎉
 
@@ -443,40 +445,40 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** Win rates overall, per party, per game, head-to-head. Recipes: **seed data** and **SQL view / RPC**.
 
-**Split:** Teo builds the seed dataset with hand-computed answers (recipe) and the harder SQL; Dragos writes the first view (recipe) and the screens; Marcian adds tie scenarios to the seed, writes a small view of his own, and verifies every number on screen by hand — the verification _is_ the SQL lesson.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** [Postgres aggregates](https://www.postgresql.org/docs/current/functions-aggregate.html) · [Views](https://www.postgresql.org/docs/current/sql-createview.html) · [DB functions (RPC)](https://supabase.com/docs/guides/database/functions) — do the math in the database · [Seeding your database](https://supabase.com/docs/guides/local-development/seeding-your-database)
 
-- [ ] 📖 **Seed dataset with known answers** (hand-computed win rates in a comment) — **plus the seed recipe**. **T**
+- [ ] 📖 **Seed dataset with known answers** (hand-computed win rates in a comment) — **plus the seed recipe**.
 
 > **Commit:** `chore(db): add seed dataset with known stats`
 
-- [ ] 🔁 **Add tie and missing-score scenarios** to the seed, with their expected answers. **M**
+- [ ] 🔁 **Add tie and missing-score scenarios** to the seed, with their expected answers.
 
 > **Commit:** `chore(db): add tie scenarios to seed data`
 
-- [ ] 📖 **Global win rate** view — **plus the SQL view recipe**. **D**
+- [ ] 📖 **Global win rate** view — **plus the SQL view recipe**.
 
 > **Commit:** `feat(stats): compute global win rate`
 
-- [ ] 🔁 **Games played per player** view, from the recipe. **M**
+- [ ] 🔁 **Games played per player** view, from the recipe.
 
 > **Commit:** `feat(stats): count games played per player`
 
-- [ ] 🔁 **Per-game and per-party** win rates, from the recipe. **T**
+- [ ] 🔁 **Per-game and per-party** win rates, from the recipe.
 
 > **Commit:** `feat(stats): add per-game and per-party win rates`
 
-- [ ] **Head-to-head** vs any player (surfaces on friend profiles in Track B). **T**
+- [ ] **Head-to-head** vs any player (surfaces on friend profiles in Track B).
 
 > **Commit:** `feat(stats): add head-to-head stats between players`
 
-- [ ] 🔁 **Stats screens** from the load-data recipe. **D**
+- [ ] 🔁 **Stats screens** from the load-data recipe.
 
 > **Commit:** `feat(stats): add stats screens`
 
-- [ ] **Verify every number on screen by hand** against the seed's known answers. **M**
-- [ ] 🧠 **Teach-back:** Marcian — one aggregate query, line by line; Dragos — the head-to-head SQL (Teo's); Teo — Dragos's view. **All**
+- [ ] **Verify every number on screen by hand** against the seed's known answers.
+- [ ] 🧠 **Teach-back:** Marcian — one aggregate query, line by line; Dragos — the head-to-head SQL (Teo's); Teo — Dragos's view.
 
 > **Push & merge.**
 
@@ -490,44 +492,44 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Already in the repo:** `docs/scripts/games_schema.sql` (games table, indexes, RLS, `search_games_by_players`) and `docs/scripts/import_bgg_games.py` (top ~5000 BGG games importer — **it's Python, Dragos: your home turf**).
 
-**Split:** Dragos owns the import (recipe) and the catalog list UI; Marcian re-runs the import from the recipe alone and builds the custom-game form; Teo does live BGG search + caching (recipe), archetypes, and the LLM enrichment. Wire the picker together.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** [BGG XML API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2) — XML not JSON, rate-limited · [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) · [FlatList](https://reactnative.dev/docs/flatlist) · [debouncing](https://developer.mozilla.org/en-US/docs/Glossary/Debounce)
 
-- [ ] 📖 **Games migration** from `games_schema.sql` + run the Python import — **plus the import recipe**. **D**
+- [ ] 📖 **Games migration** from `games_schema.sql` + run the Python import — **plus the import recipe**.
 
 > **Commit:** `feat(catalog): add games schema migration and bgg import`
 
-- [ ] 🔁 **Re-run the import on your own machine** from the recipe only; fix whatever was unclear. **M**
+- [ ] 🔁 **Re-run the import on your own machine** from the recipe only; fix whatever was unclear.
 
 > **Commit:** `docs(playbook): clarify bgg import recipe`
 
-- [ ] 📖 **Live BGG search** for games not yet cached; cache fetched games (respect rate limits) — **plus the external-API recipe**. **T**
+- [ ] 📖 **Live BGG search** for games not yet cached; cache fetched games (respect rate limits) — **plus the external-API recipe**.
 
 > **Commit:** `feat(catalog): integrate boardgamegeek search with caching`
 
-- [ ] **Catalog list UI:** FlatList + debounced search + filters (type, player count, difficulty). Player-count rule (already server-side): query `qmin–qmax` matches when `min ≥ qmin − 1`, `min ≤ qmin`, `max ≥ qmax`; single `n` = `n–n`. **D**
+- [ ] **Catalog list UI:** FlatList + debounced search + filters (type, player count, difficulty). Player-count rule (already server-side): query `qmin–qmax` matches when `min ≥ qmin − 1`, `min ≤ qmin`, `max ≥ qmax`; single `n` = `n–n`.
 
 > **Commit:** `feat(catalog): add catalog search bar and filters`
 
-- [ ] 🔁 **Custom (non-BGG) game** form, same fields — from the form recipe. **M**
+- [ ] 🔁 **Custom (non-BGG) game** form, same fields — from the form recipe.
 
 > **Commit:** `feat(catalog): add custom user-created games`
 
-- [ ] Wire the catalog into Phase 6's game picker. **T + D**
+- [ ] Wire the catalog into Phase 6's game picker.
 
 > **Commit:** `feat(catalog): select catalog games when scoring`
 
-- [ ] Game detail screen + **scoring schemas**: ~10 win-condition archetypes + a deterministic mechanic-based default classifier. **T**
+- [ ] Game detail screen + **scoring schemas**: ~10 win-condition archetypes + a deterministic mechanic-based default classifier.
 
 > **Commit:** `feat(catalog): add scoring archetypes and mechanic-based defaults`
 
-- [ ] Enrich popular games via an **offline batch LLM script**, cached as JSON in the DB; hand-curate the top ~100; hosts can override. **T**
+- [ ] Enrich popular games via an **offline batch LLM script**, cached as JSON in the DB; hand-curate the top ~100; hosts can override.
 
 > **Commit:** `feat(catalog): generate detailed scoring schemas (cached)`
 
-- [ ] 🧠 **Teach-back:** Dragos — caching + rate limits (Teo's); Marcian — how a game travels from BGG into our table; Teo — the player-count SQL rule. **All**
-- [ ] **Bus-factor check.** **All**
+- [ ] 🧠 **Teach-back:** Dragos — caching + rate limits (Teo's); Marcian — how a game travels from BGG into our table; Teo — the player-count SQL rule.
+- [ ] **Bus-factor check.**
 
 > **Push, merge, tag `v0.3.0`.** 🎉
 
@@ -539,42 +541,42 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Goal:** Tested, polished, deployed — and **anyone can ship a release**. **v1.0.0.** Recipes: **UI states**, **E2E flow**, **build & release**.
 
-**Split:** each person tests and polishes code **they didn't write**. Teo writes the E2E and release recipes; Dragos replicates both (full release dry-run); Marcian does a web-deploy dry-run and his first database test.
+**Who does what:** the equal split in [`TASKS.md`](./TASKS.md).
 
 **Learn first:** [RN Testing Library](https://callstack.github.io/react-native-testing-library/) · [Maestro](https://docs.maestro.dev/) · [EAS Build](https://docs.expo.dev/build/introduction/) · [EAS Hosting](https://docs.expo.dev/eas/hosting/introduction/)
 
-- [ ] **Test top-up:** each person adds tests for code someone else wrote (scoring, win-rate math, roster lock). **All**
+- [ ] **Test top-up:** each person adds tests for code someone else wrote (scoring, win-rate math, roster lock).
 
 > **Commit:** `test: cover scoring and win-rate logic`
 
-- [ ] 🔁 **Database test** for one RLS policy (e.g. "a non-member can't see a party"), from the recipe. **M**
+- [ ] 🔁 **Database test** for one RLS policy (e.g. "a non-member can't see a party"), from the recipe.
 
 > **Commit:** `test(db): cover party visibility policy`
 
-- [ ] 📖 **Loading / empty / error states** on screens you didn't build — **plus the UI-states recipe**. **D**
+- [ ] 📖 **Loading / empty / error states** on screens you didn't build — **plus the UI-states recipe**.
 
 > **Commit:** `fix(ui): add loading, empty, and error states`
 
-- [ ] 🔁 **States on the remaining screens**, from the recipe. **M**
+- [ ] 🔁 **States on the remaining screens**, from the recipe.
 
 > **Commit:** `fix(ui): add states to remaining screens`
 
-- [ ] 📖 **Maestro happy path** (sign in → create party → record a score) — **plus the E2E recipe**. **T**
+- [ ] 📖 **Maestro happy path** (sign in → create party → record a score) — **plus the E2E recipe**.
 
 > **Commit:** `test(e2e): add core user-journey flow`
 
-- [ ] 🔁 **Second E2E flow** (sign up → log out → log in) from the recipe. **D**
+- [ ] 🔁 **Second E2E flow** (sign up → log out → log in) from the recipe.
 
 > **Commit:** `test(e2e): add auth round-trip flow`
 
-- [ ] 📖 **Mobile build + web deploy** to a free host — **plus the release recipe** (`docs/playbook/release.md`). **T**
+- [ ] 📖 **Mobile build + web deploy** to a free host — **plus the release recipe** (`docs/playbook/release.md`).
 
 > **Commit:** `chore: configure builds and web deploy`
 
-- [ ] 🔁 **Release dry-run, solo:** Dragos ships a full release from the recipe, narrating every step; nobody helps. **D**
-- [ ] 🔁 **Web-deploy dry-run, solo:** Marcian deploys web from the recipe. **M**
-- [ ] 🧠 **Whole-app teach-back:** each person explains one screen, one table, and one test they didn't write. **All**
-- [ ] **Bus-factor check** + update the skills matrix: every cell at least **U**? **All**
+- [ ] 🔁 **Release dry-run, solo:** Dragos ships a full release from the recipe, narrating every step; nobody helps.
+- [ ] 🔁 **Web-deploy dry-run, solo:** Marcian deploys web from the recipe.
+- [ ] 🧠 **Whole-app teach-back:** each person explains one screen, one table, and one test they didn't write.
+- [ ] **Bus-factor check** + update the skills matrix: every cell at least **U**?
 
 > **Push, merge, tag `v1.0.0`** — shipped. 🎉
 
@@ -588,11 +590,11 @@ Same discipline, one phase per branch, tag each. Recipes exist for most kinds of
 
 [Many-to-many modeling](https://supabase.com/docs/guides/database/joins-and-nesting). Requests (send/accept/decline) → friends list → friend profile with Phase 7 head-to-head → upgrade party invites to friends-list picks. Store a friendship **once**, query both directions; RLS so only accepted friends see data.
 
-- [ ] 🔁 Friendships schema + RLS + a **database test proving a non-friend can't see data** — from the table and db-test recipes. **D**
-- [ ] Send / accept / decline friend requests. **T**
-- [ ] 🔁 Friends list + friend profile with head-to-head stats — from the load-data recipe. **M**
-- [ ] Invite party players from the friends list. **T**
-- [ ] 🧠 Teach-back: the store-once, query-both-directions friendship model — explained by someone who didn't write it. **All**
+- [ ] 🔁 Friendships schema + RLS + a **database test proving a non-friend can't see data** — from the table and db-test recipes.
+- [ ] Send / accept / decline friend requests.
+- [ ] 🔁 Friends list + friend profile with head-to-head stats — from the load-data recipe.
+- [ ] Invite party players from the friends list.
+- [ ] 🧠 Teach-back: the store-once, query-both-directions friendship model — explained by someone who didn't write it.
 
 > **Commits:** `feat(db): add friendships with rls` · `feat(friends): send and respond to friend requests` · `feat(friends): add friends list and profile` · `feat(party): invite players from friends list`
 
@@ -600,11 +602,11 @@ Same discipline, one phase per branch, tag each. Recipes exist for most kinds of
 
 [Supabase Realtime](https://supabase.com/docs/guides/realtime) · [Postgres Changes](https://supabase.com/docs/guides/realtime/postgres-changes) · [inverted FlatList](https://reactnative.dev/docs/flatlist#inverted) · [KeyboardAvoidingView](https://reactnative.dev/docs/keyboardavoidingview). Messages table + RLS → 1:1 conversation screen → realtime inserts. Unsubscribe on unmount (leaks hit limits); optimistic send. Group chats: later, decide then.
 
-- [ ] 🔁 **Messages schema + policies** — Marcian's first solo schema, from the recipes. **M**
-- [ ] Direct-message conversation screen. **D**
-- [ ] 📖 Stream new messages in realtime (subscribe/unsubscribe lifecycle, optimistic send) — **plus the realtime recipe**. **T**
-- [ ] 🔁 Make the game-night leaderboard live, from the realtime recipe. **D**
-- [ ] 🧠 Teach-back: the subscription lifecycle — explained by Marcian. **All**
+- [ ] 🔁 **Messages schema + policies** — Marcian's first solo schema, from the recipes.
+- [ ] Direct-message conversation screen.
+- [ ] 📖 Stream new messages in realtime (subscribe/unsubscribe lifecycle, optimistic send) — **plus the realtime recipe**.
+- [ ] 🔁 Make the game-night leaderboard live, from the realtime recipe.
+- [ ] 🧠 Teach-back: the subscription lifecycle — explained by Marcian.
 
 > **Commits:** `feat(chat): add messages schema and policies` · `feat(chat): add direct message conversation screen` · `feat(chat): stream new messages in realtime` · `feat(scoring): update leaderboard in realtime`
 
@@ -612,12 +614,12 @@ Same discipline, one phase per branch, tag each. Recipes exist for most kinds of
 
 [Expo push](https://docs.expo.dev/push-notifications/overview/) · [setup](https://docs.expo.dev/push-notifications/push-notifications-setup/) · [sending](https://docs.expo.dev/push-notifications/sending-notifications/) · [Edge Functions](https://supabase.com/docs/guides/functions). **Expo Go can't receive Android push since SDK 53** — you need a [development build](https://docs.expo.dev/develop/development-builds/introduction/). Sending lives server-side only, never in the client. Web push: out of scope, note it.
 
-- [ ] Development build configuration (add it to the release recipe). **T**
-- [ ] Register and store push tokens. **M**
-- [ ] 📖 Edge Function that sends a push on party invite — **plus the Edge Function recipe**. **D**
-- [ ] 🔁 Edge Function: notify the party when a game night is scheduled, from the recipe. **T**
-- [ ] Deep-link from notification taps. **D**
-- [ ] 🧠 Teach-back: why sending lives server-side — explained by Marcian. **All**
+- [ ] Development build configuration (add it to the release recipe).
+- [ ] Register and store push tokens.
+- [ ] 📖 Edge Function that sends a push on party invite — **plus the Edge Function recipe**.
+- [ ] 🔁 Edge Function: notify the party when a game night is scheduled, from the recipe.
+- [ ] Deep-link from notification taps.
+- [ ] 🧠 Teach-back: why sending lives server-side — explained by Marcian.
 
 > **Commits:** `chore: add development build configuration` · `feat(notifications): register and store push tokens` · `feat(notifications): send push on party invite` · `feat(notifications): notify players about new game nights` · `feat(notifications): deep-link from notification taps`
 
@@ -625,32 +627,32 @@ Same discipline, one phase per branch, tag each. Recipes exist for most kinds of
 
 [Actions quickstart](https://docs.github.com/en/actions/quickstart) · [Expo on CI](https://docs.expo.dev/build-reference/build-on-ci/) · [EAS + Actions](https://docs.expo.dev/eas-update/github-actions/) · [Supabase environments](https://supabase.com/docs/guides/deployment/managing-environments) · [Dependabot](https://docs.github.com/en/code-security/dependabot) · [Sentry RN](https://docs.sentry.io/platforms/react-native/).
 
-- [ ] 👥 📖 **Pair on the first workflow** — migrations against a disposable Postgres in CI — Marcian drives, Teo navigates — **plus the CI-workflow recipe**. **T + M**
-- [ ] 🔁 Web deploy on merge + PR previews. **D**
-- [ ] 🔁 EAS build on release tags. **M**
-- [ ] Apply migrations to production on release (token in Actions secrets). **T**
-- [ ] Dependabot + secret scanning + CodeQL. **D**
-- [ ] Sentry error monitoring with sourcemaps. **T**
-- [ ] 🔁 CI badges + automated changelog from Conventional Commits. **M**
-- [ ] 🧠 Final teach-back: each person explains a pipeline someone else wrote, end to end. Final skills-matrix check: every cell **R** or better? **All**
+- [ ] 👥 📖 **Pair on the first workflow** — migrations against a disposable Postgres in CI — Marcian drives, Teo navigates — **plus the CI-workflow recipe**.
+- [ ] 🔁 Web deploy on merge + PR previews.
+- [ ] 🔁 EAS build on release tags.
+- [ ] Apply migrations to production on release (token in Actions secrets).
+- [ ] Dependabot + secret scanning + CodeQL.
+- [ ] Sentry error monitoring with sourcemaps.
+- [ ] 🔁 CI badges + automated changelog from Conventional Commits.
+- [ ] 🧠 Final teach-back: each person explains a pipeline someone else wrote, end to end. Final skills-matrix check: every cell **R** or better?
 
 > **Commits:** `ci: run database migrations against disposable postgres in ci` · `ci: build and deploy web on merge to main` · `ci: trigger eas build on release tags` · `ci: apply supabase migrations to production on release` · `chore(security): enable dependabot, secret scanning, and code scanning` · `feat(observability): add sentry error monitoring with sourcemaps` · `docs: add ci badges and automated changelog`
 
 ---
 
-## Timeline (Teo ~40 + Dragos ~15 + Marcian ~5–10 h/week — ranges, not promises)
+## Timeline (equal split — ranges, not promises; re-baselined 2026-11-02)
 
-Three people are **not** three times the speed — especially while two are learning, one is mentoring, and every kind of task gets done more than once on purpose. Teo should budget **~6–8 h/week** for reviews and mentoring through Phase 5. The payoff compounds from Phase 6 on, and in Track B nobody is a bottleneck.
+Three people are **not** three times the speed, especially while two are learning and every kind of task gets done more than once on purpose. With an equal split, a step finishes when the **slowest column** finishes, so the dates below are later than v4's. Teo should budget **~6–8 h/week** for reviews and pairing through Phase 5. The payoff compounds from Phase 6 on, and in Track B nobody is a bottleneck. Step-by-step dates up to `v0.1.0`: [`TASKS.md` → Rough timeline](./TASKS.md#rough-timeline-re-check-it-in-every-sync).
 
-| Milestone                                       | Phases    | Roughly when (from 2026-10-19)      |
-| ----------------------------------------------- | --------- | ----------------------------------- |
-| Design system + schema + login (**v0.1.0**)     | O + 2 → 4 | **~5–6 weeks** (late November 2026) |
-| Playable MVP: party + game night (**v0.2.0**)   | 5 → 6     | **~10–12 weeks** (mid-January 2027) |
-| Stats + catalog (**v0.3.0**)                    | 7 → 8     | **~15–17 weeks** (February 2027)    |
-| Polished release (**v1.0.0**)                   | 9         | **~18–21 weeks** (March 2027)       |
-| Friends + chat + push + automation (**v1.4.0**) | 10 → 13   | **~7–8 months** (May–June 2027)     |
+| Milestone                                       | Phases    | Roughly when (from 2026-11-02)       |
+| ----------------------------------------------- | --------- | ------------------------------------ |
+| Design system + schema + login (**v0.1.0**)     | O + 1 → 4 | **~10–12 weeks** (mid–late Jan 2027) |
+| Playable MVP: party + game night (**v0.2.0**)   | 5 → 6     | **~4–5 months** (March 2027)         |
+| Stats + catalog (**v0.3.0**)                    | 7 → 8     | **~6 months** (April–May 2027)       |
+| Polished release (**v1.0.0**)                   | 9         | **~7 months** (June 2027)            |
+| Friends + chat + push + automation (**v1.4.0**) | 10 → 13   | **~11–12 months** (autumn 2027)      |
 
-The holidays fall inside the v0.2.0 window — plan a lighter fortnight. Faster: small tickets, honest weekly syncs, recipes written while the work is fresh. Slower: big unscoped tasks, skipping reviews "just this once", recipes written weeks later from memory, long gaps between sessions.
+The holidays fall inside Step 2 (the database). Plan a lighter fortnight. Faster: small tickets, honest weekly syncs, recipes written while the work is fresh. Slower: big unscoped tasks, skipping reviews "just this once", recipes written weeks later from memory, long gaps between sessions.
 
 ---
 

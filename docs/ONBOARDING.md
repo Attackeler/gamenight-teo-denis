@@ -1,6 +1,6 @@
 # Gamenight — Onboarding (Dragos and Marcian, start here)
 
-Welcome to the team. This guide takes you from where you are today to shipping reviewed code in this repo. It's the long version of **Phase O** in [`ROADMAP.md`](./ROADMAP.md). There are two learning paths — **Dragos** (coming from some Python) and **Marcian** (starting from zero) — and everything else is shared.
+Welcome to the team. This guide takes you from where you are today to shipping reviewed code in this repo. This guide is about **learning**; your actual tasks (split equally, in baby steps) are in [`TASKS.md`](./TASKS.md), and you work on both in parallel. There are two learning paths — **Dragos** (coming from some Python) and **Marcian** (starting from zero) — and everything else is shared.
 
 **The deal:** the project has one goal above shipping fast — **anyone on the team can do any kind of task in this repo.** If Teo builds something, you two can build the next one like it, from a written recipe, without asking. That's why you'll replicate tasks, review code you don't fully understand yet, and explain other people's work back to them. You are not "the juniors who do the small stuff"; you're engineers who happen to be earlier on the curve, on a team built so the curve flattens fast.
 
@@ -22,64 +22,11 @@ A free mobile + web app for friend groups to track board-game-night scores and w
 
 ---
 
-## 2. Set up your machine (~half a day — Marcian, do this on a call with Teo)
+## 2. Set up your machine
 
-Work top to bottom; each step assumes the previous one. **Windows:** install [Git for Windows](https://git-scm.com/downloads) and use **Git Bash** (or WSL) for every command below — the VS Code terminal can be switched to Git Bash.
+Follow **[`SETUP.md`](./SETUP.md)** top to bottom. Marcian and Dragos: do it on a call with Teo. It takes 1–2 hours.
 
-1. **Git + GitHub.** Install [git](https://git-scm.com/downloads). Make a GitHub account if needed and send Teo your username — he adds you as a collaborator on `Attackeler/gamenight-teo-denis`. Then tell git who you are:
-
-    ```bash
-    git config --global user.name "Your Name"
-    git config --global user.email "you@example.com"
-    ```
-
-2. **Node.js 26.4 + npm 11** — the repo **enforces** these versions (`engines` + `engine-strict`), so use a version manager instead of a system install: [nvm](https://github.com/nvm-sh/nvm) on macOS/Linux, [nvm-windows](https://github.com/coreybutler/nvm-windows) or [Volta](https://volta.sh/) on Windows. Then:
-
-    ```bash
-    nvm install 26.4.0
-    nvm use 26.4.0
-    node -v        # should print v26.4.0
-    ```
-
-3. **VS Code** — [download](https://code.visualstudio.com/). When you open the project it offers _"This workspace has extension recommendations"_ → **Install All**. What each one does: [`EXTENSIONS.md`](./EXTENSIONS.md). Turn on **Format on Save** (Settings → search "format on save").
-4. **Docker Desktop** — [install](https://www.docker.com/products/docker-desktop/). Only used to run the Supabase backend locally; you never write Dockerfiles here.
-5. **Clone and install:**
-
-    ```bash
-    git clone https://github.com/Attackeler/gamenight-teo-denis.git
-    cd gamenight-teo-denis
-    npm install        # also installs the git hooks (husky) automatically
-    ```
-
-6. **Local backend up:**
-
-    ```bash
-    npx supabase start   # first run downloads containers — takes a while
-    npx supabase status  # prints local URLs and keys
-    ```
-
-7. **Environment file:** copy `.env.example` to a new file `.env.local`; fill `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_KEY` with the **API URL** and **publishable/anon key** from `npx supabase status`. (`.env.local` is git-ignored — secrets never get committed.)
-
-    ```bash
-    cp .env.example .env.local
-    ```
-
-8. **Run the app:**
-
-    ```bash
-    npx expo start       # or: make start-app (starts supabase too, uses a tunnel)
-    ```
-
-    - **Phone:** install **Expo Go** ([iOS](https://apps.apple.com/app/expo-go/id982107779) / [Android](https://play.google.com/store/apps/details?id=host.exp.exponent)), scan the QR code from the terminal.
-    - **Browser:** press `w` in the same terminal.
-
-9. **Verify the toolchain** — the same three checks CI runs on every PR (ESLint, Prettier, TypeScript):
-
-    ```bash
-    make check-files
-    ```
-
-**Done when:** the app renders on your phone **and** in the browser, and `make check-files` passes. Tick your setup task in `gamenight-roadmap.html`. **Anything that went wrong** — tell Teo, with the error message: it goes into the local-environment recipe (`docs/playbook/local-env.md`) so the next person doesn't hit it.
+**Done when:** the app renders on your phone **and** in the browser, and `make check-files` passes. Every problem you hit, with its fix, goes into the local-environment recipe (`docs/playbook/local-env.md`), which is your task 0.D2 / 0.M2 in [`TASKS.md`](./TASKS.md).
 
 ---
 
@@ -134,7 +81,7 @@ The concepts transfer; mostly the spelling changes:
 
 ## 3B. Marcian's learning path (~8–10 weeks at 5–10 h/week)
 
-You're learning programming itself, not just this stack — so this path is longer and gentler, and **that's planned for**. Nothing in Phase 2–3 waits on you. Your first real PR (`Avatar`) is waiting whenever you get there.
+You're learning programming itself, not just this stack — so this path is longer and gentler, and **that's planned for**. You get the same number of tasks as everyone else ([`TASKS.md`](./TASKS.md)), but they're sized as baby steps, and your first code task (`Avatar`, task 1.M1) is **paired with Teo**. So you start contributing long before this path is finished. Your practice PR (task 0.M3) comes in week 1–2: follow the git recipe step by step on a call, and the Learn Git Branching levels below will make it click afterwards.
 
 **How to study:** one main resource at a time, hands on the keyboard. When something doesn't click, read the same topic in a second place ([javascript.info](https://javascript.info/) is great for that), then ask. Keep a notes file of things that confused you — it becomes great questions for the weekly sync.
 
@@ -158,7 +105,7 @@ You're learning programming itself, not just this stack — so this path is long
 - **Learn Git Branching:** [learngitbranching.js.org](https://learngitbranching.js.org/) — the "Introduction Sequence" and "Push & Pull — Git Remotes!" levels. It's a game; it's the best way to _see_ branches.
 - **The team way:** read the [git recipe](./playbook/git-pr-flow.md) top to bottom.
 
-> **Checkpoint = practice PR:** following the git recipe exactly, fill in your favorite board game in the team table in `docs/README.md` (commit `docs: add my favorite game to the team table`). Dragos reviews. If any step of the recipe confused you, fix the recipe in the same PR — that's your first replica. 🎉
+> **Checkpoint:** open your next small PR **on your own**, without a call. That's task 0.M4 (fix two npm scripts) in `TASKS.md`. Dragos reviews. If any step of the git recipe confused you, fix the recipe in the same PR. 🎉
 >
 > **From now on:** shadow-review one PR a week — read it, and leave at least one question in the thread.
 
@@ -175,7 +122,7 @@ You're learning programming itself, not just this stack — so this path is long
 
 > **Checkpoint:** trace one color from `src/theme/tokens.ts` all the way to the screen — which file defines it, which passes it along, which component uses it — and explain it to Dragos.
 >
-> **First real PR:** build `Avatar` (a person's initials in a colored circle, using the `avatar` tokens) from the **base-component recipe** (`docs/playbook/base-component.md`). Dragos reviews first, then Teo. Commit `feat(ui): add avatar component`.
+> **By now you've built `Avatar` and `Chip`** (tasks 1.M1 and 1.M2). Re-read your own `Avatar` code and explain every line to Dragos. If you can't explain a line yet, that's the next thing to learn.
 
 **Later (before your Phase 3 task):** [SQLBolt](https://sqlbolt.com/) lessons 1–6.
 
