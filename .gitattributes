@@ -1,0 +1,16 @@
+# Always check files out with LF line endings, on every OS.
+# Prettier requires LF; without this, Windows checkouts get CRLF and fail checks.
+* text=auto eol=lf
+
+# Binary files: never touch line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.pyc binary
+*.bundle binary
