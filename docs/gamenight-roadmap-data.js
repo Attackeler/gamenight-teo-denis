@@ -319,8 +319,9 @@ const PHASES = [
             },
             {
                 id: 'p2-wip',
-                t: 'Commit and push the July base-component WIP (it only exists on Teo’s disk)',
-                o: 'T'
+                t: 'Commit and push the July base-component drafts',
+                o: 'T',
+                done: true
             },
             {
                 id: 'p2-fix',

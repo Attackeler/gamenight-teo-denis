@@ -25,7 +25,7 @@ Where we are right now: [`STATUS.md`](./STATUS.md). Set up your machine first: [
 
 ### Teo
 
-- [ ] **0.T1 — Commit and push the components** (they only exist on your disk)
+- [x] **0.T1 — Commit and push the components** (done 2026-11-02, `9db642e`)
     - `git switch feat/phase-2-design-system`
     - `make check-files`, then fix anything red
     - `git add src/components app/index.tsx`, then commit `feat(ui): add base component drafts`
