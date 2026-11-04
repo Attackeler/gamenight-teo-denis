@@ -1,0 +1,75 @@
+# Checks every week whether Expo has a new SDK or patch release. If anything
+# is out of date, it upgrades the project and opens (or refreshes) a pull
+# request so a teammate can review and merge it like any other change.
+
+name: Expo update
+
+on:
+    schedule:
+        - cron: '0 6 * * 1' # Mondays 06:00 UTC
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pull-requests: write
+    actions: write
+
+jobs:
+    expo-update:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js 26.4.0
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 26.4.0
+                  cache: 'npm'
+            - run: npm ci
+
+            - name: Upgrade Expo and align SDK packages
+              id: upgrade
+              run: |
+                  before=$(node -p "require('expo/package.json').version")
+                  npx expo install expo@latest
+                  # --fix can stop after installing while it edits config plugins; a second pass finishes it
+                  npx expo install --fix || npx expo install --fix
+                  after=$(node -p "require('./node_modules/expo/package.json').version")
+                  npx prettier --write package.json package-lock.json
+                  echo "before=$before" >> "$GITHUB_OUTPUT"
+                  echo "after=$after" >> "$GITHUB_OUTPUT"
+
+            - name: Run Expo Doctor
+              run: |
+                  {
+                      echo 'Automated by `.github/workflows/expo-update.yaml`.'
+                      echo
+                      echo 'Expo `${{ steps.upgrade.outputs.before }}` → `${{ steps.upgrade.outputs.after }}`.'
+                      echo 'If this is a new SDK (first number changed), read the changelog at https://expo.dev/changelog,'
+                      echo 'fix anything Expo Doctor reports below, and try the app on a phone before merging.'
+                      echo
+                      echo '### Expo Doctor'
+                      echo '```'
+                      npx expo-doctor 2>&1 || true
+                      echo '```'
+                  } > "$RUNNER_TEMP/doctor.md"
+
+            - name: Open or update the pull request
+              id: pr
+              uses: peter-evans/create-pull-request@v7
+              with:
+                  branch: chore/expo-auto-update
+                  delete-branch: true
+                  commit-message: 'chore(deps): update expo to ${{ steps.upgrade.outputs.after }}'
+                  title: 'chore(deps): update expo to ${{ steps.upgrade.outputs.after }}'
+                  body-path: ${{ runner.temp }}/doctor.md
+                  add-paths: |
+                      package.json
+                      package-lock.json
+
+            # Pushes made with GITHUB_TOKEN don't trigger other workflows, so start CI by hand.
+            - name: Run CI on the pull request
+              if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: gh workflow run node.js.yaml --ref chore/expo-auto-update
