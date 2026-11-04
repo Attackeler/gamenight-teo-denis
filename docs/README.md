@@ -1,46 +1,51 @@
 # Gamenight — docs
 
-A free **mobile + web app** for friend groups to track board-game-night scores and win rates — a solo learn-by-doing project by **Teo**.
+A free **mobile + web app** for friend groups to track board-game-night scores and win rates, built by a team of three. The shared goal: **anyone on the team can do any kind of task in this repo.** If one of us did it once, the others can do it again from the recipe.
+
+## The team
+
+| Who     | Time         | Starting point                       | Favorite board game |
+| ------- | ------------ | ------------------------------------ | ------------------- |
+| Teo     | ~40 h/week   | Started the project, knows the stack | —                   |
+| Dragos  | ~15 h/week   | Coming from Python; new to JS/React  | —                   |
+| Marcian | ~5–10 h/week | Learning programming from zero       | —                   |
+
+**Work is split equally:** the same number of tasks per person in every step. Teo's extra hours go to reviews and pairing. See [`TASKS.md`](./TASKS.md).
+
+_Fill in your favorite game: that's Marcian's practice PR (task 0.M3)._
 
 ---
 
-## Start here
+## Read these, in this order
 
-1. **`ROADMAP.md`** — the full solo build plan: phase order, what's already done (audited from git history), learning links, ready-made commit messages, and the timeline.
-2. **`gamenight-roadmap.html`** — the same plan as a **clickable tracker**. Keep it open while you work.
-3. **`DESIGN.md`** — the design spec (feeds Phase 2, the design system).
-4. **`EXTENSIONS.md`** — recommended editor extensions, phase by phase.
-5. **`gamenight-mockups.html`** / **`gamenight-web.html`** — visual mockups.
-6. **`scripts/`** — SQL schema + BoardGameGeek import helpers (used in Phase 8; see its README).
+| #   | File                                                   | What it answers                                                |
+| --- | ------------------------------------------------------ | -------------------------------------------------------------- |
+| 1   | [`STATUS.md`](./STATUS.md)                             | Where are we right now? What's on which branch? What's broken? |
+| 2   | [`SETUP.md`](./SETUP.md)                               | How do I get the app running on my machine?                    |
+| 3   | [`TASKS.md`](./TASKS.md)                               | What's my next task, and what are its baby steps?              |
+| 4   | [`playbook/git-pr-flow.md`](./playbook/git-pr-flow.md) | How do I get a change into `main`?                             |
+| 5   | [`ONBOARDING.md`](./ONBOARDING.md)                     | What should I learn, and in what order? (Dragos and Marcian)   |
 
----
+## Reference (open when you need it)
 
-## The tracker — and how progress is saved now
+- **[`ROADMAP.md`](./ROADMAP.md)**: the full plan. **What** we build in each phase and **why**, learning links, gotchas. Who does what lives in `TASKS.md`.
+- **`gamenight-roadmap.html`**: the clickable tracker. Double-click it to open it in your browser, then click your name to see only your tasks. Ticks save in that browser; use **Export / Import** to move them to another computer. The task list itself lives in `gamenight-roadmap-data.js`.
+- **[`playbook/`](./playbook/README.md)**: the recipes, i.e. how to do each kind of task.
+- **[`DESIGN.md`](./DESIGN.md)**: the design spec (colors, type, components, screens).
+- **[`EXTENSIONS.md`](./EXTENSIONS.md)**: recommended VS Code extensions.
+- **`gamenight-mockups.html`** / **`gamenight-web.html`**: visual mockups.
+- **[`scripts/`](./scripts/README.md)**: SQL schema + BoardGameGeek import (used in Phase 8).
 
-**Double-click `gamenight-roadmap.html`** — it opens in your browser, nothing to install.
+## Keeping the docs true
 
-- Click the **squares** to tick off tasks. Progress auto-saves in that browser (localStorage).
-- Everything already completed in the repo comes **pre-ticked**, so even a fresh browser starts from reality, not zero.
-- **Export progress** downloads a tiny `.json` backup; **Import progress** restores it. Use this if you switch browsers/computers, or if the browser ever clears local file data (the reason progress used to vanish between sessions).
-- **Expand / Collapse all** folds phases; **Reset** returns to the baked-in baseline.
+- **Who does what changes** → edit `TASKS.md` **and** `gamenight-roadmap-data.js` in the same PR.
+- **What we build or why changes** → edit `ROADMAP.md`.
+- **Every weekly sync** → update `STATUS.md` (it takes two minutes).
 
----
+## Milestones
 
-## The build order (milestones)
+`v0.1.0` login → `v0.2.0` parties + scoring → `v0.3.0` stats + catalog → `v1.0.0` polished release → then friends, chat, push, CI/CD (`v1.1.0`–`v1.4.0`).
 
-Track A (lean v1): `v0.1.0` auth → `v0.2.0` parties + scoring → `v0.3.0` stats + catalog → `v1.0.0` polished release.
-Track B (after v1): `v1.1.0` friends → `v1.2.0` chat → `v1.3.0` push → `v1.4.0` CI/CD.
+## Project history
 
-**Rough timeline at ~40 h/week:** playable MVP in ~6–8 weeks, polished `v1.0` in ~3 months. Full breakdown in `ROADMAP.md`.
-
----
-
-## Tech stack (all free)
-
-**Expo SDK 54 (React Native + web)** · **TypeScript** · **Supabase** (Postgres, auth, realtime, storage) · **GitHub** (code, Issues, Actions CI) · **Docker** (backend locally). Total cost: **$0**.
-
----
-
-## Removed team files
-
-`TEAM.md`, `gamenight-team.html`, `gamenight-roadmap-denis.html`, and `gamenight-roadmap-teo-tasks.html` were deleted when the project went solo — anything still useful was folded into `ROADMAP.md`. They live on in git history.
+Started as a Teo + Denis project (v1 roadmap), went solo when Denis left (v2), was replanned for Teo + Dragos in 2026-07 (v3, never merged; the project paused mid-July to mid-October), and became a team of three when **Marcian joined in 2026-10** (v4). **v5 (2026-11-02)** split the work equally and added `STATUS.md`, `SETUP.md` and `TASKS.md`. Older versions are in git history.

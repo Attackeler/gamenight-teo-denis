@@ -28,6 +28,18 @@ Issue Number: N/A
 -
 -
 
+## Recipe (docs/playbook/)
+
+<!-- Our rule: first time anyone does a kind of task → write the recipe. Has a recipe → follow it, then fix it. -->
+
+- [ ] First of its kind — I added a recipe: `docs/playbook/...`
+- [ ] Replica — I followed `docs/playbook/...` and fixed what wasn't clear (changelog line added)
+- [ ] Neither applies (docs-only or a one-off fix)
+
+## Reviewer: explain it back
+
+<!-- Before approving, the reviewer writes 1–3 sentences here or in a comment: what this PR does and why, in your own words. -->
+
 ## Other information
 
 <!-- Any other information that is important to this PR such as screenshots of how the component looks before and after the change -->
