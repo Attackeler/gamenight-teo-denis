@@ -16,7 +16,7 @@ module.exports = defineConfig([
             'nativewind-env.d.ts',
             'bun.lock',
             '.expo/*',
-            'app-example/*'
+            '**/app-example/**'
         ]
     }
 ]);
