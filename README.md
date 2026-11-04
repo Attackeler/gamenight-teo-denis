@@ -41,4 +41,4 @@ npx expo start               # scan the QR with Expo Go, or press "w" for web
 
 ## Stack
 
-**Expo SDK 54** (React Native + Expo Router — iOS, Android, web) · **TypeScript** · **Supabase** (Postgres, auth, realtime) · **GitHub Actions** CI · **Docker** (local backend only).
+**Expo SDK 58** (React Native + Expo Router — iOS, Android, web) · **TypeScript** · **Supabase** (Postgres, auth, realtime) · **GitHub Actions** CI · **Docker** (local backend only).
