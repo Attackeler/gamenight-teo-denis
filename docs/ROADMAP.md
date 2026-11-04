@@ -40,9 +40,9 @@ Not "everyone has seen everything". Everyone has _done_ every kind of work at le
 
 ## Where the project stands
 
-**Phase 0 and 1 are done** (PRs #1–#9). **Phase 2 is in progress** on `feat/phase-2-design-system`, and **Phases 3+ haven't started**. `docs/scripts/` already holds the Phase 8 pre-work (`games_schema.sql` + the BGG import script). The full, dated picture (branches, what's uncommitted, known bugs) is in **[`STATUS.md`](./STATUS.md)**.
+**Phase 0 and 1 are done** (PRs #1–#9). **Phase 2 is in progress** (tokens, theme and component drafts merged in PR #12), and **Phases 3+ haven't started**. `docs/scripts/` already holds the Phase 8 pre-work (`games_schema.sql` + the BGG import script). The full, dated picture (branches, known bugs) is in **[`STATUS.md`](./STATUS.md)**.
 
-**Versions pinned in the repo:** Expo SDK 54 (`~54.0.34`), Expo Router 6, React Native 0.81.5, React 19.1, TypeScript 5.9, Node 26.4 (`engines` + `engine-strict`). Repo: `Attackeler/gamenight-teo-denis` on GitHub.
+**Versions pinned in the repo:** Expo SDK 58 (`^58.0.0`, updated weekly by a PR from the `Expo update` workflow), Expo Router 58, React Native 0.88.1, React 19.3, TypeScript 6.0, Node 26.4 (`engines` + `engine-strict`). Repo: `Attackeler/gamenight-teo-denis` on GitHub.
 
 **Old → new phase numbers** (branch names like `chore/phase-0.7-devops` used the old ones): old 0 → **0** · old 0.7 → **1** · old 0.5 → **2** · old 1 → **3** · old 2 → **4** · old 3 → **5** · old 4 → **6** · old 5 → **7** · old 6 → **8** · old 10 → **9** · old 7 → **10** · old 8 → **11** · old 9 → **12** · old 11 → **13**. **Phase O** (on-ramps) replaces v3's Phase D.
 
@@ -116,7 +116,7 @@ The whole stack is free-tier: [Expo](https://expo.dev/pricing) · [Supabase](htt
 
 ## Tech stack & why
 
-- **Expo SDK 54 + Expo Router + TypeScript** — file-based routing on iOS, Android **and web** from one codebase. [Expo Router](https://docs.expo.dev/router/introduction/) · [Expo + TS](https://docs.expo.dev/guides/typescript/)
+- **Expo SDK 58 + Expo Router + TypeScript** — file-based routing on iOS, Android **and web** from one codebase. [Expo Router](https://docs.expo.dev/router/introduction/) · [Expo + TS](https://docs.expo.dev/guides/typescript/)
 - **Supabase** — Postgres + auth + realtime + storage + edge functions, one free tier. Relational fits: the app is all relationships and aggregates. [Docs](https://supabase.com/docs)
 - **TanStack Query (server state) + Zustand (UI state, only if needed)** — don't make one tool do both. [TanStack Query](https://tanstack.com/query/latest) · [in React Native](https://tanstack.com/query/latest/docs/framework/react/react-native) · [Zustand](https://zustand.docs.pmnd.rs/)
 
@@ -231,10 +231,10 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Learn first:** [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/) · [`useColorScheme`](https://reactnative.dev/docs/usecolorscheme) · [**React Context**](https://react.dev/learn/passing-data-deeply-with-context) + [`useContext`](https://react.dev/reference/react/useContext) — the theme provider is **our own context**, not React Navigation's · [React Navigation theming](https://reactnavigation.org/docs/themes/) (headers/tab bars — never wrap `NavigationContainer` yourself; Expo Router owns it) · [why tokens beat hex values](https://m3.material.io/styles/color/system/overview) · [Expo fonts](https://docs.expo.dev/develop/user-interface/fonts/) · [StyleSheet](https://reactnative.dev/docs/stylesheet) · [Pressable](https://reactnative.dev/docs/pressable) · [safe areas](https://docs.expo.dev/develop/user-interface/safe-areas/) · [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/) · [Splash screen](https://docs.expo.dev/versions/latest/sdk/splash-screen/) (hold it while fonts + theme load)
 
-- [x] Design tokens from `DESIGN.md`: light + dark palettes, spacing, type scale, radii; Inter fonts loaded. _(on `feat/phase-2-design-system`)_
-- [x] Theme provider reading the device scheme; modes: light / dark / system. _(on the branch)_
-- [x] Persist the choice via AsyncStorage. _(on the branch)_
-- [ ] **Commit and push the July base-component WIP** — it only exists on Teo's disk.
+- [x] Design tokens from `DESIGN.md`: light + dark palettes, spacing, type scale, radii; Inter fonts loaded. _(PR #12)_
+- [x] Theme provider reading the device scheme; modes: light / dark / system. _(PR #12)_
+- [x] Persist the choice via AsyncStorage. _(PR #12)_
+- [x] **Commit and push the July base-component WIP.** _(`9db642e`, PR #12)_
 - [ ] **Fix the theme provider** before anyone builds on it: first launch (storage empty → `null`) must mean **system**, not light; toggling must work from the theme _actually shown_; all three modes selectable (System / Light / Dark — `DESIGN.md` §5); no wrong-theme flash on startup.
 
 > **Commit:** `fix(theme): default to system mode and support three-way selection`

@@ -30,12 +30,12 @@ Where we are right now: [`STATUS.md`](./STATUS.md). Set up your machine first: [
     - `make check-files`, then fix anything red
     - `git add src/components app/index.tsx`, then commit `feat(ui): add base component drafts`
     - `git push`
-- [ ] **0.T2 — Get these docs onto `main`**
+- [x] **0.T2 — Get these docs onto `main`** (done 2026-11-04, PR #10)
     - `git push -u origin docs/team-roadmap`, then open a PR into `main`. Dragos reviews it.
     - After the merge: delete `team-roadmap.bundle` from your machine, and delete the merged old branches on GitHub (list in `STATUS.md`)
 - [ ] **0.T3 — Repo access**
     - GitHub → Settings → Collaborators: add Dragos and Marcian
-    - Settings → Branches → rule for `main`: require a PR, **1 approving review**, and the `check-run` CI check
+    - [x] Rule for `main`: require a PR, **1 approving review**, and the `check-run` CI check (already set up as a ruleset)
 - [ ] **0.T4 — Fix the pre-commit hook** · commit `fix(devops): run lint-staged in pre-commit`
     - Replace `.husky/pre-commit` so it only runs `npx lint-staged`, and drop the line that rewrites `.husky/commit-msg`
     - Check that `.lintstagedrc.ts` covers lint and prettier for staged files; CI still runs the full `ts-check`
