@@ -1,10 +1,9 @@
+// Runs on the files you're committing only. The full lint + type check
+// still runs in CI on every PR (see .github/workflows/node.js.yaml).
 module.exports = {
-    // Type check TypeScript files
-    '**/*.(ts|tsx)': () => 'npm run ts-check',
+    // Fix lint problems, then format, in TS and JS files
+    '*.{ts,tsx,js}': ['eslint --fix --no-warn-ignored', 'prettier --write'],
 
-    // Lint & Prettify TS and JS files
-    '**/*.(ts|tsx|js)': () => ['npm run lint:fix', 'npm run prettier:fix'],
-
-    // Prettify only Markdown and JSON files
-    '**/*.(md|json)': () => 'npm run prettier:fix'
+    // Format Markdown, JSON, and YAML files
+    '*.{md,json,yaml,yml}': 'prettier --write --ignore-unknown'
 };
