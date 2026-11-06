@@ -10,7 +10,7 @@ The foundations and DevOps are done and merged (including the pre-commit hook fi
 
 ```text
 Phase 0  Foundations           ██████████  done   (merged, PRs #1–#2)
-Phase 1  DevOps                █████████░  done   (merged, PRs #3–#9, #11, #13, #15, #18–#20) — leftovers: collaborators, two npm scripts, two stray files
+Phase 1  DevOps                █████████░  done   (merged, PRs #3–#9, #11, #13, #15, #18–#20) — leftovers: two npm scripts, two stray files
 Phase 2  Design system         █████░░░░░  in progress — tokens, theme, drafts merged (PR #12); fixes + components next
 Phase 3  Database schema       ░░░░░░░░░░  not started
 Phase 4  Login  → v0.1.0       ░░░░░░░░░░  not started
@@ -39,6 +39,6 @@ There are **no issues, no tags, no tests, and no database tables** yet (`supabas
 
 ## The next three things (in order)
 
-1. **Teo:** add Dragos and Marcian as collaborators (GitHub → Settings → Collaborators).
+1. **Teo:** add Marcian as a collaborator when he joins (GitHub → Settings → Collaborators). Dragos is already in.
 2. **Everyone:** set up your machine with [`SETUP.md`](./SETUP.md) (Dragos and Marcian on a call with Teo).
 3. **Everyone:** start your column of **Step 0** in [`TASKS.md`](./TASKS.md).

@@ -229,7 +229,8 @@ const PHASES = [
             {
                 id: 'p1-collab',
                 t: 'Add Dragos and Marcian as repo collaborators',
-                o: 'T'
+                o: 'T',
+                done: true
             },
             {
                 id: 'p1-protect',

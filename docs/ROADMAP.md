@@ -205,7 +205,7 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 
 **Leftovers (small — they make the team workflow structural):**
 
-- [ ] **Add Dragos and Marcian as repo collaborators** (GitHub → Settings → Collaborators).
+- [x] **Add Dragos and Marcian as repo collaborators** (GitHub → Settings → Collaborators).
 - [x] **Branch protection** for `main`: it's already protected. Check that it requires the CI check **and one approving review**, so cross-review is enforced by the platform, not by willpower. [Docs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
 - [x] **Fix the pre-commit hook:** `.husky/pre-commit` rewrites `.husky/commit-msg` on every commit and never runs lint-staged (so `.lintstagedrc.ts` is dead config). _Done 2026-11-04, PR #20._
 
