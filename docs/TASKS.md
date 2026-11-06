@@ -33,10 +33,10 @@ Where we are right now: [`STATUS.md`](./STATUS.md). Set up your machine first: [
 - [x] **0.T2 — Get these docs onto `main`** (done 2026-11-04, PR #10)
     - `git push -u origin docs/team-roadmap`, then open a PR into `main`. Dragos reviews it.
     - After the merge: delete `team-roadmap.bundle` from your machine, and delete the merged old branches on GitHub (list in `STATUS.md`)
-- [ ] **0.T3 — Repo access**
+- [x] **0.T3 — Repo access** (done 2026-11-06: Dragos added; Marcian gets added when he joins)
     - GitHub → Settings → Collaborators: add Dragos and Marcian
     - [x] Rule for `main`: require a PR, **1 approving review**, and the `check-run` CI check (already set up as a ruleset)
-- [ ] **0.T4 — Fix the pre-commit hook** · commit `fix(devops): run lint-staged in pre-commit`
+- [x] **0.T4 — Fix the pre-commit hook** (done 2026-11-04, PR #20) · commit `fix(devops): run lint-staged in pre-commit`
     - Replace `.husky/pre-commit` so it only runs `npx lint-staged`, and drop the line that rewrites `.husky/commit-msg`
     - Check that `.lintstagedrc.ts` covers lint and prettier for staged files; CI still runs the full `ts-check`
     - Prove it works: make a small badly formatted change, commit, and watch it get fixed or blocked
