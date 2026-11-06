@@ -36,7 +36,7 @@ Where we are right now: [`STATUS.md`](./STATUS.md). Set up your machine first: [
 - [ ] **0.T3 — Repo access**
     - GitHub → Settings → Collaborators: add Dragos and Marcian
     - [x] Rule for `main`: require a PR, **1 approving review**, and the `check-run` CI check (already set up as a ruleset)
-- [ ] **0.T4 — Fix the pre-commit hook** · commit `fix(devops): run lint-staged in pre-commit`
+- [x] **0.T4 — Fix the pre-commit hook** (done 2026-11-04, PR #20) · commit `fix(devops): run lint-staged in pre-commit`
     - Replace `.husky/pre-commit` so it only runs `npx lint-staged`, and drop the line that rewrites `.husky/commit-msg`
     - Check that `.lintstagedrc.ts` covers lint and prettier for staged files; CI still runs the full `ts-check`
     - Prove it works: make a small badly formatted change, commit, and watch it get fixed or blocked

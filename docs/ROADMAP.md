@@ -40,7 +40,7 @@ Not "everyone has seen everything". Everyone has _done_ every kind of work at le
 
 ## Where the project stands
 
-**Phase 0 and 1 are done** (PRs #1–#9). **Phase 2 is in progress** (tokens, theme and component drafts merged in PR #12), and **Phases 3+ haven't started**. `docs/scripts/` already holds the Phase 8 pre-work (`games_schema.sql` + the BGG import script). The full, dated picture (branches, known bugs) is in **[`STATUS.md`](./STATUS.md)**.
+**Phase 0 and 1 are done** (PRs #1–#9, #11, #13, #15, #18–#20; small leftovers below). **Phase 2 is in progress** (tokens, theme and component drafts merged in PR #12), and **Phases 3+ haven't started**. `docs/scripts/` already holds the Phase 8 pre-work (`games_schema.sql` + the BGG import script). The full, dated picture (branches, known bugs) is in **[`STATUS.md`](./STATUS.md)**.
 
 **Versions pinned in the repo:** Expo SDK 58 (`^58.0.0`, updated weekly by a PR from the `Expo update` workflow), Expo Router 58, React Native 0.88.1, React 19.3, TypeScript 6.0, Node 26.4 (`engines` + `engine-strict`). Repo: `Attackeler/gamenight-teo-denis` on GitHub.
 
@@ -206,8 +206,8 @@ Done across PRs #3–#9: local Supabase via CLI + Docker, migrations plumbing, `
 **Leftovers (small — they make the team workflow structural):**
 
 - [ ] **Add Dragos and Marcian as repo collaborators** (GitHub → Settings → Collaborators).
-- [ ] **Branch protection** for `main`: it's already protected. Check that it requires the CI check **and one approving review**, so cross-review is enforced by the platform, not by willpower. [Docs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
-- [ ] **Fix the pre-commit hook:** `.husky/pre-commit` rewrites `.husky/commit-msg` on every commit and never runs lint-staged (so `.lintstagedrc.ts` is dead config).
+- [x] **Branch protection** for `main`: it's already protected. Check that it requires the CI check **and one approving review**, so cross-review is enforced by the platform, not by willpower. [Docs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+- [x] **Fix the pre-commit hook:** `.husky/pre-commit` rewrites `.husky/commit-msg` on every commit and never runs lint-staged (so `.lintstagedrc.ts` is dead config). _Done 2026-11-04, PR #20._
 
 > **Commit:** `fix(devops): run lint-staged in pre-commit`
 

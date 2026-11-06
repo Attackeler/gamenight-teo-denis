@@ -234,13 +234,15 @@ const PHASES = [
             {
                 id: 'p1-protect',
                 t: 'Branch protection: main is already protected — check it requires the CI check AND one approving review',
-                o: 'T'
+                o: 'T',
+                done: true
             },
             {
                 id: 'p1-hooks',
                 t: 'Fix .husky/pre-commit: run lint-staged, and stop it rewriting .husky/commit-msg on every commit',
                 o: 'T',
-                c: 'fix(devops): run lint-staged in pre-commit'
+                c: 'fix(devops): run lint-staged in pre-commit',
+                done: true
             },
             {
                 id: 'p1-pyc',
